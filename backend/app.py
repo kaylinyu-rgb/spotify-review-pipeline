@@ -4,8 +4,10 @@
 """
 from __future__ import annotations
 
+import logging
 import os
 from pathlib import Path
+from urllib.parse import urlsplit
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
@@ -13,12 +15,30 @@ from fastapi.responses import FileResponse
 from psycopg.rows import dict_row
 from psycopg_pool import ConnectionPool
 
-DB = os.environ.get("DATABASE_URL")
-if not DB:
-    raise RuntimeError("DATABASE_URL is not set")
-pool = ConnectionPool(DB, min_size=1, max_size=int(os.environ.get("DB_POOL_MAX", "5")),
-                      kwargs={"row_factory": dict_row, "prepare_threshold": None}, open=True)
+log = logging.getLogger("uvicorn.error")
+DB = (os.environ.get("DATABASE_URL") or "").strip().strip('"').strip("'")
 STATIC = Path(__file__).resolve().parent / "static"
+pool = None
+DB_ERROR = None
+if not DB:
+    DB_ERROR = "DATABASE_URL is not set on the server"
+else:
+    try:
+        _u = urlsplit(DB)
+        log.info("database host=%s port=%s db=%s user=%s", _u.hostname, _u.port, _u.path, (_u.username or "")[:12])
+    except ValueError as e:
+        DB_ERROR = f"DATABASE_URL could not be parsed: {e}"
+    if not DB_ERROR:
+        # Fail fast instead of hanging: 10 s connect timeout, 15 s wait for a pooled connection.
+        pool = ConnectionPool(DB, min_size=1, max_size=int(os.environ.get("DB_POOL_MAX", "4")), timeout=15,
+                              kwargs={"row_factory": dict_row, "prepare_threshold": None, "connect_timeout": 10},
+                              open=False)
+        try:
+            pool.open(wait=True, timeout=20)
+            log.info("database pool ready")
+        except Exception as e:  # keep serving so the error is visible instead of a silent timeout
+            DB_ERROR = f"could not connect to the database: {type(e).__name__}: {e}"
+            log.error(DB_ERROR)
 
 app = FastAPI(title="Spotify review insight API", version="1.0",
               description="Serves the saved, processed review pipeline outputs from Postgres. No model calls.")
@@ -26,6 +46,8 @@ app.add_middleware(CORSMiddleware, allow_origins=os.environ.get("CORS_ORIGINS", 
 
 
 def q(sql, args=(), one=False):
+    if pool is None:
+        raise HTTPException(503, DB_ERROR or "database unavailable")
     with pool.connection() as con, con.cursor() as cur:
         cur.execute(sql, args)
         return cur.fetchone() if one else cur.fetchall()
@@ -36,10 +58,20 @@ def doc(key):
     return r["value"] if r else None
 
 
+@app.get("/api/ping")
+def ping():
+    """Liveness for the host's health check: never touches the database."""
+    return {"ok": True, "db_error": DB_ERROR}
+
+
 @app.get("/api/health")
 def health():
-    r = q("SELECT COUNT(*) AS n FROM reviews", one=True)
-    return {"ok": True, "reviews_in_db": r["n"], "loaded": doc("loaded")}
+    """Readiness: confirms the backend can read the processed data from Postgres."""
+    if DB_ERROR:
+        raise HTTPException(503, DB_ERROR)
+    r = q("SELECT reltuples::bigint AS approx FROM pg_class WHERE relname='reviews'", one=True)
+    exact = q("SELECT COUNT(*) AS n FROM reviews", one=True)
+    return {"ok": True, "reviews_in_db": exact["n"], "approx": r["approx"] if r else None, "loaded": doc("loaded")}
 
 
 @app.get("/api/overview")
