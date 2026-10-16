@@ -73,12 +73,12 @@ Recompute without a model: `python -m pipeline rerank --grading runs/full/gradin
 
 ## One real review, traced
 
-1. **Source** `5d8c1d43-78b5-4087-b409-1a4dc1adc572` (2023-10-09 14:30:59, 1★ metadata only): “Seriously all the basic features of a music player app locked behind premium as "premium feature" absolutely disgusting greedy money grabbing decisions bring back the old features before update and bugs glitches on top of that 😡😡😡”
-2. **Enrichment** request `msgbatch_01DniwyDSseX7ruXfHF5q5BE:qd7822165e08e4723bad9` (claude-haiku-5-5, phase resume): `billing.premium_paywall`, complaint, severity 3, sentiment -1.0, quote “all the basic features of a music player app locked behind premium” (model_exact), entities ['premium', 'update'], needs_review False.
-3. **Verification**: not in the declared 1% sample.
+1. **Source** `0064827f-fd12-4b18-bfee-1936780b8e26` (2023-10-22 11:20:36, 1★ metadata only): “Premium took all the fun I mean it was way better before the latest update. Now for everything needs a premium. Producers u have gotten greedy. U ruined everything”
+2. **Enrichment** request `msgbatch_014RFeogBxuCh9CaCe7tYhcC:qf0439ffcd2c9419daf33` (claude-haiku-5-5, phase resume): `billing.premium_paywall`, complaint, severity 3, sentiment -1.0, quote “Now for everything needs a premium.” (model_exact), entities ['premium', 'update'], needs_review False.
+3. **Verification**: re-labeled blind as billing/complaint/2.
 4. **Issue membership**: `billing.premium_paywall` (membership.csv).
 5. **Ranking**: rank 2 — 41553 complaints × mean 2.785792 = 115758.
-6. **Memo claims**: C5 complaint_count=41553, C6 severity_sum=115758, C7 mean_severity=2.785792, C8 priority_score=115758; quoted in memo.md.
+6. **Memo claims**: C5 complaint_count=41553, C6 severity_sum=115758, C7 mean_severity=2.785792, C8 priority_score=115758; the memo cites these claim IDs for `billing.premium_paywall` (its quoted examples are `5d8c1d43-78b5-4087-b409-1a4dc1adc572`, `dc18ffbc-f0d8-4cce-a193-a28a801f6aa9`, `4cd090df-2c51-484b-a989-7956da52ece0`).
 
 ## A failed case and its handling
 

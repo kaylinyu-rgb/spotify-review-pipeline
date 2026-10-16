@@ -1,0 +1,191 @@
+{
+  "n": 50,
+  "valid_predictions": 50,
+  "ambiguous_cases": 0,
+  "run": "full",
+  "label_config": "anthropic:claude-haiku-5-5+effort-low+enrich-p2+schema-s2+entities-l1",
+  "agreement": {
+    "topic_accepting_alternatives": 0.48,
+    "topic_exact": 0.48,
+    "intent": 0.84,
+    "severity_exact": 0.62,
+    "sentiment_within_0.5": 1.0,
+    "all_three": 0.26,
+    "needs_review_match": 0.82
+  },
+  "severity_mae": 0.52,
+  "sentiment_mae": 0.12,
+  "quote_exact_substring_rate": 1.0,
+  "macro_f1": {
+    "topic": 0.34,
+    "intent": 0.705
+  },
+  "per_topic": {
+    "access": {
+      "support": 0,
+      "predicted": 1,
+      "precision": 0.0,
+      "recall": null,
+      "f1": 0.0
+    },
+    "usability": {
+      "support": 27,
+      "predicted": 10,
+      "precision": 0.9,
+      "recall": 0.333,
+      "f1": 0.486
+    },
+    "playback": {
+      "support": 0,
+      "predicted": 3,
+      "precision": 0.0,
+      "recall": null,
+      "f1": 0.0
+    },
+    "downloads": {
+      "support": 0,
+      "predicted": 1,
+      "precision": 0.0,
+      "recall": null,
+      "f1": 0.0
+    },
+    "catalog": {
+      "support": 2,
+      "predicted": 6,
+      "precision": 0.167,
+      "recall": 0.5,
+      "f1": 0.25
+    },
+    "billing": {
+      "support": 0,
+      "predicted": 4,
+      "precision": 0.0,
+      "recall": null,
+      "f1": 0.0
+    },
+    "support": {
+      "support": 1,
+      "predicted": 0,
+      "precision": null,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "other": {
+      "support": 20,
+      "predicted": 25,
+      "precision": 0.56,
+      "recall": 0.7,
+      "f1": 0.622
+    }
+  },
+  "per_intent": {
+    "cancellation": {
+      "support": 0,
+      "predicted": 1,
+      "precision": 0.0,
+      "recall": null,
+      "f1": 0.0
+    },
+    "complaint": {
+      "support": 18,
+      "predicted": 21,
+      "precision": 0.81,
+      "recall": 0.944,
+      "f1": 0.872
+    },
+    "request": {
+      "support": 2,
+      "predicted": 3,
+      "precision": 0.333,
+      "recall": 0.5,
+      "f1": 0.4
+    },
+    "praise": {
+      "support": 20,
+      "predicted": 21,
+      "precision": 0.952,
+      "recall": 1.0,
+      "f1": 0.976
+    },
+    "unclear": {
+      "support": 10,
+      "predicted": 4,
+      "precision": 1.0,
+      "recall": 0.4,
+      "f1": 0.571
+    }
+  },
+  "topic_confusion": [
+    {
+      "human": "catalog",
+      "pred": "catalog",
+      "n": 1
+    },
+    {
+      "human": "catalog",
+      "pred": "other",
+      "n": 1
+    },
+    {
+      "human": "other",
+      "pred": "billing",
+      "n": 2
+    },
+    {
+      "human": "other",
+      "pred": "catalog",
+      "n": 3
+    },
+    {
+      "human": "other",
+      "pred": "other",
+      "n": 14
+    },
+    {
+      "human": "other",
+      "pred": "usability",
+      "n": 1
+    },
+    {
+      "human": "support",
+      "pred": "playback",
+      "n": 1
+    },
+    {
+      "human": "usability",
+      "pred": "access",
+      "n": 1
+    },
+    {
+      "human": "usability",
+      "pred": "billing",
+      "n": 2
+    },
+    {
+      "human": "usability",
+      "pred": "catalog",
+      "n": 2
+    },
+    {
+      "human": "usability",
+      "pred": "downloads",
+      "n": 1
+    },
+    {
+      "human": "usability",
+      "pred": "other",
+      "n": 10
+    },
+    {
+      "human": "usability",
+      "pred": "playback",
+      "n": 2
+    },
+    {
+      "human": "usability",
+      "pred": "usability",
+      "n": 9
+    }
+  ],
+  "note": "50 cases are a small diagnostic sample, not a population accuracy estimate. Missing predictions count as incorrect."
+}

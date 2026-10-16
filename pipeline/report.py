@@ -96,8 +96,23 @@ def report(run_dir: Path, out: Path | None = None):
     L += ["", f"Recompute without a model: `python -m pipeline rerank --grading {run_dir.relative_to(ROOT)}/grading --check`.", ""]
     # one real review traced end to end
     cited = [rid for a in memo.get("actions", []) for rid in a.get("review_ids", [])]
-    if cited and cited[0] in recs:
-        r = recs[cited[0]]
+    # Prefer a review that went through EVERY stage: verified (declared sample), a ranked complaint, and in an
+    # issue that has memo claims (the memo's issues first). Fall back to the first memo-cited review.
+    claim_issues = [c["issue_id"] for c in _csv(run_dir / "claims.csv")]
+    memo_issues = [i for a in memo.get("actions", []) for i in a.get("issue_ids", [])] + claim_issues
+    verified = {row[0]: row for row in db.execute("SELECT review_id, topic, intent, severity FROM verify")}
+    pick = None
+    for iid in dict.fromkeys(memo_issues):
+        cands = [x for x in recs.values() if x.get("x_label") == iid and x["review_id"] in verified and x["status"] == "completed"
+                 and x["intent"] in ("complaint", "cancellation") and "cache_source_id" not in x and len(x["evidence_quote"]) >= 25]
+        agree = [x for x in cands if verified[x["review_id"]][1] == x["topic"]]
+        if agree or cands:
+            pick = sorted(agree or cands, key=lambda x: x["review_id"])[0]
+            break
+    if pick is None and cited and cited[0] in recs:
+        pick = recs[cited[0]]
+    if pick is not None:
+        r = pick
         src = db.execute("SELECT review_text, review_rating, review_timestamp FROM source WHERE review_id=?", (r["review_id"],)).fetchone()
         call = db.execute("SELECT request_id, model, phase, input_tokens, output_tokens FROM calls WHERE request_id=?", (r.get("x_request_id"),)).fetchone()
         v = db.execute("SELECT * FROM verify WHERE review_id=?", (r["review_id"],)).fetchone()
@@ -111,7 +126,9 @@ def report(run_dir: Path, out: Path | None = None):
               f"3. **Verification**: " + (f"re-labeled blind as {v['topic']}/{v['intent']}/{v['severity']}." if v else "not in the declared 1% sample."),
               f"4. **Issue membership**: `{r.get('x_label')}` (membership.csv).",
               f"5. **Ranking**: rank {rk.get('rank')} — {rk.get('complaint_count')} complaints × mean {rk.get('mean_severity')} = {rk.get('priority_score')}.",
-              f"6. **Memo claims**: " + ", ".join(f"{c['claim_id']} {c['metric']}={c['value']}" for c in claims) + "; quoted in memo.md.", ""]
+              f"6. **Memo claims**: " + ", ".join(f"{c['claim_id']} {c['metric']}={c['value']}" for c in claims) +
+              ("; this review is quoted in memo.md." if r["review_id"] in cited else
+               f"; the memo cites these claim IDs for `{r.get('x_label')}` (its quoted examples are " + ", ".join(f"`{c}`" for c in cited[:3]) + ")."), ""]
     hard = db.execute("SELECT text_hash, reason, attempts, detail FROM quarantine LIMIT 1").fetchone()
     if hard:
         t = db.execute("SELECT rep_id, rep_text FROM texts WHERE text_hash=?", (hard["text_hash"],)).fetchone()

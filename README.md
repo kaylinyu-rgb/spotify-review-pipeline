@@ -39,11 +39,11 @@ always match the saved files. Measured values are kept apart from estimates ther
 | Completed classifications of nonempty reviews | 660,602 / 660,609 (99.9989%) |
 | Distinct texts sent to the model / exact-text cache reuses | 484,189 / 176,420 rows |
 | Enrichment requests | 9,835 (8 failed, all retried); 86 texts completed by the capped Haiku-with-thinking fallback (cap 0.1%) |
-| API spend, full run | **$9.74** (enrich $9.56, verify $0.18, group + memo < $0.01) = **$1.47 per 100k rows** (course cap $10) |
+| API spend, full run | **$9.74** (enrich $9.56, verify $0.18, group + memo < $0.01) = **$1.47 per 100k rows** (course cap $10). Projection before the run: $11.73 base / $15.81 conservative ([calculator](cost/report.md)); actual came in under base. Whole assignment including pilot, checkpoints, golden and tests: about $10. |
 | Wall-clock | enrichment 6,344 s in the final resumed session (Message Batches); end-to-end stage times in `runs/full/run_log.jsonl` |
 | Interruption → resume | checkpoint_before 81,711 completed IDs → checkpoint_after 660,602; 0 completed IDs resent |
 | Independent verifier (declared 1% sample, n = 4,823) | topic 0.852 · intent 0.932 · severity exact 0.870 (MAE 0.133) · 1,372 disagreements listed |
-| Golden 50 vs human labels | topic 0.50 · intent 0.82 · severity 0.60 (MAE 0.60) · sentiment ±0.5 0.98 · quotes exact 1.00; see the [error analysis](evals/golden_report.md) |
+| Golden 50 vs human labels | dedicated run: topic 0.50 · intent 0.82 · severity 0.60 (MAE 0.60) · sentiment ±0.5 0.98 · quotes exact 1.00 ([error analysis](evals/golden_report.md)). **Submitted full-run predictions:** topic 0.48 · intent 0.84 · severity 0.62 (MAE 0.52) · sentiment 1.00 ([report + run-to-run variability](evals/golden_full_run/golden_report.md)) |
 | System tests | injection 7/7, planted errors 20/20 caught, spend cap never exceeded, resume resent 0 ([report](evals/system_tests_report.md)) |
 | 100-review pilot | cold $0.0071 / 480 s; warm $0 / 0 enrichment calls ([cost/report.md](cost/report.md)) |
 | Recommendation | **billing/support**: `billing.premium_paywall` 41,553 complaints, severity sum 115,758; billing has the most cancellation-intent records (9,552) ([memo](runs/full/memo.md)) |
@@ -72,6 +72,8 @@ calls, usage, costs or labels changed. The correction is logged in `runs/full/ru
 | 1:18–2:12 | `enrich --run full --stop-after-batches 1` restarts. The screen shows "RESUME detected … 0 completed IDs": this is the older phase rule tagging a restart with nothing saved yet as a resume. It was corrected afterwards and is disclosed in "Disclosed correction" above and in `run_log.jsonl`. |
 | 2:12–2:40 | The first 3 jobs are collected and saved (59,903 distinct texts = 81,711 rows, $1.21), and the session stops (the interruption). `status` shows the saved progress. `run --run full` then prints **"RESUME detected: saved checkpoint_before with 81,711 completed IDs; 1 job(s) to collect"**, collects the 4th job without resubmitting it, and submits new jobs only for pending texts. |
 
+The first session (11:04 pm) was stopped with Ctrl-C before any job finished, so its session summary is empty in `run_log`; no results or calls were lost, and its 4 jobs were collected later.
+
 `grading/checkpoint_before.json` (81,711 IDs) and `checkpoint_after.json` (660,602 IDs) are the snapshots on either side of this resume. Resume-phase calls contain none of the checkpoint_before IDs, which `tools/check_submission.py` verifies.
 
 ## Architecture
@@ -88,7 +90,7 @@ flowchart LR
   end
   E -->|validated records + call log| V
   subgraph M2[model: verifier agent]
-    V[3 Verify<br/>Jev Choice ×3 on a declared 1% random sample<br/>blind to the first labels]
+    V[3 Verify<br/>Claude Haiku 5.5, separate prompt verify-p1<br/>declared 1% random sample, blind to the first labels]
   end
   E --> G
   subgraph CODE2[code + small model]
@@ -117,7 +119,7 @@ language judgment is needed:
 |---|---|---|---|---|
 | Enrichment agent | `claude-haiku-5-5`, thinking disabled, effort low, Message Batches API (50% price), prompt `enrich-p2`, schema `schema-s2` | ≤ 50 distinct review texts with short keys (r01..r50); no stars or IDs | topic.subtopic, intent, severity, sentiment, exact quote, flag | Reading messy multilingual text. Code validates keys, enums, ranges and quote membership, extracts entities with a lexicon, and copies results to exact duplicates. |
 | Fallback | `claude-haiku-5-5` with adaptive thinking (effort medium), single review, capped at 0.1% of texts | 1 review that failed validation twice | same schema | Hard cases only. After the fallback, code quarantines the review with its reason. |
-| Verifier agent | Jev `jev-latest` Choice ×3 (topic, intent, severity); Haiku with a separate prompt (`verify-p1`) if no Jev key | 1 review text, rubric only | 3 labels + probabilities | Gives an independent second opinion from a different model family. Code computes agreement and lists every disagreement. |
+| Verifier agent | **Used in this run:** `claude-haiku-5-5` with its own prompt `verify-p1` and schema (topic, intent, severity only), 20 reviews per request, never shown the enricher's labels. Jev Choice ×3 is implemented (`pipeline/verify.py`) but was not used: no TypeSafe key was available. | review texts + rubric only | topic, intent, severity | Gives an independent second opinion from a different model family. Code computes agreement and lists every disagreement. |
 | Issue-naming agent | `claude-haiku-5-5` (`group-p1`) | ≤ 12 issues × 8 sample quotes | title, description, example IDs | Writes human-readable names. Membership is fixed by code; foreign IDs and new issues are rejected. |
 | Memo agent | `claude-haiku-5-5`, effort medium (`memo-p1`) | claims table, topic rollup, coverage, evidence pack | JSON memo | Builds the argument. Code rejects any number not in the claims, unknown issue IDs and review IDs outside the pack, with one retry. |
 
@@ -140,12 +142,21 @@ Jobs of 400 requests go to the Message Batches API, with at most 4 jobs in fligh
 SQLite and is committed atomically after every request's results, so there is a single writer and no
 double counting.
 
+## Data source
+
+Course extract of BwandoWando, *3.4 Million Spotify Google Store Reviews*, Kaggle v2 (CC0), 2022-05-17 to 2023-11-17:
+[course dataset ZIP](https://drive.google.com/file/d/1P0rUoAS_wVjp3BYKqXMEyD4u0uJP1Bvf/view) ·
+[Kaggle source](https://www.kaggle.com/datasets/bwandowando/3-4-million-spotify-google-store-reviews).
+`spotify_reviews_18months.csv`: 97,400,616 bytes, 660,622 rows, sha256
+`1fc85de68a304dd8978b537cfa58793d5f41cbaf417fa32cb53899f83a2fcef6` (verified at ingestion; see `runs/full/ingestion_report.json`).
+It is not committed; place it at `data/spotify_reviews_18months.csv` (see [data/README.md](data/README.md)).
+
 ## Setup
 
 ```sh
 python3 -m venv .venv && source .venv/bin/activate      # Python 3.10+
 pip install -r requirements.txt
-cp .env.example .env     # fill ANTHROPIC_API_KEY (+ TYPESAFE_API_KEY for Jev, DATABASE_URL for the dashboard)
+cp .env.example .env     # fill ANTHROPIC_API_KEY (+ DATABASE_URL for the dashboard; TYPESAFE_API_KEY only if using the optional Jev verifier)
 # put the 97.4 MB CSV at data/spotify_reviews_18months.csv (see data/README.md)
 ```
 
@@ -225,8 +236,11 @@ on Render choose New → Blueprint → this repo → set `DATABASE_URL` → open
 * Verification and golden agreement are diagnostics on small samples, not population accuracy.
 * July and October 2023 have about 3× normal review volume. The trend view therefore uses complaints per 100
   completed reviews, with denominators shown. The first and last months are partial.
-* Jev's price is not published in its docs. Its usage is logged and its cost is shown as *unknown* unless the
-  rate is filled in from the console.
+* The verifier is the same model family as the enricher, with a separate prompt, schema and blind input. Correlated errors
+  can therefore inflate verifier agreement (0.85 topic). The human golden set (topic 0.48–0.50) is the more independent check,
+  and the gap between the two is itself a finding.
+* Run-to-run variability: 9 of the 50 golden reviews got different labels in two runs with identical settings, all
+  borderline, political, non-English or mixed-issue texts ([details](evals/golden_full_run/golden_report.md)).
 * Synthetic test reviews live only in `runs/evals-injection` and `runs/_systemtests`, never in business aggregates.
 
 ## Repository map
