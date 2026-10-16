@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golden 50 Labeler</title>
+<style>
+:root{--bg:#f7f7f5;--card:#fff;--ink:#1b1b1a;--mut:#6b6b66;--line:#e2e1dc;--acc:#1e7a4f;--accbg:#e6f3ec;--warn:#a4441c;--warnbg:#fbece4}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#151514;--card:#1e1e1c;--ink:#ecebe6;--mut:#9b9a93;--line:#33322e;--acc:#5cc493;--accbg:#173326;--warn:#f08a5d;--warnbg:#3a2117}}
+:root[data-theme=dark]{--bg:#151514;--card:#1e1e1c;--ink:#ecebe6;--mut:#9b9a93;--line:#33322e;--acc:#5cc493;--accbg:#173326;--warn:#f08a5d;--warnbg:#3a2117}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+header{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);padding:12px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;z-index:2}
+h1{font-size:16px;margin:0 8px 0 0}.prog{color:var(--mut);font-variant-numeric:tabular-nums}
+button,select,input,textarea{font:inherit;color:inherit}
+button{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer}
+button.pri{background:var(--acc);border-color:var(--acc);color:#fff}
+main{max-width:860px;margin:0 auto;padding:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+.meta{color:var(--mut);font-size:13px;margin-bottom:8px;display:flex;gap:12px;flex-wrap:wrap}
+.text{font-size:17px;white-space:pre-wrap;background:var(--bg);border-radius:8px;padding:12px;margin:8px 0 16px;user-select:text}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:640px){.grid{grid-template-columns:1fr}}
+label{display:block;font-size:13px;color:var(--mut);margin-bottom:4px}
+select,input[type=text],textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}.chip{border:1px solid var(--line);border-radius:999px;padding:4px 10px;cursor:pointer;font-size:13px;background:var(--card)}
+.chip.on{background:var(--accbg);border-color:var(--acc);color:var(--acc);font-weight:600}
+.ok{color:var(--acc);font-size:13px}.bad{color:var(--warn);font-size:13px}
+.help{font-size:13px;color:var(--mut);background:var(--bg);border-radius:8px;padding:10px 12px;margin-top:14px}
+.nav{display:flex;justify-content:space-between;margin-top:16px;gap:8px}
+.dots{display:flex;flex-wrap:wrap;gap:4px;margin:12px 0}.dot{width:18px;height:18px;border-radius:4px;border:1px solid var(--line);cursor:pointer;font-size:10px;display:grid;place-items:center}
+.dot.done{background:var(--acc);border-color:var(--acc);color:#fff}.dot.cur{outline:2px solid var(--ink)}
+</style>
+</head>
+<body>
+<header>
+  <h1>Golden 50 · human labels</h1>
+  <span class="prog" id="prog"></span>
+  <span style="flex:1"></span>
+  <input id="labeler" type="text" placeholder="Your name" style="width:160px">
+  <button id="imp">Import CSV</button><input id="file" type="file" accept=".csv" hidden>
+  <button class="pri" id="exp">Export golden_labels.csv</button>
+</header>
+<main>
+  <div class="dots" id="dots"></div>
+  <div class="card">
+    <div class="meta"><span id="pos"></span><span id="rid"></span><span id="when"></span>
+      <a href="#" id="showstars">show stars</a><span id="stars" hidden></span></div>
+    <div class="text" id="text"></div>
+    <div class="grid">
+      <div><label>Topic (primary)</label><div class="chips" data-f="topic"></div></div>
+      <div><label>Intent (precedence: cancellation → complaint → request → praise → unclear)</label><div class="chips" data-f="intent"></div></div>
+      <div><label>Severity</label><div class="chips" data-f="severity"></div></div>
+      <div><label>Sentiment</label><div class="chips" data-f="sentiment"></div></div>
+    </div>
+    <div style="margin-top:12px"><label>Evidence quote (exact substring; select text above, then click “use selection”)</label>
+      <div style="display:flex;gap:8px"><input type="text" id="quote"><button id="usesel">use selection</button></div>
+      <div id="qstat"></div></div>
+    <div class="grid" style="margin-top:12px">
+      <div><label>Entities (comma separated, only terms in the text)</label><input type="text" id="entities"></div>
+      <div><label>Other acceptable topics if ambiguous (comma separated)</label><input type="text" id="alt_topics"></div>
+    </div>
+    <div style="margin-top:12px;display:flex;gap:20px;flex-wrap:wrap">
+      <label style="display:flex;gap:6px;align-items:center;color:var(--ink)"><input type="checkbox" id="needs_review"> needs_review (missing context / hard case)</label>
+      <label style="display:flex;gap:6px;align-items:center;color:var(--ink)"><input type="checkbox" id="ambiguous"> ambiguous (more than one label defensible)</label>
+    </div>
+    <div style="margin-top:12px"><label>Notes (why; which rule you applied)</label><textarea id="notes" rows="2"></textarea></div>
+    <div class="nav"><button id="prev">← Prev (k)</button><button class="pri" id="next">Next (j) →</button></div>
+    <div class="help"><b>Shared severity:</b> 1 no problem / praise / unclear / pure request · 2 generic criticism or minor annoyance ·
+      3 degraded or restricted function, some use remains · 4 core task clearly blocked · 5 explicit serious financial, privacy or data harm.
+      Stars, anger or cancellation intent alone don't raise severity. Label the <i>text</i>; stars are hidden by default.
+      <br><b>Topic:</b> highest-severity specific problem, then first mentioned; for praise the first specific praised feature; generic → other.
+      Premium-only controls → billing; a paid-plan mention alone is not billing.</div>
+  </div>
+</main>
+<script>
+const DATA = [{"review_id": "292ce26a-815d-4bce-a3b6-93cb6c9e7e2c", "review_text": "Staff must be full of mentally ill kool-aid heads. Banning conservative music that speaks truth. Spotify is doing all they can to protect pedophiles, by banning Christian songs discussing the path the devil leads you down. Pride is a sin.", "review_rating": "1", "review_likes": "1", "app_version": "8.7.40.777", "review_timestamp": "2022-06-21 20:13:46"}, {"review_id": "a70e8d3e-3f84-46bc-b008-67f476c67963", "review_text": "Great app use it every chance I get", "review_rating": "5", "review_likes": "0", "app_version": "8.8.66.563", "review_timestamp": "2023-09-24 21:01:09"}, {"review_id": "0d4f8b48-74c1-4e2a-89b5-11eaa737027e", "review_text": "It's really an amazing experience with Spotify...I love it🥰", "review_rating": "5", "review_likes": "0", "app_version": "8.8.68.565", "review_timestamp": "2023-09-28 08:06:22"}, {"review_id": "991b6b3a-f511-458a-a5b7-234f78048fb5", "review_text": "Ads were okay, but limited functionality..it's just too much", "review_rating": "1", "review_likes": "0", "app_version": "8.8.76.667", "review_timestamp": "2023-10-14 05:58:07"}, {"review_id": "599a0d41-989a-40ef-8ed2-e92db76eea46", "review_text": "I just loved it", "review_rating": "5", "review_likes": "0", "app_version": "8.8.6.472", "review_timestamp": "2023-02-05 00:50:53"}, {"review_id": "0c6ca545-3f89-4da6-b3db-1a352371fb6e", "review_text": "Hate this application 🤮🤮🤮🤮🤮🤮", "review_rating": "1", "review_likes": "0", "app_version": "", "review_timestamp": "2023-07-07 22:13:54"}, {"review_id": "111f9048-f7bd-4be0-813e-76b8fc49f73f", "review_text": "Excellent", "review_rating": "5", "review_likes": "0", "app_version": "8.7.78.373", "review_timestamp": "2022-11-13 18:52:23"}, {"review_id": "b567f70c-edba-4922-ac2a-e945e5eb3472", "review_text": "good ❤❤🔊🔊", "review_rating": "5", "review_likes": "0", "app_version": "", "review_timestamp": "2022-06-24 23:34:51"}, {"review_id": "b5ee7834-a0eb-4c15-9c7b-935831021922", "review_text": "Spotify is awesome and and very diverse :)", "review_rating": "5", "review_likes": "0", "app_version": "8.8.74.652", "review_timestamp": "2023-09-29 15:18:24"}, {"review_id": "1fc8b08f-7d6a-472f-b317-8ceb28d00f22", "review_text": "Duo Premium .... No ads at all!", "review_rating": "5", "review_likes": "0", "app_version": "8.7.68.568", "review_timestamp": "2022-09-26 16:32:29"}, {"review_id": "947821dc-b356-45dc-a0bc-1903728fad40", "review_text": "Very good but wen I play my song it o ly plays a little bit then it stops I updated my phone and it worked but it happend again they need to fix this issue", "review_rating": "3", "review_likes": "1", "app_version": "8.7.56.421", "review_timestamp": "2022-08-16 23:36:02"}, {"review_id": "723f07de-9881-4049-8680-1a9e25652914", "review_text": "Update: I reached out to Spotify Support and with some help from Sarah I was able to get the app working again. Old Post:Normally, the app works great, and I use it constantly. I tried to open it today, and it keeps crashing every time. I've tried uninstalling and reinstalling, and updating. Nothing seems to work unfortunately.", "review_rating": "5", "review_likes": "13", "app_version": "8.8.58.473", "review_timestamp": "2023-08-06 01:09:49"}, {"review_id": "47428620-ec21-424d-a515-0b0b0012a5cf", "review_text": "This app is bad work", "review_rating": "1", "review_likes": "0", "app_version": "", "review_timestamp": "2023-03-14 03:56:43"}, {"review_id": "fc344263-308d-48a1-9715-c380d063b6de", "review_text": "Great...", "review_rating": "5", "review_likes": "0", "app_version": "8.8.2.434", "review_timestamp": "2023-02-10 18:26:42"}, {"review_id": "6112667b-3d71-475c-b1a4-159b87f73d2b", "review_text": "Super", "review_rating": "5", "review_likes": "0", "app_version": "", "review_timestamp": "2022-05-31 10:50:59"}, {"review_id": "01d453b0-dca3-42e9-8aa4-5fc167b08070", "review_text": "I like it but god I hate it when the music Interrupts my ads", "review_rating": "4", "review_likes": "0", "app_version": "8.8.62.491", "review_timestamp": "2023-08-18 10:10:02"}, {"review_id": "ac6cd66d-a9d2-42a4-afb8-2f84beff7fd1", "review_text": "Lhat ng song nasa spotify", "review_rating": "5", "review_likes": "0", "app_version": "", "review_timestamp": "2023-03-26 16:32:33"}, {"review_id": "44129679-31a0-4108-9314-086a3456f6ae", "review_text": "Avtar sungh", "review_rating": "1", "review_likes": "0", "app_version": "8.8.80.599", "review_timestamp": "2023-11-06 22:32:23"}, {"review_id": "46842184-32f8-4088-ac15-2a700a7e94ed", "review_text": "asem, lirik nya kdang gaada kek mana??", "review_rating": "1", "review_likes": "0", "app_version": "8.7.30.1221", "review_timestamp": "2023-09-29 15:11:18"}, {"review_id": "657f1b77-0183-4b06-bf48-5e6d9ab08f9a", "review_text": "Hate This application 👎", "review_rating": "1", "review_likes": "0", "app_version": "", "review_timestamp": "2023-07-07 05:06:07"}, {"review_id": "5de7f95b-ccad-41b2-9f63-a13f7c1d9f09", "review_text": "We are boycotting Swedish app in our protest against Sweden for their desrecpect & desceration of our holy book Qur'an", "review_rating": "1", "review_likes": "0", "app_version": "8.8.40.470", "review_timestamp": "2023-07-08 12:37:12"}, {"review_id": "de48c99b-46fe-4837-8634-e63dbc72a5ea", "review_text": "I LOVE that I was able to put in only a few songs I like and Spotify gave me recommendations for an AWESOME Playlist...!!!", "review_rating": "5", "review_likes": "0", "app_version": "8.7.54.403", "review_timestamp": "2022-08-11 16:19:47"}, {"review_id": "aa573851-0b86-4b1b-adf6-210268c08d2a", "review_text": "I absolutely love Spotify, to me is one of the best Music Apps. Great job Spotify!!!", "review_rating": "5", "review_likes": "0", "app_version": "8.8.62.491", "review_timestamp": "2023-08-25 00:58:54"}, {"review_id": "372d4e67-59cc-4c54-879f-3e8a202ee554", "review_text": "Please ye ads ko thoda kumm Karo harr ek song ke baad ad 🙏🙄", "review_rating": "1", "review_likes": "1", "app_version": "8.6.74.1176", "review_timestamp": "2022-12-05 07:47:16"}, {"review_id": "47f1406d-4918-4d60-9647-5ca8e610caca", "review_text": "Very poor updates as we cannot playback the songs and most bad updates are happening it is affecting the spotify quality", "review_rating": "1", "review_likes": "0", "app_version": "8.8.70.532", "review_timestamp": "2023-09-21 07:14:22"}, {"review_id": "82780cbe-6435-4efb-84f6-8e5fa47ffc3a", "review_text": "Awesomeness 👌 👏 👍 😍 💖", "review_rating": "5", "review_likes": "0", "app_version": "8.7.68.568", "review_timestamp": "2022-09-29 08:28:34"}, {"review_id": "36609c5c-fe48-4459-86b8-cc78fd3c77cd", "review_text": "Bheekhmangon", "review_rating": "1", "review_likes": "0", "app_version": "", "review_timestamp": "2023-10-10 07:52:54"}, {"review_id": "f4c8146a-d5c8-4168-b00e-21af666afc6a", "review_text": "Unconditional love, Stoli Canales", "review_rating": "5", "review_likes": "0", "app_version": "8.8.2.434", "review_timestamp": "2023-01-20 20:40:02"}, {"review_id": "3ddb3f4e-f7b9-430b-b335-eadc6d321f46", "review_text": "Deleting this App. The new update suck, we can't choose our fvrt songs after some clicks, we can't CHOOSE song after a song played, and we can't turn off shuffle option. They are pushing us to upgrade to Premium subscription. No wonder if you guys loose ratings and users. Anyway i am deleting this app after years of using.", "review_rating": "1", "review_likes": "1", "app_version": "8.8.68.565", "review_timestamp": "2023-09-12 00:53:14"}, {"review_id": "16d640e9-b281-4746-9562-c7dbcf7126b6", "review_text": "It's my best music app but now it's not...everything basic features is premium....", "review_rating": "1", "review_likes": "1", "app_version": "8.8.78.587", "review_timestamp": "2023-10-17 23:20:17"}, {"review_id": "8cc4fad4-26ec-47b7-96e8-49c7da714eca", "review_text": "I hate this app and sweden .I love islam", "review_rating": "1", "review_likes": "0", "app_version": "", "review_timestamp": "2023-07-10 06:07:03"}, {"review_id": "215463ae-95b7-4481-8747-1754b68f31fa", "review_text": "What is happening with Spotify?? Recently I'm trying to play a song but it doesn't working. So I unstalled and thn again install it now I can't even open the app.. Just showing try again?? I really loved Spotify but this making me to rate it 1 star plz fix the problm as fast as u can", "review_rating": "1", "review_likes": "0", "app_version": "8.7.90.544", "review_timestamp": "2022-12-10 08:06:48"}, {"review_id": "46c0b49f-83a1-427e-8f0b-cef62e3c94b5", "review_text": "Are you out of your mind? This is dangerous! Listening to music in a normal volume and suddenly an add starts and my ears feel like they explode!! Stop this BS, or you're gonna destroy someones ears.", "review_rating": "1", "review_likes": "1", "app_version": "8.8.54.481", "review_timestamp": "2023-07-19 16:15:07"}, {"review_id": "283b5843-a992-464f-b1dc-9dc7281ff390", "review_text": "Beth, we all got to give me a free dollar to go with 3 months, bro I can't be like", "review_rating": "5", "review_likes": "0", "app_version": "8.8.26.408", "review_timestamp": "2023-05-29 00:28:41"}, {"review_id": "1d15724a-98ff-400a-8083-0d9afc801098", "review_text": "Good", "review_rating": "5", "review_likes": "0", "app_version": "8.7.52.1010", "review_timestamp": "2022-08-07 00:10:55"}, {"review_id": "89ea724c-358f-48ab-9516-cd130d21c471", "review_text": "Good app!", "review_rating": "5", "review_likes": "0", "app_version": "", "review_timestamp": "2022-08-08 12:41:08"}, {"review_id": "2aa566c6-b98d-4513-b900-83702a8db8eb", "review_text": "Nice app, very less advertising", "review_rating": "4", "review_likes": "0", "app_version": "8.8.28.409", "review_timestamp": "2023-04-29 08:28:55"}, {"review_id": "8c0546b0-ce43-4a36-9d33-9f979e98d522", "review_text": "1-Lyrics not getting loaded, 2-can't go back to or start song where to wanted. Pathetic update", "review_rating": "1", "review_likes": "1", "app_version": "8.8.76.667", "review_timestamp": "2023-10-17 05:47:34"}, {"review_id": "a972945c-6601-4108-882a-afe986866a7b", "review_text": "Phenomenal", "review_rating": "4", "review_likes": "0", "app_version": "8.8.80.599", "review_timestamp": "2023-10-30 17:47:51"}, {"review_id": "8fd3dd72-5535-40f6-8779-1bd60892131e", "review_text": "Good", "review_rating": "5", "review_likes": "0", "app_version": "8.7.48.1062", "review_timestamp": "2022-07-26 10:24:26"}, {"review_id": "b58dd6f0-ad88-4319-b6db-58afb60c37c1", "review_text": "The only thing Spotify lacks is the ability to organize saved \nalbums/artists into collections. Would definitely deserve 5 stars if it \nincluded this feature.", "review_rating": "5", "review_likes": "0", "app_version": "8.7.44.968", "review_timestamp": "2022-07-07 17:04:53"}, {"review_id": "1a41c7e1-a655-4c63-b4db-c22bdff18003", "review_text": "Worst application 👎👎👎", "review_rating": "1", "review_likes": "0", "app_version": "", "review_timestamp": "2023-07-07 11:45:16"}, {"review_id": "dceb14e7-2df0-422f-bb2b-73d7c373159a", "review_text": "I gave one star because I can't give any less than that. the new update is sooooooo annoying like I can't even play the songs that I like and I can't rewind songs what the heck", "review_rating": "1", "review_likes": "0", "app_version": "", "review_timestamp": "2023-10-18 09:38:13"}, {"review_id": "5fba12ea-4980-4f25-a129-f830a3974fd2", "review_text": "I find Spotify very good, it finds and play whatever music you want and also adds songs that you might like, judging from your playlist if you choose to arrange one. 😊💃🎸🎶", "review_rating": "5", "review_likes": "0", "app_version": "8.7.58.455", "review_timestamp": "2022-08-23 15:15:54"}, {"review_id": "ac4e860a-c042-49cc-90f3-189591c336ac", "review_text": "paying for subscribing but unable to play in offline mode really?", "review_rating": "2", "review_likes": "0", "app_version": "8.7.56.421", "review_timestamp": "2022-08-22 03:25:59"}, {"review_id": "9034d675-9582-49b6-a1c1-c4ddabf8baf1", "review_text": "Worst app ever too much ad", "review_rating": "1", "review_likes": "0", "app_version": "8.7.78.383", "review_timestamp": "2022-11-11 00:18:06"}, {"review_id": "d2f3874f-d15d-4a2f-bb97-4f1213defa46", "review_text": "Too expensive and the free version is pretty much unusable with constant ads... Every two or three songs.. Forget it", "review_rating": "1", "review_likes": "4", "app_version": "8.8.54.481", "review_timestamp": "2023-09-22 23:48:41"}, {"review_id": "99b93e31-9f15-4daa-88ac-349ab0419c48", "review_text": "This update very bad for everyone.old Spotify. we all want.", "review_rating": "1", "review_likes": "1", "app_version": "", "review_timestamp": "2023-04-13 12:03:21"}, {"review_id": "ca63dfbe-7120-4e18-af6e-8ea786cd157d", "review_text": "I'm loving the experience with the app", "review_rating": "4", "review_likes": "0", "app_version": "8.8.74.652", "review_timestamp": "2023-10-07 05:32:37"}, {"review_id": "083811c7-d469-499b-9bef-5b9fb096653d", "review_text": "best app ever", "review_rating": "3", "review_likes": "0", "app_version": "8.8.82.634", "review_timestamp": "2023-11-15 13:31:03"}];
+const OPTS = {topic:["access","usability","playback","downloads","catalog","billing","support","other"],
+  intent:["cancellation","complaint","request","praise","unclear"], severity:["1","2","3","4","5"], sentiment:["-1","-0.5","0","0.5","1"]};
+const KEY = "golden50-labels-v1";
+let store = {}; try { store = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) {}
+let i = 0; try { i = +(localStorage.getItem(KEY + ":i") || 0); } catch (e) {}
+const $ = id => document.getElementById(id);
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(store)); localStorage.setItem(KEY + ":i", i); } catch (e) {} }
+function cur(){ const r = DATA[i]; return store[r.review_id] = store[r.review_id] || {}; }
+function done(r){ const s = store[r.review_id]; return s && s.topic && s.intent && s.severity && s.sentiment && s.evidence_quote; }
+document.querySelectorAll(".chips").forEach(el => {
+  const f = el.dataset.f;
+  OPTS[f].forEach(v => { const b = document.createElement("span"); b.className = "chip"; b.textContent = v; b.onclick = () => { cur()[f] = v; save(); render(); }; el.appendChild(b); });
+});
+["quote","entities","alt_topics","notes"].forEach(id => $(id).oninput = e => { cur()[id === "quote" ? "evidence_quote" : id] = e.target.value; save(); qcheck(); dots(); prog(); });
+["needs_review","ambiguous"].forEach(id => $(id).onchange = e => { cur()[id] = e.target.checked; save(); });
+$("labeler").value = (() => { try { return localStorage.getItem(KEY + ":who") || ""; } catch (e) { return ""; } })();
+$("labeler").oninput = e => { try { localStorage.setItem(KEY + ":who", e.target.value); } catch (x) {} };
+$("usesel").onclick = () => { const s = String(window.getSelection() || ""); if (s) { cur().evidence_quote = s; save(); render(); } };
+$("showstars").onclick = e => { e.preventDefault(); $("stars").hidden = !$("stars").hidden; };
+function qcheck(){ const q = cur().evidence_quote || ""; const ok = q && DATA[i].review_text.includes(q);
+  $("qstat").innerHTML = q ? (ok ? '<span class="ok">✓ exact substring</span>' : '<span class="bad">✗ not an exact substring of the review</span>') : ""; }
+function prog(){ $("prog").textContent = DATA.filter(done).length + " / 50 labeled"; }
+function dots(){ $("dots").innerHTML = ""; DATA.forEach((r, k) => { const d = document.createElement("div"); d.className = "dot" + (done(r) ? " done" : "") + (k === i ? " cur" : ""); d.textContent = k + 1; d.onclick = () => { i = k; save(); render(); }; $("dots").appendChild(d); }); }
+function render(){
+  const r = DATA[i], s = cur();
+  $("pos").textContent = "#" + (i + 1); $("rid").textContent = r.review_id; $("when").textContent = r.review_timestamp;
+  $("stars").textContent = "★ " + r.review_rating; $("text").textContent = r.review_text;
+  document.querySelectorAll(".chips").forEach(el => el.querySelectorAll(".chip").forEach(c => c.classList.toggle("on", s[el.dataset.f] === c.textContent)));
+  $("quote").value = s.evidence_quote || ""; $("entities").value = s.entities || ""; $("alt_topics").value = s.alt_topics || "";
+  $("notes").value = s.notes || ""; $("needs_review").checked = !!s.needs_review; $("ambiguous").checked = !!s.ambiguous;
+  qcheck(); dots(); prog();
+}
+$("prev").onclick = () => { i = Math.max(0, i - 1); save(); render(); };
+$("next").onclick = () => { i = Math.min(DATA.length - 1, i + 1); save(); render(); };
+document.addEventListener("keydown", e => { if (/INPUT|TEXTAREA/.test(e.target.tagName)) return; if (e.key === "j") $("next").click(); if (e.key === "k") $("prev").click(); });
+const COLS = ["review_id","review_text","review_rating","review_likes","app_version","review_timestamp","topic","intent","sentiment","severity","entities","evidence_quote","needs_review","ambiguous","alt_topics","notes","labeler"];
+const esc = v => { v = v == null ? "" : String(v); return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; };
+$("exp").onclick = () => {
+  const who = $("labeler").value.trim();
+  const lines = [COLS.join(",")].concat(DATA.map(r => { const s = store[r.review_id] || {};
+    const ent = (s.entities || "").split(",").map(x => x.trim()).filter(Boolean).join("|");
+    return COLS.map(c => c in r ? r[c] : c === "entities" ? ent : c === "needs_review" || c === "ambiguous" ? (s[c] ? "true" : "false") : c === "labeler" ? who : s[c]).map(esc).join(","); }));
+  const blob = new Blob([lines.join("\n") + "\n"], {type: "text/csv"}); const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = "golden_labels.csv"; a.click();
+};
+function parseCSV(t){ const out = []; let row = [], f = "", q = false; for (let k = 0; k < t.length; k++) { const c = t[k];
+  if (q) { if (c === '"' && t[k + 1] === '"') { f += '"'; k++; } else if (c === '"') q = false; else f += c; }
+  else if (c === '"') q = true; else if (c === ",") { row.push(f); f = ""; } else if (c === "\n") { row.push(f); out.push(row); row = []; f = ""; } else if (c !== "\r") f += c; }
+  if (f || row.length) { row.push(f); out.push(row); } return out; }
+$("imp").onclick = () => $("file").click();
+$("file").onchange = async e => { const rows = parseCSV(await e.target.files[0].text()); const h = rows.shift();
+  rows.forEach(r => { const o = {}; h.forEach((c, k) => o[c] = r[k]); if (!o.review_id) return;
+    store[o.review_id] = {topic: o.topic, intent: o.intent, severity: o.severity, sentiment: o.sentiment, evidence_quote: o.evidence_quote,
+      entities: (o.entities || "").split("|").join(", "), alt_topics: o.alt_topics, notes: o.notes, needs_review: o.needs_review === "true", ambiguous: o.ambiguous === "true"}; });
+  save(); render(); };
+render();
+</script>
+</body>
+</html>

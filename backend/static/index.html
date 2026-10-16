@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spotify Review Insights</title>
+<meta name="description" content="Full-corpus Spotify review pipeline: metrics, issue ranking and an AI recommendation with traceable evidence, served from Postgres.">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{color-scheme:light;--bg:#f6f6f3;--surface:#fcfcfb;--line:#e4e3de;--ink:#0b0b0b;--ink2:#52514e;--ink3:#7a7974;
+ --acc:#2a78d6;--accbg:#e8f1fc;--good:#0ca30c;--crit:#d03b3b;--warnbg:#fdf3e7;
+ --s1:#2a78d6;--s2:#eb6834;--s3:#1baf7a;--s4:#eda100;--s5:#e87ba4;--s6:#008300;--s7:#6250d6;--s8:#e34948}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){color-scheme:dark;--bg:#121211;--surface:#1a1a19;--line:#2f2f2c;--ink:#f0efec;--ink2:#c3c2b7;--ink3:#8f8e86;
+ --acc:#3987e5;--accbg:#18283d;--warnbg:#2f2416;--s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500;--s5:#d55181;--s6:#008300;--s7:#9085e9;--s8:#e66767}}
+:root[data-theme=dark]{color-scheme:dark;--bg:#121211;--surface:#1a1a19;--line:#2f2f2c;--ink:#f0efec;--ink2:#c3c2b7;--ink3:#8f8e86;
+ --acc:#3987e5;--accbg:#18283d;--warnbg:#2f2416;--s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500;--s5:#d55181;--s6:#008300;--s7:#9085e9;--s8:#e66767}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--acc)}code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+header{border-bottom:1px solid var(--line);background:var(--surface)}
+header .wrap{display:flex;align-items:center;gap:16px;padding-top:14px;padding-bottom:14px;flex-wrap:wrap}
+header h1{font-size:18px;margin:0;letter-spacing:-.01em}header .sub{color:var(--ink2);font-size:13px}
+.pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12px;color:var(--ink2);background:var(--surface)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--good)}
+nav{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}nav a{color:var(--ink2);text-decoration:none;font-size:13px;padding:5px 10px;border-radius:8px}nav a:hover{background:var(--bg)}
+section{padding:22px 0}h2{font-size:15px;margin:0 0 12px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink2)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}@media(max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi .v{font-size:24px;font-weight:650;font-variant-numeric:tabular-nums;letter-spacing:-.02em}.kpi .l{font-size:12.5px;color:var(--ink2)}.kpi .n{font-size:12px;color:var(--ink3);margin-top:2px}
+.rec{display:grid;grid-template-columns:1.35fr 1fr;gap:16px}@media(max-width:900px){.rec{grid-template-columns:1fr}}
+.area{display:inline-block;background:var(--accbg);color:var(--acc);font-weight:700;border-radius:8px;padding:4px 10px;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+.headline{font-size:21px;font-weight:650;line-height:1.3;margin:10px 0 8px;letter-spacing:-.01em}
+.claim{display:inline-block;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:0 4px;margin:0 1px;cursor:help;color:var(--ink2);position:relative}
+.claim:hover::after{content:attr(data-tip);position:absolute;left:0;top:120%;z-index:5;background:var(--ink);color:var(--surface);font-size:12px;padding:6px 8px;border-radius:6px;white-space:nowrap}
+.action{border-top:1px solid var(--line);padding:12px 0}.action h4{margin:0 0 4px;font-size:15px}
+.quote{border-left:3px solid var(--line);padding:4px 10px;margin:6px 0;color:var(--ink2);font-size:13.5px;cursor:pointer}.quote:hover{border-color:var(--acc)}
+.badge{display:inline-flex;gap:5px;align-items:center;font-size:12px;border-radius:6px;padding:2px 8px;border:1px solid var(--line)}
+.badge.ok::before{content:"✓";color:var(--good);font-weight:700}.badge.bad::before{content:"!";color:var(--crit);font-weight:700}
+ul.tight{margin:6px 0;padding-left:18px}ul.tight li{margin:3px 0;color:var(--ink2);font-size:13.5px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}th{text-align:left;font-weight:600;color:var(--ink2);font-size:12px;border-bottom:1px solid var(--line);padding:8px 6px;white-space:nowrap}
+td{border-bottom:1px solid var(--line);padding:8px 6px;vertical-align:middle}tr.click{cursor:pointer}tr.click:hover td{background:var(--bg)}
+.num{text-align:right;font-variant-numeric:tabular-nums}.bar{height:10px;border-radius:0 4px 4px 0;background:var(--acc);min-width:2px}
+.tchip{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--ink2)}.sw{width:9px;height:9px;border-radius:2px;display:inline-block}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}.grid2>*,.rec>*{min-width:0}@media(max-width:900px){.grid2{grid-template-columns:minmax(0,1fr)}}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}select,input{font:inherit;font-size:13px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)}
+.rv{border-bottom:1px solid var(--line);padding:10px 0;cursor:pointer}.rv:hover{background:var(--bg)}.rv .m{font-size:12px;color:var(--ink3);display:flex;gap:10px;flex-wrap:wrap}
+mark{background:#fde58a;color:#111;border-radius:2px;padding:0 1px}
+.drawer{position:fixed;top:0;right:0;width:min(560px,100%);height:100%;background:var(--surface);border-left:1px solid var(--line);box-shadow:-10px 0 30px rgba(0,0,0,.12);transform:translateX(105%);transition:transform .2s;z-index:20;overflow:auto;padding:20px}
+.drawer.open{transform:none}.drawer h3{margin:0 0 4px}.x{float:right;border:0;background:none;font-size:22px;cursor:pointer;color:var(--ink2)}
+.step{border-left:2px solid var(--line);padding:2px 0 12px 14px;position:relative}.step::before{content:"";position:absolute;left:-6px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--acc)}
+.step .t{font-size:12px;color:var(--ink3);text-transform:uppercase;letter-spacing:.05em}
+.kv{display:grid;grid-template-columns:140px 1fr;gap:2px 10px;font-size:13px}.kv div:nth-child(odd){color:var(--ink3)}
+.muted{color:var(--ink3);font-size:12.5px}.warn{background:var(--warnbg);border-radius:10px;padding:10px 12px;font-size:13px}
+.chartbox{position:relative;height:300px}
+.pipeline{display:flex;gap:6px;flex-wrap:wrap;align-items:stretch}.stage{flex:1;min-width:140px;border:1px solid var(--line);border-radius:10px;padding:10px;font-size:12.5px;background:var(--surface)}
+.stage b{display:block;font-size:13px}.stage .who{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--acc)}.stage .who.code{color:var(--ink3)}
+.skel{color:var(--ink3);font-size:13px;padding:20px 0}
+footer{color:var(--ink3);font-size:12px;padding:30px 0}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div><h1>Spotify Review Insights</h1><div class="sub" id="sub">Where should the next quarter of product effort go?</div></div>
+  <span class="pill" id="live"><span class="dot"></span>loading…</span>
+  <nav><a href="#rec">Recommendation</a><a href="#rank">Ranking</a><a href="#topics">Topics</a><a href="#trend">Trend</a><a href="#explore">Evidence</a><a href="#quality">Quality</a></nav>
+</div></header>
+<main class="wrap">
+  <section id="overview"><h2>Overall metrics</h2><div class="kpis" id="kpis"><div class="skel">Loading from API…</div></div><div id="cov" style="margin-top:10px"></div></section>
+  <section id="rec"><h2>AI-generated recommendation</h2><div class="card" id="recbox"><div class="skel">Loading…</div></div></section>
+  <section id="rank"><h2>Issue ranking · priority = complaint_count × mean_severity = severity_sum</h2>
+    <div class="card"><div style="overflow:auto"><table id="ranktbl"></table></div>
+    <p class="muted">Completed complaint + cancellation records only; one issue per review (issue_id = topic.subtopic). Ties break by ascending issue_id. Click a row for evidence.</p></div></section>
+  <section id="topics"><h2>Product areas</h2><div class="grid2">
+    <div class="card"><b style="font-size:14px">Priority score (severity sum) by topic</b><div id="topicbars" style="margin-top:10px"></div></div>
+    <div class="card"><b style="font-size:14px">Severity mix of complaints by topic</b><div style="overflow:auto"><table id="topictbl"></table></div></div></div></section>
+  <section id="trend"><h2>Complaints per 100 completed reviews, by month</h2>
+    <div class="card"><div class="chartbox"><canvas id="trendchart" aria-label="Monthly complaint rate by topic"></canvas></div>
+    <p class="muted" id="trendnote">Denominator: completed classifications in that month. First (May 2022) and last (Nov 2023) months are partial. Top 5 topics by complaints shown.</p>
+    <details><summary class="muted">Table view</summary><div style="overflow:auto"><table id="trendtbl"></table></div></details></div></section>
+  <section id="explore"><h2>Evidence explorer</h2><div class="card">
+    <div class="filters">
+      <select id="f_issue"><option value="">All issues</option></select>
+      <select id="f_topic"><option value="">All topics</option></select>
+      <select id="f_intent"><option value="">All intents</option><option>cancellation</option><option>complaint</option><option>request</option><option>praise</option><option>unclear</option></select>
+      <select id="f_sev"><option value="">Any severity</option><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select>
+      <select id="f_status"><option value="">Any status</option><option>completed</option><option>quarantined</option></select>
+      <label class="muted" style="display:flex;align-items:center;gap:4px"><input type="checkbox" id="f_ver"> verified sample</label>
+      <input id="f_q" placeholder="Search text (3+ chars)" style="flex:1;min-width:160px">
+    </div>
+    <div id="revlist"></div><div style="display:flex;gap:8px;margin-top:10px"><button id="prev">←</button><span class="muted" id="pg"></span><button id="next">→</button></div>
+  </div></section>
+  <section id="quality"><h2>Quality, verification & cost</h2>
+    <div class="grid2"><div class="card" id="qual"></div><div class="card" id="costbox"></div></div>
+    <div class="card" style="margin-top:16px"><b style="font-size:14px">Pipeline: code vs model responsibilities</b>
+      <div class="pipeline" style="margin-top:10px">
+        <div class="stage"><span class="who code">code</span><b>1 Prepare</b>Parse all rows, hash, profile, dedupe exact texts, quarantine empties, queue</div>
+        <div class="stage"><span class="who">model · enrichment agent</span><b>2 Classify</b>≤50 reviews/request, schema-validated; retry once → capped fallback → quarantine</div>
+        <div class="stage"><span class="who">model · verifier agent</span><b>3 Verify</b>Declared 1% random sample re-labeled blind; code compares</div>
+        <div class="stage"><span class="who">code + small model</span><b>4 Group</b>Code fixes membership; model only names issues from bounded samples</div>
+        <div class="stage"><span class="who code">code</span><b>5 Rank</b>severity_sum, deterministic tie-break; no model</div>
+        <div class="stage"><span class="who">model · memo agent</span><b>6 Recommend</b>Sees aggregates + evidence pack only; code checks every number & ID</div>
+      </div><p class="muted">Data flow for this page: browser → FastAPI backend (/api/*) → Postgres (processed records, aggregates, memo). No model is called when you view this page.</p></div>
+  </section>
+  <footer id="foot"></footer>
+</main>
+<aside class="drawer" id="drawer"><button class="x" id="dx" aria-label="Close">×</button><div id="dbody"></div></aside>
+<script>
+const API = (new URLSearchParams(location.search).get("api") || "").replace(/\/$/, "");
+const TOPICS = ["access","usability","playback","downloads","catalog","billing","support","other"];
+const COLOR = t => `var(--s${TOPICS.indexOf(t) + 1})`;
+const cssv = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const $ = id => document.getElementById(id);
+const fmt = n => n == null ? "–" : Number(n).toLocaleString("en-US");
+const pct = (a, b) => b ? (100 * a / b).toFixed(1) + "%" : "–";
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+async function get(p){ const r = await fetch(API + p); if (!r.ok) throw new Error(p + " → " + r.status); return r.json(); }
+let CLAIMS = {}, ISSUES = {};
+function claimify(text){ return esc(text).replace(/\[([CTX]\d+)\]/g, (m, id) => { const c = CLAIMS[id];
+  const tip = c ? `${id}: ${c.issue_id ? c.issue_id + " · " : ""}${c.metric} = ${c.value} (${c.source})` : id + " (unknown)";
+  return `<span class="claim" data-tip="${esc(tip)}">${id}</span>`; }).replace(/`([^`]+)`/g, "<code>$1</code>"); }
+function tchip(t){ return `<span class="tchip"><span class="sw" style="background:${COLOR(t)}"></span>${esc(t)}</span>`; }
+
+async function overview(){
+  const o = await get("/api/overview"); const c = o.counts;
+  $("live").innerHTML = `<span class="dot"></span>live · Postgres · run ${esc(o.loaded?.run_id || "")}`;
+  $("sub").textContent = `Google Play reviews ${String(c.first_review).slice(0,10)} → ${String(c.last_review).slice(0,10)} · where should the next quarter of product effort go?`;
+  const k = [[fmt(c.rows),"source rows ingested","all IDs accounted for"],[fmt(c.completed),"completed classifications",pct(c.completed,c.rows)+" of rows"],
+    [fmt(c.quarantined),"quarantined", (o.quarantine||[]).map(q => `${fmt(q.n)} ${q.reason}`).join(" · ")],[fmt(c.cache_reuse),"exact-text cache reuses","rows labeled without a new call"],
+    [fmt(c.complaints),"complaints + cancellations",`${fmt(c.cancellations)} cancellation intent`],
+    [o.run?.total_cost_usd_known != null ? "$" + Number(o.run.total_cost_usd_known).toFixed(2) : "–","API spend (known usage)", o.run?.label_config ? o.run.label_config.split("+")[0] : ""]];
+  $("kpis").innerHTML = k.map(x => `<div class="card kpi"><div class="v">${x[0]}</div><div class="l">${x[1]}</div><div class="n">${esc(x[2])}</div></div>`).join("");
+  if (c.completed < c.rows - (o.quarantine||[]).filter(q=>q.reason==="empty_review_text").reduce((a,q)=>a+q.n,0))
+    $("cov").innerHTML = `<div class="warn">Incomplete classification: ${fmt(c.rows - c.completed)} rows are quarantined or pending. They are excluded from every count and ranking below.</div>`;
+  const v = o.verification || {}, g = o.golden;
+  $("qual").innerHTML = `<b style="font-size:14px">Label quality</b><div class="kv" style="margin-top:8px">
+    <div>Verifier</div><div>${esc(v.verifier || "–")}</div><div>Verified sample</div><div>${fmt(v.verified)} reviews (declared rate ${v.declared_sample?.rate ?? "–"})</div>
+    <div>Topic agreement</div><div>${v.topic_agreement ?? "–"}</div><div>Intent agreement</div><div>${v.intent_agreement ?? "–"}</div>
+    <div>Severity exact / MAE</div><div>${v.severity_exact ?? "–"} / ${v.severity_mae ?? "–"}</div><div>Disagreements</div><div>${fmt(v.disagreements)} (saved for inspection)</div>
+    <div>Golden 50 (human)</div><div>${g ? `topic ${g.agreement?.topic_exact} · intent ${g.agreement?.intent} · severity ${g.agreement?.severity_exact} · MAE ${g.severity_mae}` : "not loaded"}</div>
+    <div>Needs review</div><div>${fmt(c.needs_review)} records flagged</div></div>`;
+  const pr = o.cost?.projection;
+  $("costbox").innerHTML = `<b style="font-size:14px">Cost & controls</b><div class="kv" style="margin-top:8px">
+    <div>Full run (actual)</div><div>$${o.run?.total_cost_usd_known != null ? Number(o.run.total_cost_usd_known).toFixed(4) : "–"} known API spend</div>
+    <div>Per 100k rows</div><div>${o.run?.total_cost_usd_known != null ? "$" + (o.run.total_cost_usd_known / c.rows * 1e5).toFixed(2) : "–"} (cap $10.00)</div>
+    <div>100-review pilot</div><div>${o.cost?.pilot != null ? "$" + Number(o.cost.pilot).toFixed(6) + " cold" : "–"}</div>
+    <div>Projection (base)</div><div>${pr ? "$" + pr.base.with_exact_text_reuse.total_api_usd.toFixed(2) + " with reuse · $" + pr.base.no_reuse.total_api_usd.toFixed(2) + " without" : "–"}</div>
+    <div>Resume evidence</div><div>${fmt(o.run?.checkpoint_before_ids)} → ${fmt(o.run?.checkpoint_after_ids)} completed IDs</div>
+    <div>Calls by role</div><div>${Object.entries(o.run?.calls_by_role || {}).map(([r, x]) => `${r} ${fmt(x.calls)}`).join(" · ")}</div></div>`;
+  $("foot").textContent = `Loaded ${o.loaded?.loaded_at || ""}. Self-selected public app reviews; no revenue, plan tier or observed churn. Cancellation language is expressed intent.`;
+}
+
+async function rec(){
+  const r = await get("/api/recommendation"); r.claims.forEach(c => CLAIMS[c.claim_id] = c); const m = r.memo;
+  const ev = Object.fromEntries(r.evidence.map(e => [e.review_id, e])); const ok = r.validation?.passed;
+  $("recbox").innerHTML = `<div class="rec"><div>
+    <span class="area">Prioritise ${esc(m.priority_area)}</span> <span class="badge ${ok ? "ok" : "bad"}">${ok ? "numbers & IDs verified by code" : "code validation failed"}</span>
+    <div class="headline">${claimify(m.headline)}</div><p>${claimify(m.recommendation)}</p>
+    ${m.actions.map(a => `<div class="action"><h4>${claimify(a.title)}</h4><div style="font-size:14px">${claimify(a.rationale)}</div>
+      <div style="margin-top:4px">${a.issue_ids.map(i => `<a href="#" class="isslink" data-i="${esc(i)}"><code>${esc(i)}</code></a>`).join(" ")}</div>
+      ${a.review_ids.map(id => ev[id] ? `<div class="quote" data-r="${esc(id)}">“${esc(ev[id].evidence_quote)}” <span class="muted">— ${esc(id.slice(0,8))}, sev ${ev[id].severity}, ${String(ev[id].review_ts).slice(0,10)}</span></div>` : "").join("")}</div>`).join("")}
+   </div><div><b style="font-size:14px">Alternatives considered</b><ul class="tight">${m.alternatives.map(a => `<li><b>${esc(a.area)}</b>: ${claimify(a.why_not_first)}</li>`).join("")}</ul>
+    <b style="font-size:14px">Limitations</b><ul class="tight">${m.limitations.map(l => `<li>${claimify(l)}</li>`).join("")}</ul>
+    <p class="muted">Generated by the memo agent from saved aggregates and a bounded evidence pack. Hover a claim ID to see the code-computed value; click a quote to trace it.</p></div></div>`;
+  bindLinks($("recbox"));
+}
+
+async function rank(){
+  const rows = await get("/api/ranking"); const max = Math.max(...rows.map(r => r.priority_score));
+  rows.forEach(r => ISSUES[r.issue_id] = r);
+  $("ranktbl").innerHTML = `<thead><tr><th>#</th><th>Issue</th><th>Topic</th><th class="num">Complaints</th><th class="num">Mean sev.</th><th style="width:28%">Priority score</th><th class="num">Cancel.</th><th class="num">Sev 4–5</th></tr></thead><tbody>` +
+    rows.map(r => `<tr class="click" data-i="${esc(r.issue_id)}"><td class="num">${r.rank}</td><td><b>${esc(r.title || r.issue_id)}</b><div class="mono muted">${esc(r.issue_id)}</div></td>
+      <td>${tchip(r.topic)}</td><td class="num">${fmt(r.complaint_count)}</td><td class="num">${r.mean_severity}</td>
+      <td><div style="display:flex;align-items:center;gap:8px"><div class="bar" style="width:${(85 * r.priority_score / max).toFixed(1)}%"></div><span class="num">${fmt(r.priority_score)}</span></div></td>
+      <td class="num">${fmt(r.cancellations)}</td><td class="num">${fmt(r.severity_4_or_5)}</td></tr>`).join("") + "</tbody>";
+  $("ranktbl").querySelectorAll("tr.click").forEach(tr => tr.onclick = () => openIssue(tr.dataset.i));
+  $("f_issue").innerHTML = `<option value="">All issues</option>` + rows.map(r => `<option value="${esc(r.issue_id)}">${r.rank}. ${esc(r.issue_id)}</option>`).join("");
+}
+
+async function topics(){
+  const t = await get("/api/topics"); const max = Math.max(...t.map(x => x.severity_sum));
+  $("topicbars").innerHTML = t.map(x => `<div style="display:grid;grid-template-columns:90px 1fr 70px;gap:8px;align-items:center;margin:7px 0;font-size:13px">
+    <span>${esc(x.topic)}</span><div class="bar" title="${esc(x.topic)}: severity sum ${fmt(x.severity_sum)}" style="background:${COLOR(x.topic)};width:${(100 * x.severity_sum / max).toFixed(1)}%"></div><span class="num">${fmt(x.severity_sum)}</span></div>`).join("");
+  $("topictbl").innerHTML = `<thead><tr><th>Topic</th><th class="num">Complaints</th><th class="num">Mean</th><th class="num">S2</th><th class="num">S3</th><th class="num">S4</th><th class="num">S5</th><th class="num">Cancel.</th></tr></thead><tbody>` +
+    t.map(x => `<tr><td>${tchip(x.topic)}</td><td class="num">${fmt(x.complaint_count)}</td><td class="num">${x.mean_severity ? Number(x.mean_severity).toFixed(2) : "–"}</td>
+      <td class="num">${fmt(x.sev2)}</td><td class="num">${fmt(x.sev3)}</td><td class="num">${fmt(x.sev4)}</td><td class="num">${fmt(x.sev5)}</td><td class="num">${fmt(x.cancellations)}</td></tr>`).join("") + "</tbody>";
+  $("f_topic").innerHTML = `<option value="">All topics</option>` + TOPICS.map(x => `<option>${x}</option>`).join("");
+}
+
+let chart;
+async function trend(){
+  const rows = await get("/api/trends"); const months = [...new Set(rows.map(r => r.month))].filter(Boolean).sort();
+  const tot = {}; rows.forEach(r => tot[r.topic] = (tot[r.topic] || 0) + r.complaints);
+  const top = Object.entries(tot).sort((a, b) => b[1] - a[1]).slice(0, 5).map(x => x[0]);
+  const by = {}; rows.forEach(r => by[r.month + "|" + r.topic] = r);
+  const val = (m, t) => { const r = by[m + "|" + t]; return r && r.month_completed ? +(100 * r.complaints / r.month_completed).toFixed(2) : null; };
+  const ds = top.map(t => ({label: t, data: months.map(m => val(m, t)), borderColor: cssv(`--s${TOPICS.indexOf(t) + 1}`), backgroundColor: cssv(`--s${TOPICS.indexOf(t) + 1}`),
+    borderWidth: 2, pointRadius: 0, pointHoverRadius: 4, tension: 0.2}));
+  const ink2 = cssv("--ink2"), line = cssv("--line");
+  chart = new Chart($("trendchart"), {type: "line", data: {labels: months, datasets: ds},
+    options: {maintainAspectRatio: false, interaction: {mode: "index", intersect: false},
+      plugins: {legend: {position: "top", align: "start", labels: {color: ink2, boxWidth: 10, boxHeight: 10}},
+        tooltip: {callbacks: {label: c => `${c.dataset.label}: ${c.formattedValue} per 100 (${fmt(by[c.label + "|" + c.dataset.label]?.complaints)} of ${fmt(by[c.label + "|" + c.dataset.label]?.month_completed)})`}}},
+      scales: {x: {ticks: {color: ink2, maxRotation: 0, autoSkip: true}, grid: {display: false}}, y: {beginAtZero: true, ticks: {color: ink2}, grid: {color: line}, title: {display: true, text: "complaints per 100 completed reviews", color: ink2}}}}});
+  $("trendtbl").innerHTML = `<thead><tr><th>Month</th><th class="num">Rows</th><th class="num">Completed</th>${top.map(t => `<th class="num">${t}</th>`).join("")}</tr></thead><tbody>` +
+    months.map(m => { const any = by[m + "|" + top[0]]; return `<tr><td>${m}</td><td class="num">${fmt(any?.month_rows)}</td><td class="num">${fmt(any?.month_completed)}</td>${top.map(t => `<td class="num">${fmt(by[m + "|" + t]?.complaints)}</td>`).join("")}</tr>`; }).join("") + "</tbody>";
+}
+
+let page = 0;
+async function reviews(){
+  const p = new URLSearchParams({limit: 20, offset: page * 20});
+  [["issue_id","f_issue"],["topic","f_topic"],["intent","f_intent"],["severity","f_sev"],["status","f_status"],["q","f_q"]].forEach(([k, id]) => { if ($(id).value) p.set(k, $(id).value); });
+  if ($("f_ver").checked) p.set("verified", "true");
+  const r = await get("/api/reviews?" + p); const qv = $("f_q").value;
+  $("revlist").innerHTML = r.rows.map(x => `<div class="rv" data-r="${esc(x.review_id)}">
+    <div>${x.evidence_quote ? "“" + hl(x.evidence_quote, qv) + "”" : `<i class="muted">${esc(x.reason || "")}</i>`}</div>
+    <div class="m"><span class="mono">${esc(x.review_id.slice(0,8))}</span>${x.topic ? tchip(x.topic) : ""}<span>${esc(x.intent || x.status)}</span>${x.severity ? `<span>sev ${x.severity}</span>` : ""}
+    ${x.issue_id ? `<span class="mono">${esc(x.issue_id)}</span>` : ""}${x.v_topic ? `<span>verified: ${esc(x.v_topic)}/${esc(x.v_intent)}/${x.v_severity}</span>` : ""}${x.needs_review ? "<span>⚑ needs review</span>" : ""}${x.cache_source_id ? "<span>cache reuse</span>" : ""}<span>${String(x.review_ts).slice(0,10)}</span></div></div>`).join("") || `<div class="skel">No matching reviews.</div>`;
+  $("pg").textContent = `page ${page + 1}${r.total != null ? " of " + Math.max(1, Math.ceil(r.total / 20)) + " · " + fmt(r.total) + " reviews" : ""}`;
+  bindLinks($("revlist"));
+}
+function hl(s, q){ s = esc(s); if (!q || q.length < 3) return s; const i = s.toLowerCase().indexOf(q.toLowerCase()); return i < 0 ? s : s.slice(0, i) + "<mark>" + s.slice(i, i + q.length) + "</mark>" + s.slice(i + q.length); }
+["f_issue","f_topic","f_intent","f_sev","f_status","f_ver"].forEach(id => $(id).onchange = () => { page = 0; reviews(); });
+let tq; $("f_q").oninput = () => { clearTimeout(tq); tq = setTimeout(() => { page = 0; reviews(); }, 350); };
+$("prev").onclick = () => { if (page > 0) { page--; reviews(); } }; $("next").onclick = () => { page++; reviews(); };
+
+function bindLinks(root){
+  root.querySelectorAll("[data-r]").forEach(e => e.onclick = ev => { ev.preventDefault(); openTrace(e.dataset.r); });
+  root.querySelectorAll(".isslink").forEach(e => e.onclick = ev => { ev.preventDefault(); openIssue(e.dataset.i); });
+}
+function drawer(html){ $("dbody").innerHTML = html; $("drawer").classList.add("open"); bindLinks($("dbody")); }
+$("dx").onclick = () => $("drawer").classList.remove("open");
+document.addEventListener("keydown", e => { if (e.key === "Escape") $("drawer").classList.remove("open"); });
+
+async function openTrace(id){
+  const t = await get("/api/reviews/" + encodeURIComponent(id)); const r = t.review;
+  drawer(`<h3>Review trace</h3><div class="mono muted">${esc(r.review_id)}</div>
+   <div class="step" style="margin-top:14px"><div class="t">1 · Source (ingested by code)</div><div style="white-space:pre-wrap;margin:6px 0">${esc(r.review_text)}</div>
+     <div class="kv"><div>Timestamp</div><div>${esc(r.review_ts)}</div><div>Stars (metadata only)</div><div>${r.rating ?? "–"}</div><div>App version</div><div>${esc(r.app_version || "missing")}</div></div></div>
+   <div class="step"><div class="t">2 · Enrichment agent</div>${r.status === "completed" ? `<div class="kv">
+     <div>Topic / issue</div><div>${tchip(r.topic)} <code>${esc(r.issue_id || "(not a complaint)")}</code></div><div>Intent</div><div>${esc(r.intent)}</div>
+     <div>Severity</div><div>${r.severity}</div><div>Sentiment</div><div>${r.sentiment}</div><div>Evidence quote</div><div>“${esc(r.evidence_quote)}” <span class="muted">(${esc(r.quote_source)})</span></div>
+     <div>Entities (code)</div><div>${esc(r.entities || "–")}</div><div>Needs review</div><div>${r.needs_review ? "yes" : "no"}</div>
+     <div>Label config</div><div class="mono">${esc(r.label_config)}</div><div>Request</div><div class="mono">${esc(r.request_id)}</div>
+     ${t.cache_source ? `<div>Cache reuse of</div><div><a href="#" data-r="${esc(t.cache_source.review_id)}" class="mono">${esc(t.cache_source.review_id)}</a> (identical text, same config)</div>` : ""}</div>`
+     : `<div>Quarantined: <b>${esc(r.reason)}</b></div>`}</div>
+   <div class="step"><div class="t">3 · Verifier agent</div>${r.v_topic ? `<div>Blind re-label: ${esc(r.v_topic)} / ${esc(r.v_intent)} / sev ${r.v_severity} — ${r.v_topic === r.topic && r.v_intent === r.intent && r.v_severity === r.severity ? "agrees" : "<b>disagrees</b>"}</div>` : `<div class="muted">Not in the declared verification sample.</div>`}</div>
+   <div class="step"><div class="t">4 · Issue membership (code)</div>${t.issue ? `<div><a href="#" class="isslink" data-i="${esc(t.issue.issue_id)}"><code>${esc(t.issue.issue_id)}</code></a> — ${esc(t.issue.title || "")}</div>` : `<div class="muted">Not ranked (only complaints/cancellations are members).</div>`}</div>
+   <div class="step"><div class="t">5 · Ranking (code)</div>${t.issue ? `<div>Rank ${t.issue.rank}: ${fmt(t.issue.complaint_count)} complaints × mean ${t.issue.mean_severity} = score ${fmt(t.issue.priority_score)}</div>` : "–"}</div>
+   <div class="step"><div class="t">6 · Memo claims</div>${t.claims.length ? t.claims.map(c => `<span class="claim" data-tip="${esc(c.metric + " = " + c.value)}">${c.claim_id}</span>`).join(" ") + ` <span class="muted">${t.cited_in_memo ? "· this review is quoted in the memo" : ""}</span>` : `<span class="muted">No memo claim for this issue.</span>`}</div>`);
+}
+async function openIssue(id){
+  const d = await get("/api/issues/" + encodeURIComponent(id)); const i = d.issue; const smax = Math.max(...d.severity_distribution.map(s => s.n), 1);
+  drawer(`<h3>${esc(i.title || i.issue_id)}</h3><div class="mono muted">${esc(i.issue_id)} · rank ${i.rank}</div><p>${esc(i.description || "")}</p>
+   <div class="kv"><div>Complaints</div><div>${fmt(i.complaint_count)}</div><div>Severity sum</div><div>${fmt(i.severity_sum)}</div><div>Mean severity</div><div>${i.mean_severity}</div>
+   <div>Priority score</div><div>${fmt(i.priority_score)}</div><div>Cancellation intent</div><div>${fmt(i.cancellations)}</div><div>Named by</div><div class="mono">${esc(i.named_by || "")}</div></div>
+   <p style="margin-top:14px"><b>Severity distribution</b></p>${d.severity_distribution.map(s => `<div style="display:grid;grid-template-columns:50px 1fr 70px;gap:8px;align-items:center;font-size:13px;margin:4px 0"><span>sev ${s.severity}</span><div class="bar" style="width:${(100 * s.n / smax).toFixed(1)}%"></div><span class="num">${fmt(s.n)}</span></div>`).join("")}
+   <p><b>Examples chosen by the grouping agent</b></p>${d.examples.map(e => `<div class="quote" data-r="${esc(e.review_id)}">“${esc(e.evidence_quote)}” <span class="muted">sev ${e.severity}</span></div>`).join("") || `<div class="muted">none</div>`}
+   <p><b>Claims</b> ${d.claims.map(c => `<span class="claim" data-tip="${esc(c.metric + " = " + c.value)}">${c.claim_id}</span>`).join(" ") || "–"}</p>
+   <p><a href="#explore" id="seeall">See all member reviews →</a></p>`);
+  $("seeall").onclick = () => { $("f_issue").value = id; page = 0; reviews(); $("drawer").classList.remove("open"); };
+}
+(async () => { try { await overview(); await Promise.all([rec().catch(e => $("recbox").innerHTML = `<div class="skel">${esc(e.message)}</div>`), rank(), topics(), trend()]); await reviews(); }
+  catch (e) { $("live").innerHTML = `<span class="dot" style="background:var(--crit)"></span>API error`; console.error(e); } })();
+</script>
+</body>
+</html>

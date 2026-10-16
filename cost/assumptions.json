@@ -1,0 +1,32 @@
+{
+  "_note": "Editable assumptions for the full-run projection. Measured pilot numbers come from pilot_measurements.json / pilot_calls.jsonl and are never changed by these values.",
+  "projected_rows": 660622,
+  "projected_nonempty_rows": 660609,
+  "projected_distinct_texts": 484189,
+  "budget_usd": 66.06,
+  "max_workers": 12,
+  "parallel_efficiency": 0.8,
+  "output_token_cap_per_review": 110,
+  "verify_rate": 0.01,
+  "verify_max": 6000,
+  "fallback_max_fraction": 0.001,
+  "base": {
+    "retry_rate": 0.02,
+    "fallback_fraction": 0.0005,
+    "output_multiplier_on_cost": 1.0
+  },
+  "conservative": {
+    "retry_rate": 0.1,
+    "fallback_fraction": 0.001,
+    "output_multiplier_on_cost": 1.25
+  },
+  "fallback_provider": "anthropic",
+  "fallback_model": "claude-haiku-5-5",
+  "fallback_tokens_per_review": {
+    "input": 600,
+    "cached_input": 2400,
+    "output": 700
+  },
+  "_fallback_basis": "Single-review Claude Haiku 5.5 sync call with adaptive thinking (effort medium): ~600 uncached input + ~2,400 cached system-prompt tokens + ~700 output tokens incl. thinking. Replace with measured fallback usage when available.",
+  "enrich_mode": "batch"
+}

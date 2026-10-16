@@ -1,0 +1,23 @@
+# secrets (course rule)
+.env
+.env.*
+!.env.example
+
+# raw dataset (97.4 MB) - download it, see data/README.md
+data/spotify_reviews_18months.csv
+
+# large / local run state. grading/ is committed in full (each file < 100 MB);
+# enriched.jsonl.gz + state.sqlite go to a GitHub Release asset.
+runs/*/state.sqlite*
+runs/_systemtests/
+runs/t*/
+runs/*/enriched.jsonl.gz
+runs/*/membership.csv
+*.recomputed.csv
+local-reference.json
+self-check.json
+
+__pycache__/
+*.pyc
+.venv/
+.DS_Store

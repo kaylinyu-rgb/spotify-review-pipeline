@@ -1,0 +1,5 @@
+# The pipeline, calculator, evals and checker use only the Python 3.10+ standard library.
+# Optional on macOS python.org builds (fixes "certificate verify failed"):
+certifi==2026.7.22
+# Dashboard backend + database loader:
+-r backend/requirements.txt

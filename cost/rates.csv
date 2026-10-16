@@ -1,0 +1,23 @@
+provider,model,item,unit,price_usd,status,source_url,checked_date,notes
+anthropic,claude-haiku-5-5,input,per_1M_tokens,0.10,official,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-15,standard tier; prompts <=100k tokens
+anthropic,claude-haiku-5-5,cached_input,per_1M_tokens,0.01,official,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-15,cache hits and refreshes
+anthropic,claude-haiku-5-5,cache_write,per_1M_tokens,0.125,official,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-15,5-minute cache write
+anthropic,claude-haiku-5-5,output,per_1M_tokens,0.50,official,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-15,thinking disabled so no thinking tokens
+anthropic,claude-sonnet-5-5,input,per_1M_tokens,2.00,official,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-15,standard tier
+anthropic,claude-sonnet-5-5,cached_input,per_1M_tokens,0.10,official,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-15,
+anthropic,claude-sonnet-5-5,cache_write,per_1M_tokens,2.50,official,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-15,5-minute cache write
+anthropic,claude-sonnet-5-5,output,per_1M_tokens,10.00,official,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-15,
+anthropic-batch,claude-haiku-5-5,input,per_1M_tokens,0.05,official,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-15,Message Batches API (50% of standard)
+anthropic-batch,claude-haiku-5-5,output,per_1M_tokens,0.25,official,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-15,Message Batches API (50% of standard)
+anthropic-batch,claude-haiku-5-5,cached_input,per_1M_tokens,0.01,assumed,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-15,conservative: standard cache-hit price (batch discount not assumed to stack)
+anthropic-batch,claude-haiku-5-5,cache_write,per_1M_tokens,0.125,assumed,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-15,conservative: standard 5-minute cache-write price
+mock-batch,mock-keywords,input,per_1M_tokens,0,synthetic,,2026-10-15,free offline test provider
+mock-batch,mock-keywords,output,per_1M_tokens,0,synthetic,,2026-10-15,free offline test provider
+openai,gpt-6-luna,input,per_1M_tokens,0.10,official,https://developers.openai.com/api/docs/models/gpt-6-luna,2026-10-15,standard tier; uncached input only
+openai,gpt-6-luna,cached_input,per_1M_tokens,0.01,official,https://developers.openai.com/api/docs/models/gpt-6-luna,2026-10-15,
+openai,gpt-6-luna,cache_write,per_1M_tokens,0.125,official,https://developers.openai.com/api/docs/models/gpt-6-luna,2026-10-15,
+openai,gpt-6-luna,output,per_1M_tokens,0.50,official,https://developers.openai.com/api/docs/models/gpt-6-luna,2026-10-15,reasoning tokens are already inside output_tokens
+jev,jev-latest,input,per_1M_tokens,,unknown,https://docs.typesafe.ai/api,2026-10-15,price not published in docs; fill in from your TypeSafe console
+jev,jev-latest,output,per_1M_tokens,,unknown,https://docs.typesafe.ai/api,2026-10-15,price not published in docs; fill in from your TypeSafe console
+mock,mock-keywords,input,per_1M_tokens,0,synthetic,,2026-10-15,free offline test provider
+mock,mock-keywords,output,per_1M_tokens,0,synthetic,,2026-10-15,free offline test provider
