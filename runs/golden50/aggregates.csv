@@ -1,0 +1,11 @@
+rank,issue_id,complaint_count,severity_sum,mean_severity,priority_score,topic,cancellations,severity_4_or_5,needs_review,one_star
+1,other.general_criticism,6,10,1.666667,10,other,2,0,2,6
+2,usability.ads,4,10,2.500000,10,usability,0,0,1,3
+3,playback.crash_or_wont_open,2,8,4.000000,8,playback,0,2,0,1
+4,billing.premium_paywall,2,6,3.000000,6,billing,1,0,0,2
+5,usability.ui_redesign_or_navigation,2,5,2.500000,5,usability,0,0,0,2
+6,downloads.offline_mode,1,4,4.000000,4,downloads,0,1,0,0
+7,playback.playback_other,1,4,4.000000,4,playback,0,1,0,1
+8,billing.price,1,3,3.000000,3,billing,1,0,0,1
+9,catalog.lyrics,1,3,3.000000,3,catalog,0,0,0,1
+10,playback.playback_stops_or_skips,1,3,3.000000,3,playback,0,0,0,0

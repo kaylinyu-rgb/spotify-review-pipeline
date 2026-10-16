@@ -28,5 +28,11 @@
     "output": 700
   },
   "_fallback_basis": "Single-review Claude Haiku 5.5 sync call with adaptive thinking (effort medium): ~600 uncached input + ~2,400 cached system-prompt tokens + ~700 output tokens incl. thinking. Replace with measured fallback usage when available.",
-  "enrich_mode": "batch"
+  "enrich_mode": "batch",
+  "batch_requests_per_job": 400,
+  "batch_max_inflight_jobs": 4,
+  "batch_job_turnaround_minutes": {
+    "base": 30,
+    "conservative": 120
+  }
 }

@@ -1,0 +1,8 @@
+topic,completed_reviews,complaint_count,severity_sum,mean_severity,cancellations,sev1,sev2,sev3,sev4,sev5,praise,request,unclear
+usability,20,20,52,2.600000,3,0,8,12,0,0,0,0,0
+other,54,12,24,2.000000,3,0,12,0,0,0,37,0,5
+playback,7,7,22,3.142857,1,0,1,4,2,0,0,0,0
+billing,5,5,14,2.800000,1,0,1,4,0,0,0,0,0
+catalog,11,4,8,2.000000,0,0,4,0,0,0,5,2,0
+access,2,2,8,4.000000,0,0,0,0,2,0,0,0,0
+downloads,1,1,4,4.000000,0,0,0,0,1,0,0,0,0

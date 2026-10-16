@@ -1,0 +1,288 @@
+{
+  "generated_at": "2026-10-15 22:44:28",
+  "rate_multiplier": 1.0,
+  "rates_file": "/Users/kaylinyu/Downloads/spotify-review-pipeline/cost/rates.csv",
+  "pilot": {
+    "input": {
+      "name": "cost_100.csv",
+      "sha256": "c884ac3b9be5066995d5063f96ad9af6e5e082975788c1684c4f6b6ea661dd0e",
+      "rows": 100
+    },
+    "run_ids": {
+      "cold": "pilot100-20261015-220758:cold",
+      "warm": "pilot100-20261015-220758:warm"
+    },
+    "settings": {
+      "enrich": "anthropic:claude-haiku-5-5+effort-low+enrich-p2+schema-s2+entities-l1",
+      "mode": "batch",
+      "workers": 1,
+      "batch_size": 50,
+      "verify": "jev",
+      "verify_rate": 0.2,
+      "fallback": "claude-haiku-5-5"
+    }
+  },
+  "measured": {
+    "cold": {
+      "run_id": "pilot100-20261015-220758:cold",
+      "input_rows": 100,
+      "completed": 100,
+      "quarantined": 0,
+      "unique_texts": 100,
+      "distinct_texts_enriched": 100,
+      "result_cache_hits": 0,
+      "wall_seconds": 480.067,
+      "stage_wall_seconds": {
+        "ingest": 0.007,
+        "enrich": 448.439,
+        "verify": 4.006,
+        "group": 12.775,
+        "rank": 0.008,
+        "memo": 14.831
+      },
+      "calls_upto": 7,
+      "stages": {
+        "enrich": {
+          "provider": "anthropic-batch",
+          "model": "claude-haiku-5-5",
+          "settings": {
+            "provider": "anthropic-batch",
+            "model": "claude-haiku-5-5",
+            "thinking": "disabled",
+            "effort": "low",
+            "endpoint": "v1/messages/batches (batch tier, 50% price)",
+            "structured_output": "output_config.format json_schema"
+          },
+          "label_config": "anthropic:claude-haiku-5-5+effort-low+enrich-p2+schema-s2+entities-l1",
+          "requests": 2,
+          "failed": 0,
+          "review_ids_sent": 100,
+          "uncached_input": 4519,
+          "cached_input": 3780,
+          "cache_write": 3780,
+          "output": 6294,
+          "cost_usd": 0.00230975,
+          "unknown_cost_calls": 0
+        },
+        "verify": {
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "settings": {
+            "provider": "anthropic",
+            "model": "claude-haiku-5-5",
+            "thinking": "disabled",
+            "effort": "low",
+            "endpoint": "v1/messages (standard tier)",
+            "structured_output": "output_config.format json_schema"
+          },
+          "label_config": "anthropic:claude-haiku-5-5+verify-p1",
+          "requests": 1,
+          "failed": 0,
+          "review_ids_sent": 17,
+          "uncached_input": 1438,
+          "cached_input": 0,
+          "cache_write": 1088,
+          "output": 958,
+          "cost_usd": 0.0007588,
+          "unknown_cost_calls": 0
+        },
+        "group": {
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "settings": {
+            "provider": "anthropic",
+            "model": "claude-haiku-5-5",
+            "thinking": "disabled",
+            "effort": "low",
+            "endpoint": "v1/messages (standard tier)",
+            "structured_output": "output_config.format json_schema"
+          },
+          "label_config": "anthropic:claude-haiku-5-5+group-p1",
+          "requests": 3,
+          "failed": 0,
+          "review_ids_sent": 46,
+          "uncached_input": 3500,
+          "cached_input": 1364,
+          "cache_write": 682,
+          "output": 2413,
+          "cost_usd": 0.00165539,
+          "unknown_cost_calls": 0
+        },
+        "memo": {
+          "provider": "anthropic",
+          "model": "claude-haiku-5-5",
+          "settings": {
+            "provider": "anthropic",
+            "model": "claude-haiku-5-5",
+            "thinking": "adaptive",
+            "effort": "medium",
+            "endpoint": "v1/messages (standard tier)",
+            "structured_output": "output_config.format json_schema"
+          },
+          "label_config": "anthropic:claude-haiku-5-5+memo-p1",
+          "requests": 1,
+          "failed": 0,
+          "review_ids_sent": 16,
+          "uncached_input": 6700,
+          "cached_input": 0,
+          "cache_write": 1360,
+          "output": 3149,
+          "cost_usd": 0.0024145,
+          "unknown_cost_calls": 0
+        }
+      },
+      "api_usd": 0.007138,
+      "usd_per_1000_inputs": 0.071384,
+      "usd_per_completed_record": 7.138e-05,
+      "unknown_cost_calls": 0
+    },
+    "warm": {
+      "run_id": "pilot100-20261015-220758:warm",
+      "input_rows": 100,
+      "completed": 100,
+      "quarantined": 0,
+      "unique_texts": 100,
+      "distinct_texts_enriched": 0,
+      "result_cache_hits": 100,
+      "wall_seconds": 0.027,
+      "stage_wall_seconds": {
+        "ingest": 0.002,
+        "enrich": 0.004,
+        "verify": 0.003,
+        "group": 0.009,
+        "rank": 0.003,
+        "memo": 0.004
+      },
+      "calls_upto": 7,
+      "stages": {},
+      "api_usd": 0,
+      "usd_per_1000_inputs": 0.0,
+      "usd_per_completed_record": 0.0,
+      "unknown_cost_calls": 0
+    }
+  },
+  "projection": {
+    "fallback_usd_per_review": 0.00043400000000000003,
+    "per_distinct_text_enrich_usd": 2.30975e-05,
+    "output_tokens_per_text": 62.94,
+    "measured_enrich_failure_rate": 0.0,
+    "measured_throughput_texts_per_s": 0.223,
+    "verify_usd_per_review": 4.463529411764706e-05,
+    "fixed_overhead_usd_once": 0.00406989,
+    "scenarios": {
+      "base": {
+        "assumptions": {
+          "retry_rate": 0.02,
+          "fallback_fraction": 0.0005,
+          "output_multiplier_on_cost": 1.0
+        },
+        "with_exact_text_reuse": {
+          "distinct_texts_sent": 484189,
+          "enrich_usd": 11.4072,
+          "verify_usd": 0.2161,
+          "verify_reviews": 4842,
+          "verify_cost_unknown": false,
+          "fallback_usd": 0.105,
+          "fallback_reviews": 242,
+          "fixed_group_memo_usd": 0.0041,
+          "total_api_usd": 11.7324,
+          "usd_per_100k_rows": 1.776,
+          "enrich_hours_modeled": 3.5,
+          "over_budget": false
+        },
+        "no_reuse": {
+          "distinct_texts_sent": 660609,
+          "enrich_usd": 15.5636,
+          "verify_usd": 0.2678,
+          "verify_reviews": 6000,
+          "verify_cost_unknown": false,
+          "fallback_usd": 0.1432,
+          "fallback_reviews": 330,
+          "fixed_group_memo_usd": 0.0041,
+          "total_api_usd": 15.9787,
+          "usd_per_100k_rows": 2.4187,
+          "enrich_hours_modeled": 4.5,
+          "over_budget": false
+        }
+      },
+      "conservative": {
+        "assumptions": {
+          "retry_rate": 0.1,
+          "fallback_fraction": 0.001,
+          "output_multiplier_on_cost": 1.25
+        },
+        "with_exact_text_reuse": {
+          "distinct_texts_sent": 484189,
+          "enrich_usd": 15.3774,
+          "verify_usd": 0.2161,
+          "verify_reviews": 4842,
+          "verify_cost_unknown": false,
+          "fallback_usd": 0.2101,
+          "fallback_reviews": 484,
+          "fixed_group_memo_usd": 0.0041,
+          "total_api_usd": 15.8076,
+          "usd_per_100k_rows": 2.3928,
+          "enrich_hours_modeled": 14.0,
+          "over_budget": false
+        },
+        "no_reuse": {
+          "distinct_texts_sent": 660609,
+          "enrich_usd": 20.9803,
+          "verify_usd": 0.2678,
+          "verify_reviews": 6000,
+          "verify_cost_unknown": false,
+          "fallback_usd": 0.2869,
+          "fallback_reviews": 661,
+          "fixed_group_memo_usd": 0.0041,
+          "total_api_usd": 21.5391,
+          "usd_per_100k_rows": 3.2604,
+          "enrich_hours_modeled": 20.0,
+          "over_budget": false
+        }
+      }
+    }
+  },
+  "assumptions": {
+    "_note": "Editable assumptions for the full-run projection. Measured pilot numbers come from pilot_measurements.json / pilot_calls.jsonl and are never changed by these values.",
+    "projected_rows": 660622,
+    "projected_nonempty_rows": 660609,
+    "projected_distinct_texts": 484189,
+    "budget_usd": 66.06,
+    "max_workers": 12,
+    "parallel_efficiency": 0.8,
+    "output_token_cap_per_review": 110,
+    "verify_rate": 0.01,
+    "verify_max": 6000,
+    "fallback_max_fraction": 0.001,
+    "base": {
+      "retry_rate": 0.02,
+      "fallback_fraction": 0.0005,
+      "output_multiplier_on_cost": 1.0
+    },
+    "conservative": {
+      "retry_rate": 0.1,
+      "fallback_fraction": 0.001,
+      "output_multiplier_on_cost": 1.25
+    },
+    "fallback_provider": "anthropic",
+    "fallback_model": "claude-haiku-5-5",
+    "fallback_tokens_per_review": {
+      "input": 600,
+      "cached_input": 2400,
+      "output": 700
+    },
+    "_fallback_basis": "Single-review Claude Haiku 5.5 sync call with adaptive thinking (effort medium): ~600 uncached input + ~2,400 cached system-prompt tokens + ~700 output tokens incl. thinking. Replace with measured fallback usage when available.",
+    "enrich_mode": "batch",
+    "batch_requests_per_job": 400,
+    "batch_max_inflight_jobs": 4,
+    "batch_job_turnaround_minutes": {
+      "base": 30,
+      "conservative": 120
+    }
+  },
+  "local_compute": {
+    "api_usd": 0,
+    "local_hardware_cost": "unknown (laptop orchestrator; not metered)",
+    "note": "Kept separate from API spend; never folded into zero."
+  }
+}

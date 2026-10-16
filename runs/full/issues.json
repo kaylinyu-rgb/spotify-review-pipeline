@@ -1,0 +1,1777 @@
+[
+  {
+    "issue_id": "other.general_criticism",
+    "member_count": 87169,
+    "mean_severity": 2.005,
+    "sample": [
+      {
+        "review_id": "757cd88f-3437-476f-a804-f88d560c19f8",
+        "quote": "Absolute garbage with the new update."
+      },
+      {
+        "review_id": "e593195a-3a73-4025-8c1a-2316d50ffd6c",
+        "quote": "After update your app is giving the worst experience."
+      },
+      {
+        "review_id": "78cd5702-7c73-48a7-90d7-2fa885756152",
+        "quote": "New policy su*ks"
+      },
+      {
+        "review_id": "af2af582-78fc-44cf-82f0-b5c7e570b7b4",
+        "quote": "I don't like this appp"
+      },
+      {
+        "review_id": "c75cffe3-6dec-4f7a-8090-667e0218aeb3",
+        "quote": "Main is aapse bilkul plaza mein se uninstall"
+      },
+      {
+        "review_id": "a34b6bf0-d287-4358-94fd-3b6a09b0fa95",
+        "quote": "I recommend that people to delete this app or not use this freaking app"
+      },
+      {
+        "review_id": "e22a7afe-6707-4f54-befc-e4023ecd94c4",
+        "quote": "bye bye spotify humesha k liye"
+      },
+      {
+        "review_id": "e5b00a24-5eab-4af8-a47e-b92919370cd0",
+        "quote": "The embodiment of capitalism!!! Shame!"
+      }
+    ],
+    "title": "General dissatisfaction with app and updates",
+    "description": "Customers broadly express anger and frustration with the app, often tied to recent updates, without naming a specific feature.",
+    "example_review_ids": [
+      "757cd88f-3437-476f-a804-f88d560c19f8",
+      "e593195a-3a73-4025-8c1a-2316d50ffd6c",
+      "a34b6bf0-d287-4358-94fd-3b6a09b0fa95"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "other"
+  },
+  {
+    "issue_id": "billing.premium_paywall",
+    "member_count": 41553,
+    "mean_severity": 2.786,
+    "sample": [
+      {
+        "review_id": "6fb9c1f1-9c14-4c41-a2d2-5cab750c9fa0",
+        "quote": "The new update where everything is under premium"
+      },
+      {
+        "review_id": "4dca94ea-fff4-4f53-9046-27432e56d711",
+        "quote": "when you forced me to buy the premium by not letting us shuffle button off"
+      },
+      {
+        "review_id": "86fbcb0d-74f9-4687-91a4-91e54ed57df7",
+        "quote": "Love the app music is great on here only down side is of you want to play any song you want you'll need premium"
+      },
+      {
+        "review_id": "dc18ffbc-f0d8-4cce-a193-a28a801f6aa9",
+        "quote": "This app is only for premium users only"
+      },
+      {
+        "review_id": "5d8c1d43-78b5-4087-b409-1a4dc1adc572",
+        "quote": "all the basic features of a music player app locked behind premium"
+      },
+      {
+        "review_id": "39616d75-bb93-44f8-bafe-f5f7ac8fa4dd",
+        "quote": "NOTHING CAN BE DONE WITHOUT USING PREMIUM, WORST APP EVER TBH"
+      },
+      {
+        "review_id": "e6a3f254-06b7-4560-a952-afbee40bb56f",
+        "quote": "they have applied premium for everything"
+      },
+      {
+        "review_id": "4cd090df-2c51-484b-a989-7956da52ece0",
+        "quote": "It only asks for their premium"
+      }
+    ],
+    "title": "Basic features locked behind premium paywall",
+    "description": "Customers feel core features like shuffle and song selection were moved behind the premium subscription, forcing them to pay to use the app.",
+    "example_review_ids": [
+      "5d8c1d43-78b5-4087-b409-1a4dc1adc572",
+      "4cd090df-2c51-484b-a989-7956da52ece0",
+      "dc18ffbc-f0d8-4cce-a193-a28a801f6aa9"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "billing"
+  },
+  {
+    "issue_id": "usability.ads",
+    "member_count": 37172,
+    "mean_severity": 2.327,
+    "sample": [
+      {
+        "review_id": "6d77fabc-803a-4f88-bcb4-43c86f7f9d32",
+        "quote": "sometimes music intruppts in between!!"
+      },
+      {
+        "review_id": "33a4adc0-709c-4932-9421-bbf2ed6d8044",
+        "quote": "add other ads instead of fustraiting \"get subscribsion\" ad"
+      },
+      {
+        "review_id": "c74f94f2-f479-48d8-9872-ec5767aa03b5",
+        "quote": "You cannot listen to a few song without atleast a whole minute of ads in between"
+      },
+      {
+        "review_id": "dd99fd78-22a2-4daf-a79a-fcef2df48aa7",
+        "quote": "Hate this app with it's so called ads"
+      },
+      {
+        "review_id": "32d84df3-22b4-4136-bd56-0976297f9624",
+        "quote": "I can only listen like 2-3 music and then ads just comes up"
+      },
+      {
+        "review_id": "31fa9f7b-fb04-4478-a459-73af60d49c37",
+        "quote": "Their are many ads"
+      },
+      {
+        "review_id": "ddee669b-7b16-4c8a-8f99-e9bfa36d5426",
+        "quote": "its just disgusting and spoils the relaxation of all songs"
+      },
+      {
+        "review_id": "28f8ec64-ef7d-4a63-a8fb-f7012e770e76",
+        "quote": "it has too much of ads"
+      }
+    ],
+    "title": "Frequent intrusive ads interrupting listening",
+    "description": "Customers report that ads appear too often, interrupt songs, and include repeated subscription prompts that disrupt the listening experience.",
+    "example_review_ids": [
+      "c74f94f2-f479-48d8-9872-ec5767aa03b5",
+      "32d84df3-22b4-4136-bd56-0976297f9624",
+      "28f8ec64-ef7d-4a63-a8fb-f7012e770e76"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "usability"
+  },
+  {
+    "issue_id": "usability.shuffle_or_track_control",
+    "member_count": 19039,
+    "mean_severity": 2.77,
+    "sample": [
+      {
+        "review_id": "82537eb8-bbe9-4742-8d02-2fd13d9126ce",
+        "quote": "You only get 6 skips an hour?"
+      },
+      {
+        "review_id": "b6d34bd0-a11c-450a-a52a-add090a83053",
+        "quote": "until it says I've used up all my skips"
+      },
+      {
+        "review_id": "a80b9900-6c25-4a56-8479-b53f974add8c",
+        "quote": "you can't skip songs and rewind or forward"
+      },
+      {
+        "review_id": "96fabfca-1123-4833-89af-d670727e7fac",
+        "quote": "This app is getting worse with every update."
+      },
+      {
+        "review_id": "5702362d-641a-477d-b423-c3148f6702a7",
+        "quote": "If we can not change songs then this app is useless"
+      },
+      {
+        "review_id": "51705018-1ad0-4b59-a478-cb60feede394",
+        "quote": "I absolutely hate not listening to the songs I want"
+      },
+      {
+        "review_id": "fc9dc10b-d16b-42c5-b2f6-0839aeb816b9",
+        "quote": "remove the songs are playing in random thing"
+      },
+      {
+        "review_id": "d1dd934b-0152-4ce3-9b2c-448c150e6b76",
+        "quote": "you cannot control in any way shape or form"
+      }
+    ],
+    "title": "Limited skipping and loss of track control",
+    "description": "Customers are frustrated by capped skips, inability to choose or rewind songs, and random playback that prevents them from controlling what they hear.",
+    "example_review_ids": [
+      "82537eb8-bbe9-4742-8d02-2fd13d9126ce",
+      "a80b9900-6c25-4a56-8479-b53f974add8c",
+      "d1dd934b-0152-4ce3-9b2c-448c150e6b76"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "usability"
+  },
+  {
+    "issue_id": "usability.ui_redesign_or_navigation",
+    "member_count": 14052,
+    "mean_severity": 2.365,
+    "sample": [
+      {
+        "review_id": "ca257671-d92f-4702-94cb-3177720a4a14",
+        "quote": "It's slow to open and load on every device."
+      },
+      {
+        "review_id": "9c498552-462d-495e-838e-9e9e414da6e2",
+        "quote": "New update is worst...want old Spotify back"
+      },
+      {
+        "review_id": "debb85c0-5e0a-4b48-8f19-17e75d44b90d",
+        "quote": "Worst after recent update , I didn't like it I can't even play songs form liked playlist.."
+      },
+      {
+        "review_id": "15aae467-739b-4e08-90b9-ca4733b040b2",
+        "quote": "Why are you making the homepage bad like just fix this immediately"
+      },
+      {
+        "review_id": "670f80f6-2eac-4fcf-a121-9b223b00badd",
+        "quote": "They modify their app which is frustrating.."
+      },
+      {
+        "review_id": "44ba7212-01c2-44e1-bfb0-366fe17b9a10",
+        "quote": "The new update has left the home screen cumbersome"
+      },
+      {
+        "review_id": "c99a85ad-9871-4b24-b4bf-ff491e7dae6a",
+        "quote": "won't allow me to view the song that is currently playing, or press any buttons"
+      },
+      {
+        "review_id": "7ee98e5b-3a66-417c-b7c9-9eabc8233278",
+        "quote": "forcing users to scroll one image at a time"
+      }
+    ],
+    "title": "Cumbersome home screen after redesign",
+    "description": "Customers find the redesigned home screen and navigation slow, cluttered, and harder to use, with some saying they cannot reach liked songs or current playback controls.",
+    "example_review_ids": [
+      "44ba7212-01c2-44e1-bfb0-366fe17b9a10",
+      "debb85c0-5e0a-4b48-8f19-17e75d44b90d",
+      "c99a85ad-9871-4b24-b4bf-ff491e7dae6a"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "usability"
+  },
+  {
+    "issue_id": "playback.playback_stops_or_skips",
+    "member_count": 10266,
+    "mean_severity": 3.055,
+    "sample": [
+      {
+        "review_id": "bb08a2e3-2c25-4a04-bdb1-7e8ae9649ff5",
+        "quote": "it plays the first 10 seconds and freezes?"
+      },
+      {
+        "review_id": "682fa2ab-714c-43c3-b4e7-e65ff794ef9b",
+        "quote": "Drops continuously....not pleased"
+      },
+      {
+        "review_id": "77e6ba8e-d054-4d41-b352-a4d3049f6a4b",
+        "quote": "that problem of constant stopping mid-song randomly is back."
+      },
+      {
+        "review_id": "7e43b06a-bb1d-4f26-8480-14b7a539b6ce",
+        "quote": "Music is playing and then it just cuts off"
+      },
+      {
+        "review_id": "d76e2a38-2ebb-4423-aa63-7dfadbb78328",
+        "quote": "it skips a lot of other songs by it's self"
+      },
+      {
+        "review_id": "f5a2d6a7-6ba0-49ff-a675-93e75c335a6f",
+        "quote": "Music keeps stopping at ten seconds"
+      },
+      {
+        "review_id": "ab084f43-e091-420b-adf5-004910ae2215",
+        "quote": "regularly cuts out for a few seconds for no reason at all"
+      },
+      {
+        "review_id": "b62f64f2-da97-489b-ac16-5ee4175fe1f7",
+        "quote": "it will freeze whatever Im listening to for no reason"
+      }
+    ],
+    "title": "Music randomly stops, freezes, or cuts out",
+    "description": "Customers report songs cutting off mid-play, freezing after a few seconds, or skipping on their own without any apparent reason.",
+    "example_review_ids": [
+      "f5a2d6a7-6ba0-49ff-a675-93e75c335a6f",
+      "7e43b06a-bb1d-4f26-8480-14b7a539b6ce",
+      "b62f64f2-da97-489b-ac16-5ee4175fe1f7"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "playback"
+  },
+  {
+    "issue_id": "playback.playback_other",
+    "member_count": 9859,
+    "mean_severity": 2.953,
+    "sample": [
+      {
+        "review_id": "e389310f-a1ad-48fe-b3b5-0c84c70a129f",
+        "quote": "it doesn't let me play the song that I want right away"
+      },
+      {
+        "review_id": "688911b3-37b7-433a-901b-ff1e22fd080a",
+        "quote": "Constantly auto playing, even on linked devices that are turned off!"
+      },
+      {
+        "review_id": "b66b9d98-5911-4038-9656-4846557cc352",
+        "quote": "it kicks me out?"
+      },
+      {
+        "review_id": "5f598ff6-1105-466d-8eeb-90beac620076",
+        "quote": "if i click on one playlist it plays one song, then starts playing songs from a diffrent playlist"
+      },
+      {
+        "review_id": "c2e3ef14-4059-4d60-810d-d03aea3f789b",
+        "quote": "It has too many bugs"
+      },
+      {
+        "review_id": "f7253632-3b7d-458b-8d59-8bdd737de7a3",
+        "quote": "never works in my phone"
+      },
+      {
+        "review_id": "5ab3e16a-303d-4a79-b7d4-ae470c3f3d26",
+        "quote": "Completely useless for listening to podcasts."
+      },
+      {
+        "review_id": "93fe5bf8-70ff-4da0-bcbf-0f2314bee735",
+        "quote": "Love the app but the last few days its been unusable"
+      }
+    ],
+    "title": "Wrong or unwanted playback behavior and bugs",
+    "description": "Customers describe playback starting unexpectedly, mixing songs from other playlists, being kicked out, or the app simply failing to function.",
+    "example_review_ids": [
+      "688911b3-37b7-433a-901b-ff1e22fd080a",
+      "5f598ff6-1105-466d-8eeb-90beac620076",
+      "93fe5bf8-70ff-4da0-bcbf-0f2314bee735"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "playback"
+  },
+  {
+    "issue_id": "access.login_failure",
+    "member_count": 6887,
+    "mean_severity": 3.888,
+    "sample": [
+      {
+        "review_id": "a1cb9124-fa6e-4f7c-98fb-66d4e00b51fd",
+        "quote": "It is showing network connection error whenever I open the app or try to login Iam unable to play songs"
+      },
+      {
+        "review_id": "72ab16c6-c10b-4e41-9966-ed0f70c61645",
+        "quote": "It doesn't let you login at all"
+      },
+      {
+        "review_id": "b2b0bc03-5cab-4202-aca0-0e90543589ca",
+        "quote": "Not getting logged in with phone number Showing Something went wrong"
+      },
+      {
+        "review_id": "0a9477a0-0730-4008-8f56-daa5848a5e11",
+        "quote": "I cant open my Spotify app because of they say no internet connection"
+      },
+      {
+        "review_id": "9993caf0-71e7-4206-ab3d-069124412eeb",
+        "quote": "Mobile number login failed west all favourite songs gonn"
+      },
+      {
+        "review_id": "14a8d592-2353-42a9-bacc-60db60b35fc6",
+        "quote": "Correct code filled but it shows wrong code"
+      },
+      {
+        "review_id": "fdf5a2a7-9533-455d-8b3e-d95efd409481",
+        "quote": "i have proper network in my phone but it's showing no network connection"
+      },
+      {
+        "review_id": "7c531524-2686-45e1-90c3-c2ee526f5f4c",
+        "quote": "I am unable to sign in with my number"
+      }
+    ],
+    "title": "Unable to log in or verify account",
+    "description": "Customers cannot sign in, reporting network errors despite a working connection, failed phone number login, and incorrect verification code messages.",
+    "example_review_ids": [
+      "72ab16c6-c10b-4e41-9966-ed0f70c61645",
+      "14a8d592-2353-42a9-bacc-60db60b35fc6",
+      "fdf5a2a7-9533-455d-8b3e-d95efd409481"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "access"
+  },
+  {
+    "issue_id": "playback.crash_or_wont_open",
+    "member_count": 7219,
+    "mean_severity": 3.533,
+    "sample": [
+      {
+        "review_id": "1ebc73d0-8d67-41c7-b69f-86785c60ce88",
+        "quote": "It is Crashing continuously & not working"
+      },
+      {
+        "review_id": "9175d32b-5d59-4177-992d-2506d8332c5f",
+        "quote": "SPOTIFY just Stopped working suddenly"
+      },
+      {
+        "review_id": "4ec842fc-c38c-409a-b591-13724c119691",
+        "quote": "The app starts crashing when i starts to play a song."
+      },
+      {
+        "review_id": "55a949be-24be-42ac-8635-9990caa373aa",
+        "quote": "Unable to play songs on liked Playlist. App closes everytime I select a song."
+      },
+      {
+        "review_id": "7fd88571-9bdb-4f90-8529-84d4522d082f",
+        "quote": "Having trouble with the app crashing on an S22 ultra."
+      },
+      {
+        "review_id": "d214203c-2c15-4827-899d-d4f6666e1f8e",
+        "quote": "Doesn't work most the time on galaxy z flip 4"
+      },
+      {
+        "review_id": "fa720176-9eb5-4f26-bc46-09843468f49d",
+        "quote": "It just crashes. I can't do anything"
+      },
+      {
+        "review_id": "ffce7b38-5741-4328-898a-ac03dc69bb89",
+        "quote": "Last 2 day I can play music but app was suddenly not used"
+      }
+    ],
+    "title": "App crashes or fails to open",
+    "description": "Customers report the app crashing, closing unexpectedly, or not working at all, often right when they try to play a song.",
+    "example_review_ids": [
+      "1ebc73d0-8d67-41c7-b69f-86785c60ce88",
+      "55a949be-24be-42ac-8635-9990caa373aa",
+      "fa720176-9eb5-4f26-bc46-09843468f49d"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "playback"
+  },
+  {
+    "issue_id": "playback.device_or_connection",
+    "member_count": 6646,
+    "mean_severity": 2.976,
+    "sample": [
+      {
+        "review_id": "30433cea-f3eb-4c85-83f6-81e9943bbdb9",
+        "quote": "All the damn cast devices do not appear"
+      },
+      {
+        "review_id": "627b8113-60ca-4d4b-9a31-1c88a70bbb53",
+        "quote": "now things aren't downloading"
+      },
+      {
+        "review_id": "7b689f1a-0811-47c6-8574-3943a6bfd105",
+        "quote": "the app flat out stops working when you try and use it without service"
+      },
+      {
+        "review_id": "e94c6458-21cf-4093-a2ec-80c38e52e5ff",
+        "quote": "I cannot connect patify to any bluetooth device"
+      },
+      {
+        "review_id": "e124f6f5-164b-4db2-9195-87c63b18f50f",
+        "quote": "It always tells am offline when even my cellular data is on"
+      },
+      {
+        "review_id": "5f27434c-7b26-4fb8-9e6e-ba4aa449663d",
+        "quote": "it shows no connection within the app thus affecting the user experience"
+      },
+      {
+        "review_id": "b0ef0426-d305-47f5-80fd-059bcce1b847",
+        "quote": "the notifications panel doesn't show Spotify. It's just an open space."
+      },
+      {
+        "review_id": "6e692306-008a-4e68-83e0-9886e0442e0f",
+        "quote": "Poor connectivity with google home group speakers"
+      }
+    ],
+    "title": "Device connectivity and offline mode failures",
+    "description": "Customers say cast and Bluetooth devices don't appear or connect, the app wrongly shows offline status, and downloads or playback fail without service.",
+    "example_review_ids": [
+      "30433cea-f3eb-4c85-83f6-81e9943bbdb9",
+      "e124f6f5-164b-4db2-9195-87c63b18f50f",
+      "e94c6458-21cf-4093-a2ec-80c38e52e5ff"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "playback"
+  },
+  {
+    "issue_id": "catalog.missing_or_removed_content",
+    "member_count": 6226,
+    "mean_severity": 2.464,
+    "sample": [
+      {
+        "review_id": "51eeb216-11e0-4efa-8e96-2c8a81e4b168",
+        "quote": "There are no playlist of marathi songs"
+      },
+      {
+        "review_id": "f934e939-1234-4f6a-8714-7af05f495e28",
+        "quote": "dosnt have my favorite song called \"rent week\" by hilltop hoods though"
+      },
+      {
+        "review_id": "61bd9446-37c2-442f-bb69-d3bd69914e1c",
+        "quote": "Removed all streams credit under JK and all of BTS' songs this year"
+      },
+      {
+        "review_id": "d525fecb-2479-4111-ab49-fc1767c03722",
+        "quote": "it's just say “this song isn't available\""
+      },
+      {
+        "review_id": "f3df6d33-d736-4461-adb8-3cebb1ce4646",
+        "quote": "I quit Spotify because there was no more of Lana Del Rey unreleased songs"
+      },
+      {
+        "review_id": "354c9578-a0e9-454d-b0b8-92e11d1df122",
+        "quote": "you delete the most of songsin Spotify"
+      },
+      {
+        "review_id": "4ffd04a2-eeb2-4c3e-8ccb-878313473cbe",
+        "quote": "it doesn't have as many songs as YouTube music does."
+      },
+      {
+        "review_id": "522dacb0-6f6e-466b-87ad-ec1c6af2087b",
+        "quote": "some pure songs are are not in spotify."
+      }
+    ],
+    "title": "Songs and artists missing from catalog",
+    "description": "Customers report that specific songs, artists, regional playlists, or unreleased tracks are unavailable or have been removed from Spotify.",
+    "example_review_ids": [
+      "f3df6d33-d736-4461-adb8-3cebb1ce4646",
+      "d525fecb-2479-4111-ab49-fc1767c03722",
+      "4ffd04a2-eeb2-4c3e-8ccb-878313473cbe"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "catalog"
+  },
+  {
+    "issue_id": "usability.playlist_or_library",
+    "member_count": 5581,
+    "mean_severity": 2.536,
+    "sample": [
+      {
+        "review_id": "a40612d6-3b53-41b2-b648-cde7f44c74e9",
+        "quote": "Why can't we delete a song from a playlist while it is selected"
+      },
+      {
+        "review_id": "da151773-80e9-42e3-b0af-0e70f287dd9b",
+        "quote": "i making playlist but that is not showing"
+      },
+      {
+        "review_id": "b69e63f0-117d-422d-ac25-da03636c21ac",
+        "quote": "Quit suggesting my music you screwed my play list"
+      },
+      {
+        "review_id": "ea203a54-6244-4046-9dc3-254c262ebd97",
+        "quote": "it keeps playing songs that's not in my playlist and mixed the sings per album"
+      },
+      {
+        "review_id": "a5ce02ee-bd5a-4b8d-8867-ae9d94dbbb8f",
+        "quote": "all songs are deleted yet again"
+      },
+      {
+        "review_id": "2bce060f-cf19-4956-8490-7e36a39ddac1",
+        "quote": "Doesn't allow to play your own playlist without,\"suggested\" songs."
+      },
+      {
+        "review_id": "dcc011db-ff7a-4488-83e4-5c2509b52718",
+        "quote": "they removed the add to queue and ain't letting me choose a particular song from a playlist!"
+      },
+      {
+        "review_id": "61b3d800-e54f-449b-a78b-dec7027169cb",
+        "quote": "When I press on my liked songs it just plays a little bit of it."
+      }
+    ],
+    "title": "Playlist and library management problems",
+    "description": "Customers struggle to edit playlists, find saved songs, or keep their own playlists intact, with suggested songs mixed in and deletions not sticking.",
+    "example_review_ids": [
+      "a40612d6-3b53-41b2-b648-cde7f44c74e9",
+      "2bce060f-cf19-4956-8490-7e36a39ddac1",
+      "dcc011db-ff7a-4488-83e4-5c2509b52718"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "usability"
+  },
+  {
+    "issue_id": "catalog.lyrics",
+    "member_count": 5160,
+    "mean_severity": 2.409,
+    "sample": [
+      {
+        "review_id": "61a214b4-29b7-4be8-92a5-9df7a254e897",
+        "quote": "WHERE ARE THE LYRICS?"
+      },
+      {
+        "review_id": "b25ee2cc-f621-4b20-a25c-f78595f71b57",
+        "quote": "Do not show lyrics of the song."
+      },
+      {
+        "review_id": "01796cbe-4246-4397-bf2b-efca879e88c9",
+        "quote": "why am I unable to see the lyrics of the songs?"
+      },
+      {
+        "review_id": "832be267-cb82-4051-ad2b-208ded3b30ca",
+        "quote": "Why are they not showing the lyrics of hynm for the weekend"
+      },
+      {
+        "review_id": "4eb54bd4-04d0-47a3-8efb-f0dee9f1c943",
+        "quote": "it doesn't show me the lyrics please help me"
+      },
+      {
+        "review_id": "aaadc7f0-2b92-49c4-a78e-c4084ff50955",
+        "quote": "Where the hell did lyrics went......"
+      },
+      {
+        "review_id": "507b0d67-1807-47ab-80a6-0c128345cdbd",
+        "quote": "It's not loading lyrics of song most of the time"
+      },
+      {
+        "review_id": "d59ec005-2646-4d03-9ca6-5c73e33fbc7d",
+        "quote": "Can't able to load lyrics for the songs worst experience I ever had in Spotify"
+      }
+    ],
+    "title": "Lyrics not showing or failing to load",
+    "description": "Customers report that song lyrics are missing, disappeared after an update, or fail to load for most songs.",
+    "example_review_ids": [
+      "61a214b4-29b7-4be8-92a5-9df7a254e897",
+      "507b0d67-1807-47ab-80a6-0c128345cdbd",
+      "d59ec005-2646-4d03-9ca6-5c73e33fbc7d"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "catalog"
+  },
+  {
+    "issue_id": "access.logged_out_or_account_lost",
+    "member_count": 2561,
+    "mean_severity": 3.75,
+    "sample": [
+      {
+        "review_id": "039ad2be-d078-4d46-9fe9-05e06fae95ec",
+        "quote": "App logged me out since the update and I can't log back in."
+      },
+      {
+        "review_id": "34a33433-7274-41d1-9ce1-04ec6f43db4e",
+        "quote": "it is really difficult to login and log ou into ur account from different devices"
+      },
+      {
+        "review_id": "822263be-fa15-435f-9bb1-9f3896cbc4fc",
+        "quote": "the only problem I had with was a lagging situation when it didn't show my liked playlist"
+      },
+      {
+        "review_id": "7c895362-4672-4460-8a99-76c8adf7bcef",
+        "quote": "now t won let me log into my profile and I can't listen to any of my playlists"
+      },
+      {
+        "review_id": "5312ed4f-2e2b-475e-8ddb-43d5e3fb265c",
+        "quote": "when I try to sign up again it says that an account with this email exists"
+      },
+      {
+        "review_id": "bc65e83c-5614-4620-bb3a-ca5f58ee30e7",
+        "quote": "Somehow i have been logged out of my account"
+      },
+      {
+        "review_id": "92063aca-4cc9-4cb3-b716-d5bdd955c4f3",
+        "quote": "cannot log back in because it says my email and password are wrong"
+      },
+      {
+        "review_id": "715b0cc4-5e5a-4632-a882-5a0b72fd9934",
+        "quote": "after i cleared data and cache, i cant do a single thing"
+      }
+    ],
+    "title": "Unexpected logouts and login failures",
+    "description": "Customers say they were logged out, cannot log back in with correct credentials, or lose access to their playlists after signing in.",
+    "example_review_ids": [
+      "039ad2be-d078-4d46-9fe9-05e06fae95ec",
+      "bc65e83c-5614-4620-bb3a-ca5f58ee30e7"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "access"
+  },
+  {
+    "issue_id": "catalog.recommendations",
+    "member_count": 4261,
+    "mean_severity": 2.241,
+    "sample": [
+      {
+        "review_id": "cc8add2a-8c67-4682-b580-3a8bddb839ad",
+        "quote": "it gives me another song of the same creator its really annoying"
+      },
+      {
+        "review_id": "7686445d-860d-45ef-8ca5-e3e089deda18",
+        "quote": "Porn options keep popping up while looking for songs."
+      },
+      {
+        "review_id": "972f3356-fa10-459a-be8d-06a69d5e42a2",
+        "quote": "People have been asking for a way to edit this since 2019"
+      },
+      {
+        "review_id": "b149e227-dfd3-4d4b-bf1b-fbc620b21247",
+        "quote": "I just wish they would stop putting bts songs in my rock playlist"
+      },
+      {
+        "review_id": "ca1e835e-4df5-471d-a160-cdfb2c3479b6",
+        "quote": "not your bs recommendations. Will cancel my plan if this keeps up"
+      },
+      {
+        "review_id": "e999ec12-359a-4ead-b158-9a4f4776fd5a",
+        "quote": "It doesn't give me the songs I want"
+      },
+      {
+        "review_id": "cc014614-f3b1-41c8-bc07-e0ed3d36e88a",
+        "quote": "Tamil songs are recommended though i selected only Telugu"
+      },
+      {
+        "review_id": "ff572706-14be-47f1-abb3-65019d104acc",
+        "quote": "It doesn't learn your musical tastes, such an annoying process to dislike or hide songs/artists."
+      }
+    ],
+    "title": "Unwanted or irrelevant song recommendations",
+    "description": "Customers find recommendations repeatedly off-taste, mixed into their own playlists, or ignoring their language and genre choices, with no good way to correct them.",
+    "example_review_ids": [
+      "b149e227-dfd3-4d4b-bf1b-fbc620b21247",
+      "cc014614-f3b1-41c8-bc07-e0ed3d36e88a",
+      "ff572706-14be-47f1-abb3-65019d104acc"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "catalog"
+  },
+  {
+    "issue_id": "playback.performance_or_battery",
+    "member_count": 3611,
+    "mean_severity": 2.509,
+    "sample": [
+      {
+        "review_id": "688dfd2b-0a41-4a50-bcca-a061edc592e1",
+        "quote": "Can be a little laggy sometimes but an overall good app"
+      },
+      {
+        "review_id": "7f85a4e1-4e29-4cf7-99bf-024cf7132cc9",
+        "quote": "very fast batter consume"
+      },
+      {
+        "review_id": "adb895cf-ecef-4a06-91f3-3c97aa0c567e",
+        "quote": "the app has been slow like it takes a lot long than usual to open my liked songs"
+      },
+      {
+        "review_id": "ad770f4b-25dd-4fea-a123-350eb825413a",
+        "quote": "Clicking on songs has no response."
+      },
+      {
+        "review_id": "793a05ab-1d7a-44c3-a3b4-060aa5e428cd",
+        "quote": "It is so slow on my phone."
+      },
+      {
+        "review_id": "a674cb38-3a1d-4a9a-ac7c-91d8d386a989",
+        "quote": "Hangs a lot, gives so many ads"
+      },
+      {
+        "review_id": "5d5f2dba-ef61-45bb-9b9a-863a0c673123",
+        "quote": "it takes up almost 5 gigabytes on my phone"
+      },
+      {
+        "review_id": "af68cba2-e202-49fc-bdf7-bb2677ed716e",
+        "quote": "Takes 20 minutes for me to get the stupid app to respond"
+      }
+    ],
+    "title": "Slow, laggy, or battery-heavy app",
+    "description": "Customers report sluggish response, delayed opening of liked songs, heavy storage use, and excessive battery drain while using the app.",
+    "example_review_ids": [
+      "adb895cf-ecef-4a06-91f3-3c97aa0c567e",
+      "af68cba2-e202-49fc-bdf7-bb2677ed716e",
+      "7f85a4e1-4e29-4cf7-99bf-024cf7132cc9"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "playback"
+  },
+  {
+    "issue_id": "billing.price",
+    "member_count": 3813,
+    "mean_severity": 2.089,
+    "sample": [
+      {
+        "review_id": "6c2ba813-de04-4223-b49b-7726b4bbc291",
+        "quote": "Resent update is very bad, this app just want money from us."
+      },
+      {
+        "review_id": "e1657c77-f221-4993-81af-c3fbbc09d6c3",
+        "quote": "Shameless way to make money"
+      },
+      {
+        "review_id": "a5ebd5f4-4f03-4725-8f03-f7424d5a24d7",
+        "quote": "Increases prices, doesn't physically sell a thing"
+      },
+      {
+        "review_id": "ea04859e-ff9d-487b-b6ed-c89a57b307fb",
+        "quote": "ab har cheej ke liye paise do"
+      },
+      {
+        "review_id": "ffb7a3aa-1e5b-4281-8fc7-75ef3a9c4b34",
+        "quote": "it's too pricey for low resolution music, you must offer HD audio"
+      },
+      {
+        "review_id": "a76109e0-04d7-4ae1-9e01-4e9664bcbbb3",
+        "quote": "they are raising the premium price it's been glitching like crazy"
+      },
+      {
+        "review_id": "5ad7b4f5-e3ed-4b11-9448-0d9b07303cd8",
+        "quote": "Is anything even free now?"
+      },
+      {
+        "review_id": "b2eed612-0e83-4ab5-a81e-18098a3446cf",
+        "quote": "Too expensive. Bad app home screen"
+      }
+    ],
+    "title": "Subscription prices feel too high",
+    "description": "Customers feel the app pushes paid tiers aggressively, calls premium pricing too expensive for what they get, and resents losing free features.",
+    "example_review_ids": [
+      "a5ebd5f4-4f03-4725-8f03-f7424d5a24d7",
+      "ffb7a3aa-1e5b-4281-8fc7-75ef3a9c4b34",
+      "5ad7b4f5-e3ed-4b11-9448-0d9b07303cd8"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "billing"
+  },
+  {
+    "issue_id": "downloads.offline_mode",
+    "member_count": 2237,
+    "mean_severity": 3.146,
+    "sample": [
+      {
+        "review_id": "289f197a-e5c9-4390-9567-a889950caeeb",
+        "quote": "I have to be online to play downloaded songs"
+      },
+      {
+        "review_id": "4929d551-1a43-446b-b51e-7b0422c9abd2",
+        "quote": "tengo las canciones descargadas y cuando cierro la aplicación y vuelvo a abrirla y le doy a reproducir la canción que deje antes de cerrarla no se reproduce"
+      },
+      {
+        "review_id": "acd6c317-c7fc-486e-a3b0-cda285d082b8",
+        "quote": "Auto download podcast that I follow is a feature that I was used to on Apple."
+      },
+      {
+        "review_id": "62afe476-0ef0-4dfc-af59-dd1dfcceb97e",
+        "quote": "Libraries won't load unless you have a connection despite having downloaded the songs prior."
+      },
+      {
+        "review_id": "8162a765-f8e7-414b-acb2-af0aa17ad7ff",
+        "quote": "the music is not playing offline"
+      },
+      {
+        "review_id": "d46f1d2e-2f20-4d16-a379-e71a026852d8",
+        "quote": "one problem, u can't play it offline"
+      },
+      {
+        "review_id": "58da46fb-3109-472d-8a2a-893e1492ab70",
+        "quote": "only down side is that u cant download music offline"
+      },
+      {
+        "review_id": "21d82d12-c755-4b19-bee8-bc8ba40c345d",
+        "quote": "Once you have picked your music I only ever have found it hard to get a new device to receive the same music but other than that I absolutely love this music app I don't know what we would do without "
+      }
+    ],
+    "title": "Downloaded music won't play offline",
+    "description": "Customers say songs they downloaded fail to play or load their libraries without an internet connection, defeating the purpose of offline mode.",
+    "example_review_ids": [
+      "289f197a-e5c9-4390-9567-a889950caeeb",
+      "62afe476-0ef0-4dfc-af59-dd1dfcceb97e",
+      "8162a765-f8e7-414b-acb2-af0aa17ad7ff"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "downloads"
+  },
+  {
+    "issue_id": "billing.charge_or_cancel_problem",
+    "member_count": 1889,
+    "mean_severity": 3.705,
+    "sample": [
+      {
+        "review_id": "2cf63b5e-4841-4239-a575-f84e24967b73",
+        "quote": "got charged for the next month before I could cancel"
+      },
+      {
+        "review_id": "51e855d5-28db-49eb-a7c4-0ade21f7b85b",
+        "quote": "I have Paid twice this October money was Deducted but after twe weeks no Service"
+      },
+      {
+        "review_id": "4fb7a41c-cca6-4459-99bc-b3dbe9ae4d9b",
+        "quote": "my money from Gcash was stolen by them"
+      },
+      {
+        "review_id": "e78005b0-835e-4d0d-a0f2-e711a4bdda3a",
+        "quote": "I always get card payment failed always."
+      },
+      {
+        "review_id": "538002a0-2357-4eea-bb46-26e1a70b66f6",
+        "quote": "i got remove from premium while i ALREADY PAID and just use it for 4 days and i didnt got the refund"
+      },
+      {
+        "review_id": "d40ccd26-51b8-4641-9f81-4faba02e2cb7",
+        "quote": "Mau berlangganan aja susah bgt. Please fix your app.."
+      },
+      {
+        "review_id": "7677d4e7-c9c3-4ab2-a49c-fe31f08d400a",
+        "quote": "I can renew my payment on this app with my Nigeria card and it annoying"
+      },
+      {
+        "review_id": "8f517daa-233c-4d3e-af9b-e937eb897400",
+        "quote": "Can't change subscriptions on app."
+      }
+    ],
+    "title": "Charged after cancelling or paying incorrectly",
+    "description": "Customers report being billed again after cancelling, paying without receiving service, failed card payments, and difficulty changing or refunding subscriptions.",
+    "example_review_ids": [
+      "2cf63b5e-4841-4239-a575-f84e24967b73",
+      "51e855d5-28db-49eb-a7c4-0ade21f7b85b",
+      "8f517daa-233c-4d3e-af9b-e937eb897400"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "billing"
+  },
+  {
+    "issue_id": "billing.premium_not_recognized",
+    "member_count": 2027,
+    "mean_severity": 3.245,
+    "sample": [
+      {
+        "review_id": "70cad17e-1886-4746-8252-6fc3ab6269fa",
+        "quote": "Worst experience after premium"
+      },
+      {
+        "review_id": "28d3b26c-42d7-432e-933a-594f73db72d9",
+        "quote": "it is not showing up in my spotify account"
+      },
+      {
+        "review_id": "1c3de9f4-2ad8-4def-9409-8506985bd9ea",
+        "quote": "Sudah melakukan pembayaran premium tapi akun spotify saya belum juga premium."
+      },
+      {
+        "review_id": "4e6b6f66-fb96-4471-b2f0-a4ab315c2ccd",
+        "quote": "Took premium subscription but not able to use it when I needed."
+      },
+      {
+        "review_id": "3a3dd5ba-8402-406e-aff8-b3cf98a509ac",
+        "quote": "I pay for Spotify, but because I paid on my computer instead of my phone, you won't let me use your stupid app"
+      },
+      {
+        "review_id": "330dc4cc-aeda-4985-a630-17c022b8fa28",
+        "quote": "Maybe I got wrong information about 3 month free \"primium\" becz it doesn't happens anything in it."
+      },
+      {
+        "review_id": "5a14e11d-841a-4af2-8696-af13f2bfeb9b",
+        "quote": "This is the second time I'm paying for spotify and it's not working."
+      },
+      {
+        "review_id": "24035dd8-92b5-4a9c-bbe5-3a668da1c24f",
+        "quote": "unable to purchase premium account with carrier balling"
+      }
+    ],
+    "title": "Paid premium not activating on account",
+    "description": "Customers who paid for premium say their account still shows as free or that the subscription does not work in the app, especially when paying through a different device or carrier.",
+    "example_review_ids": [
+      "28d3b26c-42d7-432e-933a-594f73db72d9",
+      "3a3dd5ba-8402-406e-aff8-b3cf98a509ac",
+      "24035dd8-92b5-4a9c-bbe5-3a668da1c24f"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "billing"
+  },
+  {
+    "issue_id": "downloads.download_fails",
+    "member_count": 1933,
+    "mean_severity": 3.202,
+    "sample": [
+      {
+        "review_id": "c8ec6f53-00bd-467c-8370-f0174ed3a393",
+        "quote": "Musiqani yuklab bõlmaydi"
+      },
+      {
+        "review_id": "7825cca9-5f72-403c-9220-3542aa595204",
+        "quote": "Worst app dont download"
+      },
+      {
+        "review_id": "2e99d737-67e7-4cfe-8061-8c5236cb0790",
+        "quote": "download something that wont be installed"
+      },
+      {
+        "review_id": "02976e50-140a-4eeb-be79-e6f8d1e4448c",
+        "quote": "Tried downloading some favourite music and not available"
+      },
+      {
+        "review_id": "e7700b07-8efc-4656-aada-72c77016b6cb",
+        "quote": "it refuses to download more than 9500"
+      },
+      {
+        "review_id": "bed936e9-b0d6-4557-ac0a-8c9201675bd6",
+        "quote": "Very bad app can't download music"
+      },
+      {
+        "review_id": "18ef6d20-4acb-4c20-b226-96af613e2989",
+        "quote": "we can't download the song's tho if you don't have premium"
+      },
+      {
+        "review_id": "8bbb5842-b1df-4d36-81a2-1df370d69bb5",
+        "quote": "I want dowload song. But i cant"
+      }
+    ],
+    "title": "Songs fail to download",
+    "description": "Customers cannot download songs or playlists, with downloads refusing to complete, stopping at a limit, or being blocked without premium.",
+    "example_review_ids": [
+      "e7700b07-8efc-4656-aada-72c77016b6cb",
+      "bed936e9-b0d6-4557-ac0a-8c9201675bd6",
+      "18ef6d20-4acb-4c20-b226-96af613e2989"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "downloads"
+  },
+  {
+    "issue_id": "usability.usability_other",
+    "member_count": 2040,
+    "mean_severity": 2.388,
+    "sample": [
+      {
+        "review_id": "bc87f930-81b3-4e04-ac11-c70e2d85b59d",
+        "quote": "Removed almost all the basic features"
+      },
+      {
+        "review_id": "6118ff1a-dbd8-40a8-98be-611a70738588",
+        "quote": "they have removed basic features."
+      },
+      {
+        "review_id": "1e11cd36-aaf2-4745-b4fd-5c18a748646d",
+        "quote": "Basic features are removed."
+      },
+      {
+        "review_id": "0d093995-b7c0-4272-93b3-a4c96e606043",
+        "quote": "has taken away all of its normal features"
+      },
+      {
+        "review_id": "28953fb0-0918-45db-91f7-8f913817fda8",
+        "quote": "I can't follow my friends even i know their account?"
+      },
+      {
+        "review_id": "67c0ac1e-e226-4997-ac31-d2e5efc93a56",
+        "quote": "The recent update made it worse i loved the app before the update"
+      },
+      {
+        "review_id": "83762950-8cdb-4388-9561-40c144a3ad93",
+        "quote": "we can't adjust music according to our choice. This is not accepted I'm uninstalling it right away."
+      },
+      {
+        "review_id": "c43a918c-3d02-42e8-85a9-f6a1953f0d42",
+        "quote": "Like you're just taking away basic features"
+      }
+    ],
+    "title": "Basic features removed or harder to use",
+    "description": "Customers feel recent updates removed familiar features such as following friends and adjusting music, making the app worse than before.",
+    "example_review_ids": [
+      "bc87f930-81b3-4e04-ac11-c70e2d85b59d",
+      "67c0ac1e-e226-4997-ac31-d2e5efc93a56",
+      "c43a918c-3d02-42e8-85a9-f6a1953f0d42"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "usability"
+  },
+  {
+    "issue_id": "catalog.search_or_discovery",
+    "member_count": 1921,
+    "mean_severity": 2.536,
+    "sample": [
+      {
+        "review_id": "96e02325-9b1d-4bcb-b1c8-04f446630ba1",
+        "quote": "tye songs you search for is never actually played others are played in place of what you want"
+      },
+      {
+        "review_id": "a828be5b-5447-473f-ad41-289dd8a8c905",
+        "quote": "The search function doesn't seem to go online to search while disconnected from WiFi."
+      },
+      {
+        "review_id": "add8aad1-d5b3-483d-9ab8-f683f2eb4dc8",
+        "quote": "I can't play a clip or snippet of a song I searched anymore"
+      },
+      {
+        "review_id": "1c6bc2a7-8f4d-4eb1-a700-071faf0de2e2",
+        "quote": "You just need some more good, up building stories! Can't seem to find enough."
+      },
+      {
+        "review_id": "b486da17-f45c-4166-a1e6-39af182d4d69",
+        "quote": "listening to what you WANT to listen to is sometimes hard."
+      },
+      {
+        "review_id": "88a54be5-6b3f-42c6-845a-3fcb044ff3d7",
+        "quote": "I searched for one song and got other songs"
+      },
+      {
+        "review_id": "99a4d76d-01a4-4be7-b9d7-3843493fedf6",
+        "quote": "mau cari lagu sesuai judul malah diarahin lagu random"
+      },
+      {
+        "review_id": "11b4f48b-f0f1-4396-abbe-29601fef826a",
+        "quote": "Only bad thing is when I search \ncertain artist they dont appear!"
+      }
+    ],
+    "title": "Search returns wrong or missing songs",
+    "description": "Customers say searches return unrelated songs, fail to show certain artists, or do not work offline, making it hard to find what they want.",
+    "example_review_ids": [
+      "96e02325-9b1d-4bcb-b1c8-04f446630ba1",
+      "88a54be5-6b3f-42c6-845a-3fcb044ff3d7",
+      "11b4f48b-f0f1-4396-abbe-29601fef826a"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "catalog"
+  },
+  {
+    "issue_id": "downloads.downloads_disappear",
+    "member_count": 1272,
+    "mean_severity": 3.507,
+    "sample": [
+      {
+        "review_id": "a7deb352-5702-4210-b455-8f1ba9d1f9fb",
+        "quote": "Sometimes if my phone restarts it deletes all my downloaded song"
+      },
+      {
+        "review_id": "1c66694d-23b6-4c44-80f1-f7c056210184",
+        "quote": "the app removes my downloaded songs so I can't listen to them offline"
+      },
+      {
+        "review_id": "b715811f-9413-4a0e-be8f-55e329c379e7",
+        "quote": "i miss my downloaded premium playlists"
+      },
+      {
+        "review_id": "1cbd654a-67cd-4f6b-84be-53aa22438229",
+        "quote": "Some old musics just disappear without notice."
+      },
+      {
+        "review_id": "e6670180-73e3-4eab-b75b-3c141ea43137",
+        "quote": "songs dont stay offline not even for an hour"
+      },
+      {
+        "review_id": "117ea77a-6b9f-413f-9371-6af2067e86f6",
+        "quote": "it deletes mp3s from your phone without permission or notification"
+      },
+      {
+        "review_id": "fb414c08-7ba6-41a8-8fef-76eb28c19901",
+        "quote": "Very often losing downloaded songs"
+      },
+      {
+        "review_id": "719bf522-bd8e-44aa-8df5-42da705f6dda",
+        "quote": "sometimes downloaded songs just disappear from my play list"
+      }
+    ],
+    "title": "Downloaded songs vanish unexpectedly",
+    "description": "Customers report previously downloaded songs and playlists being deleted without notice, sometimes after a phone restart, so they cannot listen offline.",
+    "example_review_ids": [
+      "a7deb352-5702-4210-b455-8f1ba9d1f9fb",
+      "117ea77a-6b9f-413f-9371-6af2067e86f6",
+      "719bf522-bd8e-44aa-8df5-42da705f6dda"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "downloads"
+  },
+  {
+    "issue_id": "other.other_specific",
+    "member_count": 1926,
+    "mean_severity": 2.149,
+    "sample": [
+      {
+        "review_id": "daa5bde1-b294-44a2-8847-2f44998e4760",
+        "quote": "It's not syncing with Shazam to create or update the playlist"
+      },
+      {
+        "review_id": "eade03b5-3040-4647-9e1b-08d1819f47be",
+        "quote": "Spotify thinks it's OK to go thru my pictures and post them in the app."
+      },
+      {
+        "review_id": "c1685ff7-d7a2-422d-b5a4-de159c38b49b",
+        "quote": "my canvas feature is suddenly not working"
+      },
+      {
+        "review_id": "fd5daa50-4f92-4e14-b0d3-cb4cc950b189",
+        "quote": "i prefer soundcloud instead of using spotify"
+      },
+      {
+        "review_id": "f76a2386-bbbf-4ff8-8e4a-973501554b3f",
+        "quote": "can't share song with canva in instagram story"
+      },
+      {
+        "review_id": "f969abd1-f2ff-4ea0-a483-56cf42d05804",
+        "quote": "Abusing your power over artists who dont bend to your rules??"
+      },
+      {
+        "review_id": "b2d8d97b-c389-4294-9937-684f7822639d",
+        "quote": "Audio player better than this app"
+      },
+      {
+        "review_id": "9fe8f09a-d5db-434f-a46f-bac94e6aba6b",
+        "quote": "Still , l have problems using it."
+      }
+    ],
+    "title": "Miscellaneous specific feature and integration problems",
+    "description": "Customers report assorted one-off problems such as Shazam playlist syncing failing, Canvas not working, sharing to Instagram failing, and unwanted photo access.",
+    "example_review_ids": [
+      "daa5bde1-b294-44a2-8847-2f44998e4760",
+      "c1685ff7-d7a2-422d-b5a4-de159c38b49b",
+      "f76a2386-bbbf-4ff8-8e4a-973501554b3f"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "other"
+  },
+  {
+    "issue_id": "playback.audio_quality",
+    "member_count": 1502,
+    "mean_severity": 2.248,
+    "sample": [
+      {
+        "review_id": "f2e29a15-f85b-40a7-822e-834a9f208a09",
+        "quote": "soften the quality of music when high quality music kept on"
+      },
+      {
+        "review_id": "e7bb4d7a-a684-41e6-8fbb-2b3ef6281afa",
+        "quote": "Audio quality seems slightly less compared to Apple music"
+      },
+      {
+        "review_id": "98d1df26-d75a-4ce5-adf0-f5d652e680fd",
+        "quote": "Audio quality is subpar. The free version is rubbish."
+      },
+      {
+        "review_id": "bf9a16d0-6270-4dd6-be2c-2e2977a0cafb",
+        "quote": "the sound decreases itself and songs have broken noise"
+      },
+      {
+        "review_id": "ef4138e7-be5b-445e-b6bb-34a67cfb0af7",
+        "quote": "Music's tones are change I Don't like that"
+      },
+      {
+        "review_id": "d52dafec-8e82-4eb9-b268-bd19389e674a",
+        "quote": "Very very poor and very bad quality"
+      },
+      {
+        "review_id": "7cc5a62e-b852-4a44-9aeb-6ec4f0b0b061",
+        "quote": "sound quality is too compressed, preferred cd quality"
+      },
+      {
+        "review_id": "1612fe11-c9cf-48ca-aa3f-f1cd28ff4bf7",
+        "quote": "Very bad quality don't use for everything you want to pay don't waste money ads everywhere."
+      }
+    ],
+    "title": "Poor or degraded audio playback quality",
+    "description": "Customers say music sounds compressed, distorted, or lower quality than expected, including on high-quality settings and the free tier.",
+    "example_review_ids": [
+      "f2e29a15-f85b-40a7-822e-834a9f208a09",
+      "7cc5a62e-b852-4a44-9aeb-6ec4f0b0b061",
+      "bf9a16d0-6270-4dd6-be2c-2e2977a0cafb"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "playback"
+  },
+  {
+    "issue_id": "access.signup_or_install",
+    "member_count": 824,
+    "mean_severity": 3.499,
+    "sample": [
+      {
+        "review_id": "26306af5-c29c-42ce-ba02-71c6269399ad",
+        "quote": "Spotify isn't giving me sign up"
+      },
+      {
+        "review_id": "af3ec574-91de-4307-bfc4-ebc0c4ae49ad",
+        "quote": "Unable to subscribe"
+      },
+      {
+        "review_id": "0725ee1d-ab16-4f61-a326-4488f59a1ee5",
+        "quote": "Mobile number not verifying"
+      },
+      {
+        "review_id": "82815a14-f661-4aae-aa11-36669abab9f5",
+        "quote": "Good and useful app but takes a lot of time to sign up"
+      },
+      {
+        "review_id": "818be2d0-7c1d-4683-8832-a0861aef8540",
+        "quote": "i cant make an account even if i used all of my account info"
+      },
+      {
+        "review_id": "471f2fe7-5672-402d-8a8e-db328232927d",
+        "quote": "Mera phone mein spotify ka update nahi ho raha hai plz check"
+      },
+      {
+        "review_id": "02a82fb7-dbef-4c96-8b1c-1b05b999b957",
+        "quote": "i can't even use it. It doesn't work with either mobile data and wifi"
+      },
+      {
+        "review_id": "221417c1-c2f2-4cc4-8eb5-5f11f0d3d73e",
+        "quote": "Ussles app don't install"
+      }
+    ],
+    "title": "Sign-up, verification, and install failures",
+    "description": "Users are unable to create accounts, verify phone numbers, subscribe, or install and update the app successfully.",
+    "example_review_ids": [
+      "26306af5-c29c-42ce-ba02-71c6269399ad",
+      "0725ee1d-ab16-4f61-a326-4488f59a1ee5",
+      "221417c1-c2f2-4cc4-8eb5-5f11f0d3d73e"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "access"
+  },
+  {
+    "issue_id": "billing.billing_other",
+    "member_count": 1115,
+    "mean_severity": 2.479,
+    "sample": [
+      {
+        "review_id": "88b552dc-261b-48da-9f30-e3b60b0b4fbb",
+        "quote": "all u care about now is money"
+      },
+      {
+        "review_id": "b9ceac5e-9acf-4b15-962c-73f79ee50ac7",
+        "quote": "2 gift cards that i have are invalid"
+      },
+      {
+        "review_id": "8ea8fd18-688c-4f1b-b093-b2315c3c8178",
+        "quote": "Your payment system is the worst amongst all applications"
+      },
+      {
+        "review_id": "2074528e-9ffc-45a4-b457-20a6856ae585",
+        "quote": "Spotify gift cards are a SCAM!!!"
+      },
+      {
+        "review_id": "d8b91a4e-f0c8-487b-a0d7-fa8028208f7a",
+        "quote": "I am gonna uninstall Spotify"
+      },
+      {
+        "review_id": "395cee89-e4cd-48c9-840e-e1dc804ec12c",
+        "quote": "Spotify is keen on making revenue now rather on improving quality"
+      },
+      {
+        "review_id": "a871a0f6-1182-4a92-b292-0b76dde44980",
+        "quote": "They just need money"
+      },
+      {
+        "review_id": "b2d5d522-15a2-4783-9a96-484a19365645",
+        "quote": "Spotify has became so greedy"
+      }
+    ],
+    "title": "Payment system, gift cards, and pricing complaints",
+    "description": "Customers complain about invalid gift cards, a poor payment system, and a perception that the company prioritizes revenue over quality.",
+    "example_review_ids": [
+      "b9ceac5e-9acf-4b15-962c-73f79ee50ac7",
+      "8ea8fd18-688c-4f1b-b093-b2315c3c8178",
+      "395cee89-e4cd-48c9-840e-e1dc804ec12c"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "billing"
+  },
+  {
+    "issue_id": "access.account_hacked",
+    "member_count": 576,
+    "mean_severity": 4.057,
+    "sample": [
+      {
+        "review_id": "648af28d-e96f-4129-b765-da207de0fd41",
+        "quote": "Abnormal activity....."
+      },
+      {
+        "review_id": "cc9b1aa2-6a96-433e-ba51-45f92ae688e9",
+        "quote": "they delete my account and not even give me access to login"
+      },
+      {
+        "review_id": "1c779a8f-f0e1-4451-9159-4bcf69e59536",
+        "quote": "Spotify account has been hacked."
+      },
+      {
+        "review_id": "b7c8fe10-1b26-4cc2-a170-4c34b43a312f",
+        "quote": "The app doesn't let you creat more than on account and I find that annoying"
+      },
+      {
+        "review_id": "ba031435-9f28-47fc-8b1d-52d0ca050a72",
+        "quote": "โดนHackง่ายเกินขนาดเปลี่ยนรหัสผ่านแล้วก็ยังโดนอีก"
+      },
+      {
+        "review_id": "566e43a2-f88d-4107-a27d-48b316de6e3c",
+        "quote": "my account was stolen multiple times"
+      },
+      {
+        "review_id": "38ba03cb-537f-4280-9a51-caddb4176987",
+        "quote": "Spotify requires a screenshot of your credit card or bank statement"
+      },
+      {
+        "review_id": "6c07f5eb-d0ca-4336-832c-8029705ee190",
+        "quote": "Account got hacked"
+      }
+    ],
+    "title": "Account hacked or locked out",
+    "description": "Users report their accounts being hacked, stolen, or deleted, with some unable to regain login access afterward.",
+    "example_review_ids": [
+      "1c779a8f-f0e1-4451-9159-4bcf69e59536",
+      "cc9b1aa2-6a96-433e-ba51-45f92ae688e9",
+      "566e43a2-f88d-4107-a27d-48b316de6e3c"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "access"
+  },
+  {
+    "issue_id": "catalog.podcasts_or_audiobooks",
+    "member_count": 901,
+    "mean_severity": 2.533,
+    "sample": [
+      {
+        "review_id": "f1d64a10-a338-4319-aeb3-9c5f77f9fca6",
+        "quote": "can't find university lectures for certain subjects"
+      },
+      {
+        "review_id": "0a1e1735-7b0b-4def-9059-fd014da6f470",
+        "quote": "one particular podcast series is not playable at all"
+      },
+      {
+        "review_id": "ce6303bf-8225-4d72-acf6-3c99dc8a7d82",
+        "quote": "the podcasts are annoying but good app"
+      },
+      {
+        "review_id": "3d216aef-5799-403d-9ad2-58ded0e30f71",
+        "quote": "I can't access any podcasts.....im in uganda"
+      },
+      {
+        "review_id": "394e0083-0548-49d3-bf10-37b67fa1fff2",
+        "quote": "Spotify podcasts aren't available yet for Sri Lanka."
+      },
+      {
+        "review_id": "28dc2713-0be2-4d72-8b05-b135ece4d172",
+        "quote": "Some podcast fail to play"
+      },
+      {
+        "review_id": "333f94d2-c3bb-4bd2-a894-fd33b870ece9",
+        "quote": "Podcast episodes aren't updating."
+      },
+      {
+        "review_id": "40a8af9e-3548-433f-9c5a-8f587ee8d5d6",
+        "quote": "podcasts don't work at all or even show up"
+      }
+    ],
+    "title": "Podcasts failing to play or unavailable",
+    "description": "Customers report podcast episodes not playing, not updating, or being unavailable in their region, and missing university lectures.",
+    "example_review_ids": [
+      "0a1e1735-7b0b-4def-9059-fd014da6f470",
+      "333f94d2-c3bb-4bd2-a894-fd33b870ece9",
+      "3d216aef-5799-403d-9ad2-58ded0e30f71"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "catalog"
+  },
+  {
+    "issue_id": "catalog.catalog_other",
+    "member_count": 881,
+    "mean_severity": 2.154,
+    "sample": [
+      {
+        "review_id": "b3bc1193-b96d-4dfa-87f0-3a81cd502a45",
+        "quote": "Taylor swift camal toee better"
+      },
+      {
+        "review_id": "2a158f00-2eb6-471d-8e75-2c26cc9ee763",
+        "quote": "I don't like that their are videos and yt videos on it but the music is great"
+      },
+      {
+        "review_id": "1852ec10-9cc9-4d32-b313-e7312c49f3c8",
+        "quote": "Some things I can't get ,but for the most part it's good"
+      },
+      {
+        "review_id": "e0c40504-e93b-4556-af9a-98d98e4cfdb2",
+        "quote": "It was bad because it played bad songs and i re downloded it Verr goooookd five"
+      },
+      {
+        "review_id": "6ecfc02c-1041-41e2-9465-90e16937bee1",
+        "quote": "regarding with listening to any music across the World is really an unsecond Music & s**** App."
+      },
+      {
+        "review_id": "efeb9510-b9e2-4f88-814c-e921c19144a8",
+        "quote": "There is extremely explicit content like xxx."
+      },
+      {
+        "review_id": "f923f94a-9c44-4a9a-9ccf-86d4e72d9a58",
+        "quote": "does not have an extensive classical repertoire"
+      },
+      {
+        "review_id": "8b9413b6-6d66-4934-8f09-cda7c95c4d76",
+        "quote": "there is alot of same track titles of tracks & covers so it can be very duplicated"
+      }
+    ],
+    "title": "Catalog gaps, explicit content, and duplicate tracks",
+    "description": "Users note missing songs or repertoire, explicit content appearing, wrong tracks playing, and duplicated titles and covers in the catalog.",
+    "example_review_ids": [
+      "f923f94a-9c44-4a9a-9ccf-86d4e72d9a58",
+      "efeb9510-b9e2-4f88-814c-e921c19144a8",
+      "8b9413b6-6d66-4934-8f09-cda7c95c4d76"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "catalog"
+  },
+  {
+    "issue_id": "access.access_other",
+    "member_count": 589,
+    "mean_severity": 3.168,
+    "sample": [
+      {
+        "review_id": "f6c973ee-26a7-4e3f-8263-28073a9c27aa",
+        "quote": "I don't know how to use it!"
+      },
+      {
+        "review_id": "97fee1bd-1103-409e-9057-b1971145780c",
+        "quote": "Not Satisfied with their revised terms and conditions of usage"
+      },
+      {
+        "review_id": "feed119f-0239-458a-a206-0323b2c9599f",
+        "quote": "It's not a safe it shares your personal info."
+      },
+      {
+        "review_id": "11528187-c7a8-469d-aded-0f4da0219c35",
+        "quote": "it stopped showing me my playlists so i can play a specific song"
+      },
+      {
+        "review_id": "d675e0e8-01af-479b-85c2-6f755d90e408",
+        "quote": "It's won't allow me to change my location"
+      },
+      {
+        "review_id": "f00e77d8-4244-4ecd-adf2-90399920ef10",
+        "quote": "I will also requesting for a full refund and cancelling my account"
+      },
+      {
+        "review_id": "c694ca7b-517d-4ba8-ad0f-910bd6b894bd",
+        "quote": "If I can't use this app with a VPN then there is no reason for me to trust this app."
+      },
+      {
+        "review_id": "50e844cb-6199-4dbe-be1e-420004f8c2de",
+        "quote": "My account Is not works in wifi after checking of all the settings"
+      }
+    ],
+    "title": "General access, login, and region-restriction problems",
+    "description": "Customers struggle with using the app, changing location, VPN restrictions, playlist access, Wi-Fi login, and concerns about revised terms and personal data.",
+    "example_review_ids": [
+      "d675e0e8-01af-479b-85c2-6f755d90e408",
+      "c694ca7b-517d-4ba8-ad0f-910bd6b894bd",
+      "50e844cb-6199-4dbe-be1e-420004f8c2de"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "access"
+  },
+  {
+    "issue_id": "downloads.downloads_other",
+    "member_count": 581,
+    "mean_severity": 2.609,
+    "sample": [
+      {
+        "review_id": "77fda305-8420-41aa-8695-46798e9d0559",
+        "quote": "If I download the songs it impose but I think it's good app"
+      },
+      {
+        "review_id": "a148e1be-24a4-4704-af09-b340bf9516fd",
+        "quote": "I had to give up half of my storage and I payed premium and it was trash"
+      },
+      {
+        "review_id": "ff60b9e0-21c1-45ec-9ac3-d96e53d5f378",
+        "quote": "Doesn't let me listen to SONGS I DOWNLOADED."
+      },
+      {
+        "review_id": "f100b1b2-48d9-4a02-960d-f6dc2e091729",
+        "quote": "Can't save my fav songs🥲...but it's cool✨️"
+      },
+      {
+        "review_id": "51a0413e-e823-4ec9-823b-475919fbef76",
+        "quote": "Good but downloading stuff takes up alot of space"
+      },
+      {
+        "review_id": "515571f9-538d-4c6c-b215-f1487e6c1480",
+        "quote": "I haven't been able to use the app while my SD card is mounted for months."
+      },
+      {
+        "review_id": "64089fc0-8609-4944-82b6-08b341517e16",
+        "quote": "it has switched my storage to my phone and eats up all the free space"
+      },
+      {
+        "review_id": "5f73e9f1-a2d0-41e7-af2f-dd15bc62caeb",
+        "quote": "Why Spotify uses my 5gb storage"
+      }
+    ],
+    "title": "Offline downloads consume storage and malfunction",
+    "description": "Customers report downloaded songs not playing, downloads eating device or SD card storage, and storage being switched to phone memory.",
+    "example_review_ids": [
+      "ff60b9e0-21c1-45ec-9ac3-d96e53d5f378",
+      "64089fc0-8609-4944-82b6-08b341517e16",
+      "515571f9-538d-4c6c-b215-f1487e6c1480"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "downloads"
+  },
+  {
+    "issue_id": "support.support_unhelpful_or_unreachable",
+    "member_count": 532,
+    "mean_severity": 2.618,
+    "sample": [
+      {
+        "review_id": "a7e3c0e6-2194-4233-9704-98413f511376",
+        "quote": "Most useless customer support team on earth."
+      },
+      {
+        "review_id": "ac9b40b4-bc61-4d15-964c-163c597c9ab0",
+        "quote": "yet they haven't given a response"
+      },
+      {
+        "review_id": "a6f553d9-fa6b-4355-b7e8-509cd905e3b2",
+        "quote": "the app doesnt allow you to communicate or send the artist any messages or feedback"
+      },
+      {
+        "review_id": "6aa915a3-5b1e-4452-a046-8d4ea7e32891",
+        "quote": "Your app support swedan That way I am deleting the app"
+      },
+      {
+        "review_id": "04491717-6012-4d7b-b83b-5a87896bedb7",
+        "quote": "even as a paying customer you can't get real support! About to cancel my subscription!!!"
+      },
+      {
+        "review_id": "313daa18-773d-4ded-bf70-3a4ddcdb2f60",
+        "quote": "I had bad experience to this application. Please contact me."
+      },
+      {
+        "review_id": "5edbd054-ab38-446f-8e2c-4baa975d045b",
+        "quote": "you refuse to help me.WHY?????"
+      },
+      {
+        "review_id": "85d0bb5a-4287-4cf9-918c-6358dd41689a",
+        "quote": "Even I had custome care of yours but it's no use.."
+      }
+    ],
+    "title": "Customer support unresponsive and unhelpful",
+    "description": "Users say support never responds, refuses to help even as paying subscribers, and provides no way to send feedback or contact anyone.",
+    "example_review_ids": [
+      "ac9b40b4-bc61-4d15-964c-163c597c9ab0",
+      "04491717-6012-4d7b-b83b-5a87896bedb7",
+      "5edbd054-ab38-446f-8e2c-4baa975d045b"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "support"
+  },
+  {
+    "issue_id": "other.unrelated_or_unclear",
+    "member_count": 858,
+    "mean_severity": 1.529,
+    "sample": [
+      {
+        "review_id": "a5adb9b7-51bd-4067-a77c-5325f9bc022b",
+        "quote": "I don't like Spotify because now a days your county disrespect Holi Qur'an so I uninstalled it"
+      },
+      {
+        "review_id": "4b72bd95-f0af-4d37-bc52-f27f6e19687c",
+        "quote": "I deleted this app due to burning of our Holy Quran and boycott sweden."
+      },
+      {
+        "review_id": "c50402c6-0570-43ba-9269-159431459b61",
+        "quote": "I hate this app because it's belong to swedan."
+      },
+      {
+        "review_id": "58408a62-3142-4283-ac1d-2bd45c15bdd5",
+        "quote": "I hate this app and sweden."
+      },
+      {
+        "review_id": "b57e8561-f5f0-49d5-b6e4-353529458b35",
+        "quote": "I immediately uninstalled when I knew about the incident"
+      },
+      {
+        "review_id": "1900b232-8279-4e83-988c-d2631bc02453",
+        "quote": "Deleteing this app And taking part against sweeden"
+      },
+      {
+        "review_id": "592ac34b-408e-4708-8a7b-d270d1f41528",
+        "quote": "I hate this app and sweden.love islam"
+      },
+      {
+        "review_id": "1d952ebb-919f-4bd8-b73a-e8fc5c7422f1",
+        "quote": "Close Spotify good by"
+      }
+    ],
+    "title": "Off-topic political complaints and uninstall statements",
+    "description": "Reviews mostly express political objections to a country or event and announce uninstalling the app, without describing a product problem.",
+    "example_review_ids": [
+      "a5adb9b7-51bd-4067-a77c-5325f9bc022b",
+      "b57e8561-f5f0-49d5-b6e4-353529458b35",
+      "1d952ebb-919f-4bd8-b73a-e8fc5c7422f1"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "other"
+  },
+  {
+    "issue_id": "other.general_praise",
+    "member_count": 487,
+    "mean_severity": 1.889,
+    "sample": [
+      {
+        "review_id": "5ce2a7f2-5178-4622-9e16-41a5965084f4",
+        "quote": "This is better on Desktop"
+      },
+      {
+        "review_id": "267aa6c6-68f4-4768-bf1a-bf5d6dfd91cb",
+        "quote": "It's a shame how little they pay artists though."
+      },
+      {
+        "review_id": "42c7da49-18c4-4a90-9e07-4cf7173f69d8",
+        "quote": "Jhakas aap hai but screen me bhajta hai"
+      },
+      {
+        "review_id": "cfe3941c-07c0-4cf4-b1b6-5a627c43cfa3",
+        "quote": "you can't minimize player by swiping like in ios version"
+      },
+      {
+        "review_id": "721f2c80-29f2-47d1-97cc-ec0e103a1e62",
+        "quote": "It's good but it only works if your online with the free version"
+      },
+      {
+        "review_id": "938c3328-5ffb-418a-aeb8-f2d4b9cea432",
+        "quote": "will never download pandora ever again love spotify!"
+      },
+      {
+        "review_id": "a228be18-befa-4119-8708-b7cef4f0b655",
+        "quote": "they only did a couple hours of listening per month (even with a premium plan)"
+      },
+      {
+        "review_id": "44337a98-30f0-4be8-9d39-847dde5065ec",
+        "quote": "Good app but I recommend to use it on pc instead of mobile"
+      }
+    ],
+    "title": "General praise and desktop comparisons",
+    "description": "Reviews offer general positive remarks or comparisons, such as preferring desktop, with occasional notes on player behavior or artist pay.",
+    "example_review_ids": [
+      "5ce2a7f2-5178-4622-9e16-41a5965084f4",
+      "cfe3941c-07c0-4cf4-b1b6-5a627c43cfa3",
+      "44337a98-30f0-4be8-9d39-847dde5065ec"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "other"
+  },
+  {
+    "issue_id": "support.support_other",
+    "member_count": 54,
+    "mean_severity": 2.074,
+    "sample": [
+      {
+        "review_id": "e65a5f76-f7a4-4d37-ab74-356c53570270",
+        "quote": "the canva option is not working although i turned on but still not working at all"
+      },
+      {
+        "review_id": "7432d05d-8e53-4e64-a096-61c1148ca515",
+        "quote": "They will spam you and call"
+      },
+      {
+        "review_id": "3561005c-635d-4844-8f7b-dc5452671373",
+        "quote": "app is Very bad service"
+      },
+      {
+        "review_id": "86b26408-11b7-4734-b616-12c5c67b2567",
+        "quote": "Needs better instructions"
+      },
+      {
+        "review_id": "fffbcdff-bf04-4f94-ab6d-04941c34615e",
+        "quote": "Pésimo servicio"
+      },
+      {
+        "review_id": "128bc9bb-aa89-4a0c-a861-2fcbbe742889",
+        "quote": "decided to get rid of SPOTIFY COMPLETELY"
+      },
+      {
+        "review_id": "8f31a0f4-ec37-4932-9a45-ae5ad396c29f",
+        "quote": "Your user are angery.... Plz do something otherwise we will switch."
+      },
+      {
+        "review_id": "b5119071-cec5-4a9c-841c-da1578e0098b",
+        "quote": "the integration with Google Assisstant. Asking it to play one track and you get a completely different one"
+      }
+    ],
+    "title": "Miscellaneous service and feature complaints",
+    "description": "Users report assorted problems including a non-working feature toggle, poor service quality, unclear instructions, and voice assistant playing the wrong track.",
+    "example_review_ids": [
+      "e65a5f76-f7a4-4d37-ab74-356c53570270",
+      "b5119071-cec5-4a9c-841c-da1578e0098b",
+      "86b26408-11b7-4734-b616-12c5c67b2567"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "support"
+  }
+]

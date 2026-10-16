@@ -192,7 +192,9 @@ class BatchEnricher(Enricher):
         db = self.store.db
         has_prior = db.execute("SELECT COUNT(*) FROM results WHERE label_config=?", (self.config,)).fetchone()[0] > 0
         inflight_prior = db.execute("SELECT COUNT(*) FROM batch_jobs WHERE collected_at IS NULL").fetchone()[0]
-        phase = "resume" if (has_prior or inflight_prior) else "initial"
+        # "resume" only once completed work has been saved; restarting while the first jobs are still
+        # in flight (nothing collected yet) continues the initial phase.
+        phase = "resume" if has_prior else "initial"
         self._phase = phase
         if phase == "resume" and not self.store.get_meta("checkpoint_before:" + self.config):
             snap = self.completed_ids()
@@ -208,6 +210,8 @@ class BatchEnricher(Enricher):
         old = signal.getsignal(signal.SIGINT)
 
         def on_sigint(sig, frm):
+            if self.stop.is_set():
+                raise KeyboardInterrupt   # second Ctrl-C: exit immediately (state is already committed)
             print("\n[batch] Ctrl-C: stopping. Submitted jobs keep running at the provider and are collected on resume.")
             self.stop.set()
         signal.signal(signal.SIGINT, on_sigint)
@@ -216,6 +220,8 @@ class BatchEnricher(Enricher):
                 jobs = db.execute("SELECT batch_id, requests, submitted_at, reserved_usd FROM batch_jobs WHERE collected_at IS NULL "
                                   "AND label_config=? ORDER BY submitted_at", (self.config,)).fetchall()
                 for bid, req, sub_at, _ in jobs:
+                    if self.stop.is_set():
+                        break
                     done, st = self._ended(bid)
                     if done:
                         self._collect(bid, json.loads(req), sub_at, phase, counters)
@@ -266,6 +272,8 @@ class BatchEnricher(Enricher):
                 stop_reason = "batch_job_all_requests_errored"
             elif self.stop.is_set() and stop_reason == "queue_empty":
                 stop_reason = "interrupted_by_user (jobs continue at provider)"
+        except KeyboardInterrupt:
+            stop_reason = "interrupted_by_user (jobs continue at provider)"
         finally:
             signal.signal(signal.SIGINT, old)
         wall = time.time() - t0

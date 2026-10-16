@@ -1,0 +1,233 @@
+[
+  {
+    "issue_id": "other.general_criticism",
+    "member_count": 6,
+    "mean_severity": 1.667,
+    "sample": [
+      {
+        "review_id": "1a41c7e1-a655-4c63-b4db-c22bdff18003",
+        "quote": "Worst application 👎👎👎"
+      },
+      {
+        "review_id": "0c6ca545-3f89-4da6-b3db-1a352371fb6e",
+        "quote": "Hate this application 🤮🤮🤮🤮🤮🤮"
+      },
+      {
+        "review_id": "5de7f95b-ccad-41b2-9f63-a13f7c1d9f09",
+        "quote": "We are boycotting Swedish app"
+      },
+      {
+        "review_id": "47428620-ec21-424d-a515-0b0b0012a5cf",
+        "quote": "This app is bad work"
+      },
+      {
+        "review_id": "657f1b77-0183-4b06-bf48-5e6d9ab08f9a",
+        "quote": "Hate This application 👎"
+      },
+      {
+        "review_id": "292ce26a-815d-4bce-a3b6-93cb6c9e7e2c",
+        "quote": "Banning conservative music that speaks truth."
+      }
+    ],
+    "title": "Generic negative sentiment without specific complaint",
+    "description": "Customers express broad dislike or boycott intent for the app without naming a concrete product problem.",
+    "example_review_ids": [
+      "1a41c7e1-a655-4c63-b4db-c22bdff18003",
+      "5de7f95b-ccad-41b2-9f63-a13f7c1d9f09",
+      "292ce26a-815d-4bce-a3b6-93cb6c9e7e2c"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "other"
+  },
+  {
+    "issue_id": "usability.ads",
+    "member_count": 4,
+    "mean_severity": 2.5,
+    "sample": [
+      {
+        "review_id": "01d453b0-dca3-42e9-8aa4-5fc167b08070",
+        "quote": "I like it but god I hate it when the music Interrupts my ads"
+      },
+      {
+        "review_id": "9034d675-9582-49b6-a1c1-c4ddabf8baf1",
+        "quote": "Worst app ever too much ad"
+      },
+      {
+        "review_id": "991b6b3a-f511-458a-a5b7-234f78048fb5",
+        "quote": "Ads were okay, but limited functionality..it's just too much"
+      },
+      {
+        "review_id": "46c0b49f-83a1-427e-8f0b-cef62e3c94b5",
+        "quote": "suddenly an add starts and my ears feel like they explode!!"
+      }
+    ],
+    "title": "Excessive or disruptive advertisements",
+    "description": "Customers say ads are too frequent and jarring, including loud audio interruptions that make listening unpleasant.",
+    "example_review_ids": [
+      "46c0b49f-83a1-427e-8f0b-cef62e3c94b5",
+      "9034d675-9582-49b6-a1c1-c4ddabf8baf1",
+      "01d453b0-dca3-42e9-8aa4-5fc167b08070"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "usability"
+  },
+  {
+    "issue_id": "playback.crash_or_wont_open",
+    "member_count": 2,
+    "mean_severity": 4.0,
+    "sample": [
+      {
+        "review_id": "723f07de-9881-4049-8680-1a9e25652914",
+        "quote": "it keeps crashing every time"
+      },
+      {
+        "review_id": "215463ae-95b7-4481-8747-1754b68f31fa",
+        "quote": "now I can't even open the app"
+      }
+    ],
+    "title": "App crashes or fails to open",
+    "description": "Customers report the app repeatedly crashing during use or refusing to launch at all.",
+    "example_review_ids": [
+      "723f07de-9881-4049-8680-1a9e25652914",
+      "215463ae-95b7-4481-8747-1754b68f31fa"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "playback"
+  },
+  {
+    "issue_id": "billing.premium_paywall",
+    "member_count": 2,
+    "mean_severity": 3.0,
+    "sample": [
+      {
+        "review_id": "3ddb3f4e-f7b9-430b-b335-eadc6d321f46",
+        "quote": "we can't CHOOSE song after a song played"
+      },
+      {
+        "review_id": "16d640e9-b281-4746-9562-c7dbcf7126b6",
+        "quote": "everything basic features is premium"
+      }
+    ],
+    "title": "Basic features locked behind premium",
+    "description": "Customers feel core functions such as choosing songs are restricted to paid subscribers, reducing free-tier value.",
+    "example_review_ids": [
+      "16d640e9-b281-4746-9562-c7dbcf7126b6",
+      "3ddb3f4e-f7b9-430b-b335-eadc6d321f46"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "billing"
+  },
+  {
+    "issue_id": "usability.ui_redesign_or_navigation",
+    "member_count": 2,
+    "mean_severity": 2.5,
+    "sample": [
+      {
+        "review_id": "dceb14e7-2df0-422f-bb2b-73d7c373159a",
+        "quote": "the new update is sooooooo annoying like I can't even play the songs that I like and I can't rewind songs"
+      },
+      {
+        "review_id": "99b93e31-9f15-4daa-88ac-349ab0419c48",
+        "quote": "This update very bad for everyone.old Spotify."
+      }
+    ],
+    "title": "Disliked update removes familiar functions",
+    "description": "Customers are unhappy with a recent update, saying familiar controls like rewinding and playing liked songs became harder or unavailable.",
+    "example_review_ids": [
+      "dceb14e7-2df0-422f-bb2b-73d7c373159a",
+      "99b93e31-9f15-4daa-88ac-349ab0419c48"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "usability"
+  },
+  {
+    "issue_id": "playback.playback_other",
+    "member_count": 1,
+    "mean_severity": 4.0,
+    "sample": [
+      {
+        "review_id": "47f1406d-4918-4d60-9647-5ca8e610caca",
+        "quote": "we cannot playback the songs"
+      }
+    ],
+    "title": "Songs fail to play",
+    "description": "Customers report being unable to play songs in the app, with no further detail on the cause.",
+    "example_review_ids": [
+      "47f1406d-4918-4d60-9647-5ca8e610caca"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "playback"
+  },
+  {
+    "issue_id": "downloads.offline_mode",
+    "member_count": 1,
+    "mean_severity": 4.0,
+    "sample": [
+      {
+        "review_id": "ac4e860a-c042-49cc-90f3-189591c336ac",
+        "quote": "paying for subscribing but unable to play in offline mode"
+      }
+    ],
+    "title": "Offline playback not working",
+    "description": "Paying subscribers report they cannot play downloaded content when offline, undermining the subscription benefit.",
+    "example_review_ids": [
+      "ac4e860a-c042-49cc-90f3-189591c336ac"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "downloads"
+  },
+  {
+    "issue_id": "playback.playback_stops_or_skips",
+    "member_count": 1,
+    "mean_severity": 3.0,
+    "sample": [
+      {
+        "review_id": "947821dc-b356-45dc-a0bc-1903728fad40",
+        "quote": "it o ly plays a little bit then it stops"
+      }
+    ],
+    "title": "Playback stops prematurely",
+    "description": "Customers report songs playing only briefly before stopping unexpectedly.",
+    "example_review_ids": [
+      "947821dc-b356-45dc-a0bc-1903728fad40"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "playback"
+  },
+  {
+    "issue_id": "catalog.lyrics",
+    "member_count": 1,
+    "mean_severity": 3.0,
+    "sample": [
+      {
+        "review_id": "8c0546b0-ce43-4a36-9d33-9f979e98d522",
+        "quote": "Lyrics not getting loaded"
+      }
+    ],
+    "title": "Song lyrics fail to load",
+    "description": "Customers report that lyrics do not load or display when they try to view them for songs they are playing.",
+    "example_review_ids": [
+      "8c0546b0-ce43-4a36-9d33-9f979e98d522"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "catalog"
+  },
+  {
+    "issue_id": "billing.price",
+    "member_count": 1,
+    "mean_severity": 3.0,
+    "sample": [
+      {
+        "review_id": "d2f3874f-d15d-4a2f-bb97-4f1213defa46",
+        "quote": "Too expensive and the free version is pretty much unusable with constant ads"
+      }
+    ],
+    "title": "Premium too expensive; free tier unusable",
+    "description": "Customers say the subscription price is too high and the free version is so overrun with constant ads that it is effectively unusable.",
+    "example_review_ids": [
+      "d2f3874f-d15d-4a2f-bb97-4f1213defa46"
+    ],
+    "named_by": "anthropic:claude-haiku-5-5",
+    "topic": "billing"
+  }
+]

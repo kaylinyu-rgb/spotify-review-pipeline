@@ -1,0 +1,2 @@
+review_id,text,enrich_topic,verify_topic,enrich_intent,verify_intent,enrich_severity,verify_severity,fields_disagree,planted
+9666e9fe-0bc2-4e4c-8842-2162be0b6610,I am Musalman I hate your app😡😡,other,other,unclear,complaint,2,2,intent,False

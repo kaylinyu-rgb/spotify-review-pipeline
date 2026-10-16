@@ -33,12 +33,21 @@ class Result:
     raw: dict | None = None
 
 
+_CTX = None
+
+
 def _ssl_ctx():
-    try:
-        import certifi  # macOS python.org builds often lack system certs
-        return ssl.create_default_context(cafile=certifi.where())
-    except Exception:
-        return ssl.create_default_context()
+    """System trust store (incl. corporate/sandbox proxy CAs) + certifi (macOS python.org builds lack system certs)."""
+    global _CTX
+    if _CTX is None:
+        ctx = ssl.create_default_context(cafile=os.environ.get("SSL_CERT_FILE") or None)
+        try:
+            import certifi
+            ctx.load_verify_locations(cafile=certifi.where())
+        except Exception:
+            pass
+        _CTX = ctx
+    return _CTX
 
 
 def _post(url, headers, body, timeout=180):

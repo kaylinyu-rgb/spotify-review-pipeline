@@ -113,26 +113,37 @@ def verify(run_dir: Path, enrich_cfg, verifier: str, verify_model=None, rate=0.0
         t = time.time()
         system = read_prompt(f"{VERIFY_PROMPT_VERSION}.md")
         user = "Label these reviews.\n" + json.dumps([{"id": s["origin_id"], "text": s["rep_text"]} for s in batch], ensure_ascii=False)
-        rid = "ver-" + uuid.uuid4().hex[:14]
-        try:
-            res = prov.complete(system, user, _schema(), 120 + 40 * len(batch))
-            got = {o["id"]: o for o in json.loads(res.text)["results"] if isinstance(o, dict)}
-            out = []
-            for i, s in enumerate(batch):
-                o = got.get(s["origin_id"])
-                lab = {"topic": o["topic"], "intent": o["intent"], "severity": o["sev"]} if o else None
-                out.append(dict(request_id=rid if i == 0 else None, ids=[b["origin_id"] for b in batch], usage=res.usage if i == 0 else {},
-                                model=vmodel, outcome="succeeded", error=None, t0=t, t1=time.time(), lab=lab, raw=o, s=s))
-            return out
-        except (providers.TransportError, ValueError, KeyError) as e:
-            return [dict(request_id=rid, ids=[b["origin_id"] for b in batch], usage={}, model=vmodel, outcome="failed",
-                         error=str(e)[:200], t0=t, t1=time.time(), lab=None, raw=None, s=batch[0])]
+        ids = [b["origin_id"] for b in batch]
+        logs = []
+        cap = 400 + 90 * len(batch)
+        for attempt in (1, 2):                      # one retry with a doubled output cap on invalid/truncated output
+            rid = f"ver-{uuid.uuid4().hex[:14]}"
+            t = time.time()
+            usage = {}
+            try:
+                res = prov.complete(system, user, _schema(), cap)
+                usage = res.usage
+                if res.stop_reason == "max_tokens":
+                    raise ValueError("truncated at max_tokens")
+                got = {o["id"]: o for o in json.loads(res.text)["results"] if isinstance(o, dict)}
+                out = [dict(request_id=rid, ids=ids, usage=usage, model=vmodel, outcome="succeeded", error=None, t0=t,
+                            t1=time.time(), lab=None, raw=None, s=batch[0])]
+                for s in batch:
+                    o = got.get(s["origin_id"])
+                    lab = {"topic": o["topic"], "intent": o["intent"], "severity": o["sev"]} if o else None
+                    out.append(dict(request_id=None, lab=lab, raw=o, s=s))
+                return logs + out
+            except (providers.TransportError, ValueError, KeyError, TypeError) as e:
+                logs.append(dict(request_id=rid, ids=ids, usage=usage, model=vmodel, outcome="failed", error=str(e)[:200],
+                                 t0=t, t1=time.time(), lab=None, raw=None, s=batch[0]))
+                cap *= 2
+        return logs
 
     if verifier in ("jev",) or (verifier == "mock"):
         units = [[s] for s in todo]
         fn = lambda u: jev_one(u[0])
     else:
-        units = [todo[i:i + 25] for i in range(0, len(todo), 25)]
+        units = [todo[i:i + 20] for i in range(0, len(todo), 20)]
         fn = llm_batch
     n_calls = n_fail = 0
     if budget is not None and spent >= budget:

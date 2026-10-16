@@ -18,6 +18,7 @@ import argparse
 import csv
 import hashlib
 import json
+import math
 import sys
 import time
 from pathlib import Path
@@ -122,8 +123,16 @@ def project(measured, assumptions, rates):
             n_fb = round(k["fallback_fraction"] * n_texts)
             fallback = fb_cost_each * n_fb
             total = enrich + verify + fallback + fixed
-            workers = a["max_workers"]
-            hours = (n_texts * retry_mult / (tput1 * workers * a["parallel_efficiency"]) / 3600) if tput1 else None
+            if a.get("enrich_mode") == "batch":
+                # Message Batches: provider-scheduled. hours = rounds of in-flight jobs x job turnaround (modeled)
+                per_req = max(1.0, measured["cold"]["distinct_texts_enriched"] / max(1, enr.get("requests", 1) - enr.get("failed", 0)))
+                jobs = math.ceil(n_texts * retry_mult / per_req / a["batch_requests_per_job"])
+                rounds = math.ceil(jobs / a["batch_max_inflight_jobs"])
+                turn = max(a["batch_job_turnaround_minutes"][name], wall_enrich / 60)
+                hours = rounds * turn / 60
+            else:
+                workers = a["max_workers"]
+                hours = (n_texts * retry_mult / (tput1 * workers * a["parallel_efficiency"]) / 3600) if tput1 else None
             rows[label] = {"distinct_texts_sent": n_texts, "enrich_usd": round(enrich, 4), "verify_usd": round(verify, 4),
                            "verify_reviews": n_ver, "verify_cost_unknown": ver_unknown, "fallback_usd": round(fallback, 4),
                            "fallback_reviews": n_fb, "fixed_group_memo_usd": round(fixed, 4), "total_api_usd": round(total, 4),
@@ -246,7 +255,11 @@ def render(r):
                      f"**{x['total_api_usd']:.2f}** | {x['usd_per_100k_rows']:.2f} | {x['enrich_hours_modeled']} | "
                      f"{'**OVER BUDGET**' if x['over_budget'] else 'ok'} |")
     L += ["", "Scenario assumptions: " + "; ".join(f"{n}: {json.dumps(s['assumptions'])}" for n, s in p["scenarios"].items()),
-          "", "Hours are modeled from the 1-worker pilot throughput x workers x parallel efficiency, not measured; refresh after 500 and 10,000.",
+          "", ("Hours (batch mode) are modeled as ceil(jobs / max in-flight jobs) x job turnaround, using the larger of the measured pilot "
+               f"turnaround ({m['cold']['stage_wall_seconds'].get('enrich', 0) / 60:.1f} min) and the scenario assumption "
+               f"({a.get('batch_job_turnaround_minutes')} min); the provider's SLA is < 24 h per job. Not measured; refresh after 500 and 10,000."
+               if a.get("enrich_mode") == "batch" else
+               "Hours are modeled from the 1-worker pilot throughput x workers x parallel efficiency, not measured; refresh after 500 and 10,000."),
           "", "## Local compute (separate from API spend)", "", f"- {r['local_compute']['local_hardware_cost']}. {r['local_compute']['note']}"]
     ref = HERE / "checkpoints.json"
     if ref.exists():
@@ -317,6 +330,15 @@ def pilot(args):
     st = Store(rd / "state.sqlite")
     allc = list(call_rows(st))
     cold_n = measures["cold"]["calls_upto"]
+    old = HERE / "pilot_measurements.json"
+    if old.exists():   # keep earlier attempts (and their real failures) instead of overwriting them
+        prev = json.loads(old.read_text())["run_ids"]["cold"].split(":")[0]
+        hist = HERE / "history" / prev
+        hist.mkdir(parents=True, exist_ok=True)
+        for name in ("pilot_measurements.json", "pilot_calls.jsonl", "pilot_records.jsonl", "report.md", "report.json", "usage.csv"):
+            if (HERE / name).exists():
+                (HERE / name).replace(hist / name)
+        print(f"[pilot] archived previous pilot evidence to cost/history/{prev}/")
     with (HERE / "pilot_calls.jsonl").open("w", encoding="utf-8") as f:
         for i, c in enumerate(allc):
             c["run_phase"] = "cold" if i < cold_n else "warm"

@@ -1,0 +1,91 @@
+{
+  "declared_sample": {
+    "rate": 0.01,
+    "seed": "verify-seed-v1",
+    "rule": "sha256(seed:review_id)/2^256 < rate over completed distinct texts"
+  },
+  "sampled": 82,
+  "verified": 82,
+  "topic_agreement": 0.9024,
+  "intent_agreement": 0.9024,
+  "severity_exact": 0.9146,
+  "severity_mae": 0.0854,
+  "disagreements": 20,
+  "disagreements_file": "verify_disagreements.csv",
+  "confusion_topic": [
+    {
+      "enrich": "access",
+      "verify": "access",
+      "n": 1
+    },
+    {
+      "enrich": "billing",
+      "verify": "billing",
+      "n": 5
+    },
+    {
+      "enrich": "billing",
+      "verify": "other",
+      "n": 1
+    },
+    {
+      "enrich": "catalog",
+      "verify": "catalog",
+      "n": 4
+    },
+    {
+      "enrich": "downloads",
+      "verify": "downloads",
+      "n": 2
+    },
+    {
+      "enrich": "other",
+      "verify": "catalog",
+      "n": 2
+    },
+    {
+      "enrich": "other",
+      "verify": "other",
+      "n": 42
+    },
+    {
+      "enrich": "other",
+      "verify": "playback",
+      "n": 1
+    },
+    {
+      "enrich": "other",
+      "verify": "usability",
+      "n": 1
+    },
+    {
+      "enrich": "playback",
+      "verify": "playback",
+      "n": 5
+    },
+    {
+      "enrich": "playback",
+      "verify": "usability",
+      "n": 1
+    },
+    {
+      "enrich": "usability",
+      "verify": "billing",
+      "n": 1
+    },
+    {
+      "enrich": "usability",
+      "verify": "other",
+      "n": 1
+    },
+    {
+      "enrich": "usability",
+      "verify": "usability",
+      "n": 15
+    }
+  ],
+  "verifier": "anthropic:claude-haiku-5-5",
+  "new_calls": 5,
+  "failed_calls": 0,
+  "wall_seconds": 20.5
+}

@@ -1,0 +1,50 @@
+{
+  "run_id": "ckpt500",
+  "source": {
+    "path": "data/checkpoint_500.csv",
+    "name": "checkpoint_500.csv",
+    "sha256": "a94e31663ee7b7eaa77e23b7a8425b530cc0c866ed5e714953172a0afef6a12f",
+    "bytes": 76170,
+    "rows": 500,
+    "is_full_course_file": false
+  },
+  "code_version": "6ea587190c901b6a99d22ed8aa7fd0d5d8be7bbc",
+  "label_config": "anthropic:claude-haiku-5-5+effort-low+enrich-p2+schema-s2+entities-l1",
+  "prompts": [
+    "enrich-p1.md",
+    "enrich-p2.md",
+    "group-p1.md",
+    "memo-p1.md",
+    "verify-p1.md"
+  ],
+  "prompt_sha256": {
+    "enrich-p2.md": "88639d72979e05400490d580d2f29cd0255b549e0a0cc361e2e33330972e06c1",
+    "group-p1.md": "0442e6e10cebd3ed7d8281759b6b9f6e4a13efdabdd5a591668b797d78993e15",
+    "enrich-p1.md": "4a67704ebe4ef02e4b0ffacf5e4a923813ae256cfea2252e0db5f1bdf95b67f9",
+    "verify-p1.md": "d2bb705905412d58999c74d47d060f77736341e065eb7034288048cb6903683d",
+    "memo-p1.md": "2c4a38ea6375f4f70a735cada17e389d5f97b02bdbc55d63ab613a0ba2e4ef25"
+  },
+  "outputs_sha256": {
+    "aggregates.csv": "0e858b42bf9c4320720b7ea61d81e1bcf4e1f0207ca4c9c17abded982f6192a2",
+    "enriched.jsonl.gz": "b0e25c31add6ec494f72ef9f127462fd7cd06e82543ab5d439bd99a468a92397",
+    "grading/calls.jsonl.gz": "6413c82d1d0c6dad397059c87715aeaf6710bd4530cb0d133b6f2e75b0c71c19",
+    "grading/ingestion.json": "6ab75c45fc1ea4559b7efbb375a2f7c2e411520d82c56452e3dc930a869c5bee",
+    "grading/membership.csv": "9b4e59984b459d9e19c450c2bc086e12d934858ed02cbee33115a5da7ee888a8",
+    "grading/ranking.csv": "708f64ed606833f5d1b619e5dbdac8299c2068fc541201cd6332e4ae7cacfafe",
+    "grading/records.jsonl.gz": "c21146e3a6d5425191394f9a60312f162a8ad128b6a8f002d61f7826d3d0cc41",
+    "grading/run.json": "1689e403f524e31861cb43d562dd4507538eaf424fa93990380292c636ca9c20",
+    "ingestion.json": "6ab75c45fc1ea4559b7efbb375a2f7c2e411520d82c56452e3dc930a869c5bee",
+    "ingestion_report.json": "937022812a5beffb01b22cedad400e712a08c1d63e019f2ba86b634120ff9f9b",
+    "issues.json": "419d118a414ae9a9fe05b06c285696c76aad9911fa42c8e515e99202a2111635",
+    "membership.csv": "9b4e59984b459d9e19c450c2bc086e12d934858ed02cbee33115a5da7ee888a8",
+    "monthly_trends.csv": "30a235acb332bfa1e99c026c718f2f9290b72ebf118ee362b06a012b9ce26575",
+    "quarantine.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "ranking.csv": "708f64ed606833f5d1b619e5dbdac8299c2068fc541201cd6332e4ae7cacfafe",
+    "run_log.jsonl": "4ff3ebba614c7e2b7e5005120526eccbe440051f412f21f6603a1e2536afad28",
+    "run_summary.json": "76731dc05ecd70280d128e70ab437ca20045490b4d70d5bec0ad38b7f2065034",
+    "topic_aggregates.csv": "b42639fe1ac7160687e6c681e7ee587a67ee2d18fa8dcf3e8ddc1908287c8378",
+    "totals.json": "294d3dd193d68f323e916329d66b206af263d4dba73fa29259c6c377a7a97e3c",
+    "verification_report.json": "ef36f2d98a05e41cd14b6d2e4dff8b099d226970b896e0d283a0e36231ed6975",
+    "verify_disagreements.csv": "636ef6d3630c6242668c8e639918ef36292f012fc7b334b098a6eb99d1effdb0"
+  }
+}

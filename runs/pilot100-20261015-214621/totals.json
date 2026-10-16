@@ -1,0 +1,11 @@
+{
+  "cache_reuse": 0,
+  "completed": 100,
+  "intent:cancellation": 8,
+  "intent:complaint": 43,
+  "intent:praise": 42,
+  "intent:request": 2,
+  "intent:unclear": 5,
+  "needs_review": 17,
+  "rows": 100
+}

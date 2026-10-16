@@ -1,0 +1,41 @@
+{
+  "declared_sample": {
+    "rate": 0.2,
+    "seed": "verify-seed-v1",
+    "rule": "sha256(seed:review_id)/2^256 < rate over completed distinct texts"
+  },
+  "sampled": 17,
+  "verified": 17,
+  "topic_agreement": 1.0,
+  "intent_agreement": 1.0,
+  "severity_exact": 0.9412,
+  "severity_mae": 0.0588,
+  "disagreements": 1,
+  "disagreements_file": "verify_disagreements.csv",
+  "confusion_topic": [
+    {
+      "enrich": "billing",
+      "verify": "billing",
+      "n": 1
+    },
+    {
+      "enrich": "catalog",
+      "verify": "catalog",
+      "n": 2
+    },
+    {
+      "enrich": "other",
+      "verify": "other",
+      "n": 12
+    },
+    {
+      "enrich": "usability",
+      "verify": "usability",
+      "n": 2
+    }
+  ],
+  "verifier": "anthropic:claude-haiku-5-5",
+  "new_calls": 0,
+  "failed_calls": 0,
+  "wall_seconds": 0.0
+}

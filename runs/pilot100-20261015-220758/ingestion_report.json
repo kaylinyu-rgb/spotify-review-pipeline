@@ -1,0 +1,56 @@
+{
+  "input": {
+    "path": "/Users/kaylinyu/Downloads/spotify-review-pipeline/data/cost_100.csv",
+    "name": "cost_100.csv",
+    "sha256": "c884ac3b9be5066995d5063f96ad9af6e5e082975788c1684c4f6b6ea661dd0e",
+    "bytes": 15466,
+    "rows": 100,
+    "is_full_course_file": false
+  },
+  "records": 100,
+  "unique_review_ids": 100,
+  "duplicate_review_ids": 0,
+  "empty_review_text": 0,
+  "empty_review_text_ids": [],
+  "nonempty_to_classify": 100,
+  "distinct_nonempty_texts": 100,
+  "rows_reusable_via_exact_text_cache": 0,
+  "missing_app_version": 18,
+  "invalid_ratings": 0,
+  "reviews_by_rating": {
+    "1": 33,
+    "2": 8,
+    "3": 6,
+    "4": 10,
+    "5": 43
+  },
+  "reviews_by_month": {
+    "2022-06": 5,
+    "2022-07": 5,
+    "2022-08": 6,
+    "2022-09": 5,
+    "2022-10": 4,
+    "2022-11": 1,
+    "2022-12": 2,
+    "2023-01": 4,
+    "2023-02": 4,
+    "2023-03": 7,
+    "2023-04": 4,
+    "2023-05": 5,
+    "2023-06": 4,
+    "2023-07": 11,
+    "2023-08": 3,
+    "2023-09": 6,
+    "2023-10": 19,
+    "2023-11": 5
+  },
+  "text_length_chars": {
+    "mean": 80.42,
+    "median": 44.5,
+    "p99": 435,
+    "max": 486
+  },
+  "top_duplicate_texts": [],
+  "quarantine_rule": "Rows whose review_text is empty after strip() are quarantined with reason empty_review_text. Missing app_version alone does not block classification. No other row is filtered out.",
+  "seconds": 0.0
+}

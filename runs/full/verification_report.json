@@ -1,0 +1,266 @@
+{
+  "declared_sample": {
+    "rate": 0.01,
+    "seed": "verify-seed-v1",
+    "rule": "sha256(seed:review_id)/2^256 < rate over completed distinct texts"
+  },
+  "sampled": 4824,
+  "verified": 4823,
+  "topic_agreement": 0.8524,
+  "intent_agreement": 0.9324,
+  "severity_exact": 0.8704,
+  "severity_mae": 0.1331,
+  "disagreements": 1372,
+  "disagreements_file": "verify_disagreements.csv",
+  "confusion_topic": [
+    {
+      "enrich": "access",
+      "verify": "access",
+      "n": 100
+    },
+    {
+      "enrich": "access",
+      "verify": "catalog",
+      "n": 4
+    },
+    {
+      "enrich": "access",
+      "verify": "downloads",
+      "n": 1
+    },
+    {
+      "enrich": "access",
+      "verify": "other",
+      "n": 6
+    },
+    {
+      "enrich": "access",
+      "verify": "playback",
+      "n": 4
+    },
+    {
+      "enrich": "billing",
+      "verify": "access",
+      "n": 2
+    },
+    {
+      "enrich": "billing",
+      "verify": "billing",
+      "n": 491
+    },
+    {
+      "enrich": "billing",
+      "verify": "catalog",
+      "n": 12
+    },
+    {
+      "enrich": "billing",
+      "verify": "downloads",
+      "n": 3
+    },
+    {
+      "enrich": "billing",
+      "verify": "other",
+      "n": 10
+    },
+    {
+      "enrich": "billing",
+      "verify": "playback",
+      "n": 5
+    },
+    {
+      "enrich": "billing",
+      "verify": "usability",
+      "n": 56
+    },
+    {
+      "enrich": "catalog",
+      "verify": "billing",
+      "n": 8
+    },
+    {
+      "enrich": "catalog",
+      "verify": "catalog",
+      "n": 393
+    },
+    {
+      "enrich": "catalog",
+      "verify": "downloads",
+      "n": 3
+    },
+    {
+      "enrich": "catalog",
+      "verify": "other",
+      "n": 29
+    },
+    {
+      "enrich": "catalog",
+      "verify": "playback",
+      "n": 18
+    },
+    {
+      "enrich": "catalog",
+      "verify": "support",
+      "n": 1
+    },
+    {
+      "enrich": "catalog",
+      "verify": "usability",
+      "n": 18
+    },
+    {
+      "enrich": "downloads",
+      "verify": "catalog",
+      "n": 2
+    },
+    {
+      "enrich": "downloads",
+      "verify": "downloads",
+      "n": 74
+    },
+    {
+      "enrich": "downloads",
+      "verify": "other",
+      "n": 5
+    },
+    {
+      "enrich": "downloads",
+      "verify": "playback",
+      "n": 1
+    },
+    {
+      "enrich": "downloads",
+      "verify": "usability",
+      "n": 1
+    },
+    {
+      "enrich": "other",
+      "verify": "billing",
+      "n": 28
+    },
+    {
+      "enrich": "other",
+      "verify": "catalog",
+      "n": 106
+    },
+    {
+      "enrich": "other",
+      "verify": "downloads",
+      "n": 10
+    },
+    {
+      "enrich": "other",
+      "verify": "other",
+      "n": 1933
+    },
+    {
+      "enrich": "other",
+      "verify": "playback",
+      "n": 46
+    },
+    {
+      "enrich": "other",
+      "verify": "support",
+      "n": 2
+    },
+    {
+      "enrich": "other",
+      "verify": "usability",
+      "n": 71
+    },
+    {
+      "enrich": "playback",
+      "verify": "access",
+      "n": 5
+    },
+    {
+      "enrich": "playback",
+      "verify": "billing",
+      "n": 4
+    },
+    {
+      "enrich": "playback",
+      "verify": "catalog",
+      "n": 9
+    },
+    {
+      "enrich": "playback",
+      "verify": "downloads",
+      "n": 12
+    },
+    {
+      "enrich": "playback",
+      "verify": "other",
+      "n": 12
+    },
+    {
+      "enrich": "playback",
+      "verify": "playback",
+      "n": 336
+    },
+    {
+      "enrich": "playback",
+      "verify": "usability",
+      "n": 54
+    },
+    {
+      "enrich": "support",
+      "verify": "other",
+      "n": 1
+    },
+    {
+      "enrich": "support",
+      "verify": "playback",
+      "n": 1
+    },
+    {
+      "enrich": "support",
+      "verify": "support",
+      "n": 3
+    },
+    {
+      "enrich": "usability",
+      "verify": "access",
+      "n": 1
+    },
+    {
+      "enrich": "usability",
+      "verify": "billing",
+      "n": 52
+    },
+    {
+      "enrich": "usability",
+      "verify": "catalog",
+      "n": 26
+    },
+    {
+      "enrich": "usability",
+      "verify": "downloads",
+      "n": 4
+    },
+    {
+      "enrich": "usability",
+      "verify": "other",
+      "n": 56
+    },
+    {
+      "enrich": "usability",
+      "verify": "playback",
+      "n": 22
+    },
+    {
+      "enrich": "usability",
+      "verify": "support",
+      "n": 1
+    },
+    {
+      "enrich": "usability",
+      "verify": "usability",
+      "n": 781
+    }
+  ],
+  "verifier": "anthropic:claude-haiku-5-5",
+  "new_calls": 242,
+  "failed_calls": 0,
+  "wall_seconds": 1136.09
+}

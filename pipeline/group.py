@@ -22,7 +22,7 @@ from .records import build_records, write_jsonl_gz
 from .store import Store
 
 SAMPLE_PER_ISSUE = 8
-ISSUES_PER_CALL = 12
+ISSUES_PER_CALL = 8
 
 
 def materialize(run_dir: Path, enrich_cfg) -> dict:
@@ -98,8 +98,10 @@ def group(run_dir: Path, enrich_cfg, provider: str, model: str | None = None) ->
                                        "description": "Mock description.", "example_review_ids": [s["review_id"] for s in p["sample"][:2]]} for p in chunk]}
                     usage = {"input": len(user) // 4, "output": 40 * len(chunk)}
                 else:
-                    res = prov.complete(system, user, _schema(), 120 * len(chunk) + 200)
+                    res = prov.complete(system, user, _schema(), 400 * len(chunk) + 600)
                     usage = res.usage
+                    if res.stop_reason == "max_tokens":
+                        raise ValueError("truncated at max_tokens")
                     out = json.loads(res.text)
                 for o in out["issues"]:
                     iid = o.get("issue_id")

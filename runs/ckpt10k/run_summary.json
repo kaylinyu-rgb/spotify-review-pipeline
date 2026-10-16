@@ -1,0 +1,93 @@
+{
+  "run_id": "ckpt10k",
+  "input": {
+    "path": "data/analysis_10000.csv",
+    "name": "analysis_10000.csv",
+    "sha256": "eaa62ca6d44d717302904a9c922e99b0b4584d174309cb45295ecbc2ba2a91b5",
+    "bytes": 1477793,
+    "rows": 10000,
+    "is_full_course_file": false
+  },
+  "is_full_course_file": false,
+  "label_config": "anthropic:claude-haiku-5-5+effort-low+enrich-p2+schema-s2+entities-l1",
+  "fallback_label_config": "anthropic:claude-haiku-5-5+effort-medium+enrich-p2+schema-s2+entities-l1",
+  "code_version": "6ea587190c901b6a99d22ed8aa7fd0d5d8be7bbc",
+  "records": 10000,
+  "completed": 10000,
+  "quarantined": 0,
+  "quarantine_reasons": {},
+  "cache_reuse_rows": 1552,
+  "calls_by_role": {
+    "enrich": {
+      "role": "enrich",
+      "calls": 171,
+      "failed": 0,
+      "input_tokens": 381092,
+      "cached": 642600,
+      "cache_write": 3781,
+      "output_tokens": 542938,
+      "cost_usd": 0.161791125,
+      "usage_unknown_calls": 0,
+      "summed_call_seconds": 77676.436
+    },
+    "group": {
+      "role": "group",
+      "calls": 5,
+      "failed": 0,
+      "input_tokens": 18527,
+      "cached": 2728,
+      "cache_write": 682,
+      "output_tokens": 6370,
+      "cost_usd": 0.0051502299999999996,
+      "usage_unknown_calls": 0,
+      "summed_call_seconds": 31.488
+    },
+    "verify": {
+      "role": "verify",
+      "calls": 5,
+      "failed": 0,
+      "input_tokens": 5368,
+      "cached": 4352,
+      "cache_write": 1088,
+      "output_tokens": 4661,
+      "cost_usd": 0.0030468199999999996,
+      "usage_unknown_calls": 0,
+      "summed_call_seconds": 20.485
+    }
+  },
+  "total_cost_usd_known": 0.169988,
+  "enrich_sessions": [
+    {
+      "session_id": "s-20261015T223346-718191",
+      "phase": "initial",
+      "started_at": 1792128826.4056342,
+      "ended_at": 1792129415.7814798,
+      "session": "s-20261015T223346-718191",
+      "mode": "batch",
+      "label_config": "anthropic:claude-haiku-5-5+effort-low+enrich-p2+schema-s2+entities-l1",
+      "stop_reason": "queue_empty",
+      "wall_seconds": 589.36,
+      "calls": 171,
+      "failed_calls": 0,
+      "spent": 0.161791,
+      "completed_texts": 8448,
+      "rows_covered": 10000,
+      "invalid_items": 7,
+      "foreign_ids": 0,
+      "duplicate_ids": 0,
+      "deferred": 0,
+      "quarantined": 0,
+      "fallback_calls": 1,
+      "batches": 170,
+      "jobs_submitted": 2,
+      "jobs_collected": 2,
+      "spent_total_run_usd": 0.161791,
+      "pending_texts_after": 0,
+      "uncollected_jobs": 0,
+      "throughput_texts_per_s": 14.334
+    }
+  ],
+  "checkpoint_before_ids": 0,
+  "checkpoint_after_ids": 10000,
+  "budget_rule": "<= $10 per 100k input rows unless --budget is given; spent+reserved+next worst-case <= budget"
+}

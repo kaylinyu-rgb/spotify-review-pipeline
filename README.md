@@ -33,7 +33,32 @@ next quarter of product effort should go: access, usability, playback, or billin
 All numbers are generated into [docs/RESULTS.md](docs/RESULTS.md) by `python -m pipeline report --run full`, so they
 always match the saved files. Measured values are kept apart from estimates there.
 
-<<RESULTS_SUMMARY: paste the coverage / cost / agreement lines from docs/RESULTS.md after the full run>>
+| measure | result (full run `runs/full`, measured) |
+|---|---|
+| Source rows accounted for | **660,622 / 660,622**: 660,602 completed + 20 quarantined (13 `empty_review_text`, 7 `invalid_model_output_after_retry_and_fallback`) |
+| Completed classifications of nonempty reviews | 660,602 / 660,609 (99.9989%) |
+| Distinct texts sent to the model / exact-text cache reuses | 484,189 / 176,420 rows |
+| Enrichment requests | 9,835 (8 failed, all retried); 86 texts completed by the capped Haiku-with-thinking fallback (cap 0.1%) |
+| API spend, full run | **$9.74** (enrich $9.56, verify $0.18, group + memo < $0.01) = **$1.47 per 100k rows** (course cap $10) |
+| Wall-clock | enrichment 6,344 s in the final resumed session (Message Batches); end-to-end stage times in `runs/full/run_log.jsonl` |
+| Interruption → resume | checkpoint_before 81,711 completed IDs → checkpoint_after 660,602; 0 completed IDs resent |
+| Independent verifier (declared 1% sample, n = 4,823) | topic 0.852 · intent 0.932 · severity exact 0.870 (MAE 0.133) · 1,372 disagreements listed |
+| Golden 50 vs human labels | topic 0.50 · intent 0.82 · severity 0.60 (MAE 0.60) · sentiment ±0.5 0.98 · quotes exact 1.00; see the [error analysis](evals/golden_report.md) |
+| System tests | injection 7/7, planted errors 20/20 caught, spend cap never exceeded, resume resent 0 ([report](evals/system_tests_report.md)) |
+| 100-review pilot | cold $0.0071 / 480 s; warm $0 / 0 enrichment calls ([cost/report.md](cost/report.md)) |
+| Recommendation | **billing/support**: `billing.premium_paywall` 41,553 complaints, severity sum 115,758; billing has the most cancellation-intent records (9,552) ([memo](runs/full/memo.md)) |
+
+**Self-check (`tools/check_submission.py`) on `runs/full/grading`.** Coverage candidate 1.0, 0 missing, 0 duplicate or
+invalid rows, 176,420 valid cache reuses, ranking and claims recomputed with no mismatch. It reports two expected items:
+`unfinished_classification: 7` (the 7 nonempty reviews quarantined after retry and fallback) and
+`call_config_mismatch: 108`. The second covers 54 reviews: each was sent in a primary-config request that returned
+invalid output for that review, then completed by the declared fallback config (`…+effort-medium+…`), so the earlier
+request lists the ID under a different `label_config`. The fallback's own successful calls are logged with the matching config.
+
+**Disclosed correction.** The first batch session after the interruption was tagged `resume` by an older phase rule
+while no results had yet been saved, which also wrote an empty checkpoint. Following the documented rule ("resume only
+after saved completed work"), its phase tag was corrected to `initial` and the empty checkpoint was removed. No
+calls, usage, costs or labels changed. The correction is logged in `runs/full/run_log.jsonl` (`phase_label_correction`).
 
 ---
 

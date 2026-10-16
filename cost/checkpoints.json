@@ -1,0 +1,28 @@
+[
+  {
+    "label": "checkpoint_500",
+    "run": "ckpt500",
+    "rows": 500,
+    "distinct_texts": 479,
+    "enrich_calls": 11,
+    "enrich_failed": 0,
+    "enrich_usd": 0.00988225,
+    "usd_per_text": 2.0631002087682674e-05,
+    "texts_per_s": 0.68,
+    "workers": 1,
+    "projected_full_usd": 9.989304269832987
+  },
+  {
+    "label": "analysis_10000",
+    "run": "ckpt10k",
+    "rows": 10000,
+    "distinct_texts": 8448,
+    "enrich_calls": 171,
+    "enrich_failed": 0,
+    "enrich_usd": 0.161791125,
+    "usd_per_text": 1.9151411576704545e-05,
+    "texts_per_s": 14.33,
+    "workers": 1,
+    "projected_full_usd": 9.272902819912996
+  }
+]

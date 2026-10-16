@@ -1,0 +1,16 @@
+request_id,run_phase,role,provider,model,item,units,unit,price,price_per_unit,cost_usd,rate_status,rate_source,rate_checked
+msgbatch_01NFyn5Tp5uUHkK87HhPXVWT:qaea94b5e91fc495aa62e,cold,enrich,anthropic-batch,claude-haiku-5-5,input,1972,per_1M_tokens,0.05,5.0000000000000004e-08,9.860000000000001e-05,official,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-15
+msgbatch_01NFyn5Tp5uUHkK87HhPXVWT:qaea94b5e91fc495aa62e,cold,enrich,anthropic-batch,claude-haiku-5-5,cached_input,3780,per_1M_tokens,0.01,1e-08,3.7800000000000004e-05,assumed,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-15
+msgbatch_01NFyn5Tp5uUHkK87HhPXVWT:qaea94b5e91fc495aa62e,cold,enrich,anthropic-batch,claude-haiku-5-5,output,3083,per_1M_tokens,0.25,2.5e-07,0.00077075,official,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-15
+msgbatch_01NFyn5Tp5uUHkK87HhPXVWT:qbc2da2989b0d4ccd908f,cold,enrich,anthropic-batch,claude-haiku-5-5,input,2547,per_1M_tokens,0.05,5.0000000000000004e-08,0.00012735,official,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-15
+msgbatch_01NFyn5Tp5uUHkK87HhPXVWT:qbc2da2989b0d4ccd908f,cold,enrich,anthropic-batch,claude-haiku-5-5,cache_write,3780,per_1M_tokens,0.125,1.25e-07,0.0004725,assumed,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-15
+msgbatch_01NFyn5Tp5uUHkK87HhPXVWT:qbc2da2989b0d4ccd908f,cold,enrich,anthropic-batch,claude-haiku-5-5,output,3203,per_1M_tokens,0.25,2.5e-07,0.0008007499999999999,official,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-15
+grp-7123c321852d4a,cold,group,anthropic,claude-haiku-5-5,input,2896,per_1M_tokens,0.1,1.0000000000000001e-07,0.00028960000000000005,official,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-15
+grp-7123c321852d4a,cold,group,anthropic,claude-haiku-5-5,cache_write,682,per_1M_tokens,0.125,1.25e-07,8.525e-05,official,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-15
+grp-7123c321852d4a,cold,group,anthropic,claude-haiku-5-5,output,1640,per_1M_tokens,0.5,5e-07,0.00082,official,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-15
+grp-69852c28747348,cold,group,anthropic,claude-haiku-5-5,input,534,per_1M_tokens,0.1,1.0000000000000001e-07,5.3400000000000004e-05,official,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-15
+grp-69852c28747348,cold,group,anthropic,claude-haiku-5-5,cached_input,682,per_1M_tokens,0.01,1e-08,6.82e-06,official,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-15
+grp-69852c28747348,cold,group,anthropic,claude-haiku-5-5,output,524,per_1M_tokens,0.5,5e-07,0.00026199999999999997,official,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-15
+memo-3714e68b9aab4c,cold,memo,anthropic,claude-haiku-5-5,input,6335,per_1M_tokens,0.1,1.0000000000000001e-07,0.0006335000000000001,official,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-15
+memo-3714e68b9aab4c,cold,memo,anthropic,claude-haiku-5-5,cache_write,1360,per_1M_tokens,0.125,1.25e-07,0.00016999999999999999,official,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-15
+memo-3714e68b9aab4c,cold,memo,anthropic,claude-haiku-5-5,output,2032,per_1M_tokens,0.5,5e-07,0.001016,official,https://platform.claude.com/docs/en/about-claude/pricing,2026-10-15

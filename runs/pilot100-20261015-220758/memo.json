@@ -1,0 +1,70 @@
+{
+  "priority_area": "usability",
+  "headline": "Prioritize usability: free-tier ads and restricted track controls generate the most complaints and the highest severity volume.",
+  "recommendation": "Prioritize usability, which has 19 complaints [T1], a 37.3% share of all complaints [T4], and the highest severity sum at 51 [T2]. Within it, ads lead with 8 complaints [C5] and a severity sum of 21 [C6]. Premium gating of skip, back, and song selection overlaps with billing and should be scoped together with usability. Cancellation language is expressed intent only, with 3 usability records [T3].",
+  "actions": [
+    {
+      "title": "Reduce ad frequency and loudness for free-tier listeners",
+      "rationale": "Ads are the largest usability issue by complaints [C5] and severity sum [C6], with reviews describing ads replacing songs and interrupting playback.",
+      "issue_ids": [
+        "usability.ads"
+      ],
+      "review_ids": [
+        "c2738a4f-e57c-46bc-a4ad-8ec5a4b5d5cd",
+        "cf6166ae-d71a-4839-9add-088645ad3b78",
+        "ab67a772-c3b7-42ba-9b80-8d21d3857018"
+      ]
+    },
+    {
+      "title": "Restore skip, previous-track, and chosen-song controls for free users",
+      "rationale": "This issue carries a mean severity of 3.000000 [C15] and a severity sum of 15 [C14], showing users feel locked out of basic playback control.",
+      "issue_ids": [
+        "usability.shuffle_or_track_control",
+        "billing.premium_paywall"
+      ],
+      "review_ids": [
+        "a3605554-5c3a-441d-836e-e9fdea83eb2e",
+        "ebc64fe2-9553-4528-87d5-cb4bb9783be6",
+        "d146397f-4a94-4980-be00-ae9212eca3a7"
+      ]
+    },
+    {
+      "title": "Review the home screen redesign and auto-playing audio elements",
+      "rationale": "Redesign complaints total 4 [C17] with a severity sum of 9 [C18], and one review ties the issue to cancellation intent.",
+      "issue_ids": [
+        "usability.ui_redesign_or_navigation"
+      ],
+      "review_ids": [
+        "94c9f2f9-36fa-4c11-936e-660514fe7a35",
+        "d455c11e-c530-4c03-a395-38f5a5cdb8d3",
+        "e16a4550-43e7-4ae1-b538-a65cc652c31b"
+      ]
+    }
+  ],
+  "alternatives": [
+    {
+      "area": "billing/support",
+      "why_not_first": "Premium gating shows 6 complaints [T13] at a mean severity of 3.000000 [C11]; much of it overlaps with the usability track-control issue, so it is addressed in the same scope."
+    },
+    {
+      "area": "playback",
+      "why_not_first": "Playback has 7 complaints [T9] and a severity sum of 22 [T10], but it splits into crash [C25] and other [C29] issues with no single dominant cluster."
+    },
+    {
+      "area": "access",
+      "why_not_first": "Login failures total 2 complaints [T21] with a mean severity of 4.000000 [C23]; volume is small, so monitor rather than lead with it."
+    },
+    {
+      "area": "catalog/downloads",
+      "why_not_first": "Catalog has 4 complaints [T17] and downloads has 1 [T25], both below the usability and billing volumes."
+    }
+  ],
+  "limitations": [
+    "Reviews are self-selected public feedback and are not a representative user sample.",
+    "The data contains no revenue, plan tier, or confirmed churn; cancellation language reflects expressed intent only.",
+    "Coverage is 100 rows [X1] with 0 quarantined [X3], of which 51 are complaint or cancellation records [X5].",
+    "Only 17 records were verified [X9] and 15 are flagged needs_review [X8], so classification confidence is moderate.",
+    "Verifier topic and intent agreement were both 1.0 [X10][X11] on a small sample, with severity mean absolute error of 0.0588 [X12].",
+    "The first and last months of the window are partial, which may distort trends."
+  ]
+}

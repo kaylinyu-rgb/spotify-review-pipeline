@@ -1,0 +1,11 @@
+{
+  "cache_reuse": 1552,
+  "completed": 10000,
+  "intent:cancellation": 427,
+  "intent:complaint": 4128,
+  "intent:praise": 4305,
+  "intent:request": 316,
+  "intent:unclear": 824,
+  "needs_review": 1450,
+  "rows": 10000
+}

@@ -1,0 +1,59 @@
+{
+  "priority_area": "usability",
+  "headline": "Prioritize usability: shuffle/track control and ad interruptions carry the most complaint weight, though verification is absent.",
+  "recommendation": "Usability has the largest topic complaint count, 20 [T1], and a share of 39.2% of all complaints [T4], with the highest priority scores among top issues. Within it, shuffle or track control scores 21 [C8] and ads score 19 [C12]. Start with these two issues, and treat the results as directional because no verifier sample was run [X9] and 17 records still need review [X8].",
+  "actions": [
+    {
+      "title": "Fix shuffle and track-control behavior in playlists and single-track playback",
+      "rationale": "This issue has 7 complaints [C5] and a severity sum of 21 [C6], the highest severity total among the top issues. Reviews describe random playlist order and an inability to go back a few seconds.",
+      "issue_ids": [
+        "usability.shuffle_or_track_control"
+      ],
+      "review_ids": [
+        "5c9c17d3-9d6a-4fa1-a2a4-ae98eefbbd25",
+        "9e5f9745-f8be-48d3-b9de-4d118507d94a"
+      ]
+    },
+    {
+      "title": "Reduce ad frequency and ad placement between tracks for free-tier users",
+      "rationale": "Ads show 8 complaints [C9] with a severity sum of 19 [C10]. Reviews describe ads appearing every one or two songs, which makes the product feel unusable.",
+      "issue_ids": [
+        "usability.ads"
+      ],
+      "review_ids": [
+        "cf6166ae-d71a-4839-9add-088645ad3b78",
+        "3e8bdc92-4934-457e-85cc-8b9d14bf51c0"
+      ]
+    },
+    {
+      "title": "Validate the usability findings with a manual sample before committing the quarter",
+      "rationale": "Zero records have been verified [X9], and 17 records are flagged for review [X8]. A targeted check of the top usability items would confirm the ranking before major investment.",
+      "issue_ids": [
+        "usability.shuffle_or_track_control",
+        "usability.ads"
+      ],
+      "review_ids": []
+    }
+  ],
+  "alternatives": [
+    {
+      "area": "billing/support",
+      "why_not_first": "Billing has 5 complaints [T13] with a severity sum of 14 [T14], and the premium paywall issue has 4 complaints [C13]. Its volume is well below usability, and the paywall complaints overlap with the premium-gated controls already covered under usability."
+    },
+    {
+      "area": "playback",
+      "why_not_first": "Playback has 7 complaints [T9], close to usability in count but with a severity sum of 22 [T10]. Its top issue, crash or won't open, has only 2 complaints [C21], so the signal is concentrated in fewer reports."
+    },
+    {
+      "area": "access",
+      "why_not_first": "Access has only 2 complaints [T21] and a share of 3.9% [T24]. The login failure issue is small in volume, though its mean severity is 4.000000 [C19], so it is worth monitoring."
+    }
+  ],
+  "limitations": [
+    "The data is self-selected public reviews from May 2022 to November 2023 [X1] and does not represent all users.",
+    "The dataset contains no revenue, plan tier, or confirmed churn; cancellation language reflects expressed intent only, with 8 cancellation-intent records [X6].",
+    "No verifier sample was run and no agreement or error metrics are available [X9][X10][X11][X12].",
+    "17 records still need review [X8], so classifications may shift.",
+    "Quotes are short excerpts and may not capture full context."
+  ]
+}

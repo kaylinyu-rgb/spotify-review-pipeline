@@ -1,0 +1,93 @@
+{
+  "run_id": "ckpt500",
+  "input": {
+    "path": "data/checkpoint_500.csv",
+    "name": "checkpoint_500.csv",
+    "sha256": "a94e31663ee7b7eaa77e23b7a8425b530cc0c866ed5e714953172a0afef6a12f",
+    "bytes": 76170,
+    "rows": 500,
+    "is_full_course_file": false
+  },
+  "is_full_course_file": false,
+  "label_config": "anthropic:claude-haiku-5-5+effort-low+enrich-p2+schema-s2+entities-l1",
+  "fallback_label_config": "anthropic:claude-haiku-5-5+effort-medium+enrich-p2+schema-s2+entities-l1",
+  "code_version": "6ea587190c901b6a99d22ed8aa7fd0d5d8be7bbc",
+  "records": 500,
+  "completed": 500,
+  "quarantined": 0,
+  "quarantine_reasons": {},
+  "cache_reuse_rows": 21,
+  "calls_by_role": {
+    "enrich": {
+      "role": "enrich",
+      "calls": 11,
+      "failed": 0,
+      "input_tokens": 21265,
+      "cached": 37800,
+      "cache_write": 3780,
+      "output_tokens": 31874,
+      "cost_usd": 0.00988225,
+      "usage_unknown_calls": 0,
+      "summed_call_seconds": 4540.841
+    },
+    "group": {
+      "role": "group",
+      "calls": 4,
+      "failed": 0,
+      "input_tokens": 8276,
+      "cached": 2046,
+      "cache_write": 682,
+      "output_tokens": 4121,
+      "cost_usd": 0.00299381,
+      "usage_unknown_calls": 0,
+      "summed_call_seconds": 24.579
+    },
+    "verify": {
+      "role": "verify",
+      "calls": 1,
+      "failed": 0,
+      "input_tokens": 245,
+      "cached": 0,
+      "cache_write": 1088,
+      "output_tokens": 124,
+      "cost_usd": 0.0002225,
+      "usage_unknown_calls": 0,
+      "summed_call_seconds": 2.103
+    }
+  },
+  "total_cost_usd_known": 0.013099,
+  "enrich_sessions": [
+    {
+      "session_id": "s-20261015T222134-e5214e",
+      "phase": "initial",
+      "started_at": 1792128094.551836,
+      "ended_at": 1792128799.2617002,
+      "session": "s-20261015T222134-e5214e",
+      "mode": "batch",
+      "label_config": "anthropic:claude-haiku-5-5+effort-low+enrich-p2+schema-s2+entities-l1",
+      "stop_reason": "queue_empty",
+      "wall_seconds": 704.71,
+      "calls": 11,
+      "failed_calls": 0,
+      "spent": 0.009882,
+      "completed_texts": 479,
+      "rows_covered": 500,
+      "invalid_items": 1,
+      "foreign_ids": 0,
+      "duplicate_ids": 0,
+      "deferred": 0,
+      "quarantined": 0,
+      "fallback_calls": 0,
+      "batches": 11,
+      "jobs_submitted": 2,
+      "jobs_collected": 2,
+      "spent_total_run_usd": 0.009882,
+      "pending_texts_after": 0,
+      "uncollected_jobs": 0,
+      "throughput_texts_per_s": 0.68
+    }
+  ],
+  "checkpoint_before_ids": 0,
+  "checkpoint_after_ids": 500,
+  "budget_rule": "<= $10 per 100k input rows unless --budget is given; spent+reserved+next worst-case <= budget"
+}

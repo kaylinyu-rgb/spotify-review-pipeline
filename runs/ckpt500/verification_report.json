@@ -1,0 +1,31 @@
+{
+  "declared_sample": {
+    "rate": 0.01,
+    "seed": "verify-seed-v1",
+    "rule": "sha256(seed:review_id)/2^256 < rate over completed distinct texts"
+  },
+  "sampled": 2,
+  "verified": 2,
+  "topic_agreement": 1.0,
+  "intent_agreement": 0.5,
+  "severity_exact": 1.0,
+  "severity_mae": 0.0,
+  "disagreements": 1,
+  "disagreements_file": "verify_disagreements.csv",
+  "confusion_topic": [
+    {
+      "enrich": "catalog",
+      "verify": "catalog",
+      "n": 1
+    },
+    {
+      "enrich": "other",
+      "verify": "other",
+      "n": 1
+    }
+  ],
+  "verifier": "anthropic:claude-haiku-5-5",
+  "new_calls": 1,
+  "failed_calls": 0,
+  "wall_seconds": 2.11
+}

@@ -1,0 +1,183 @@
+{
+  "input": {
+    "path": "data/analysis_10000.csv",
+    "name": "analysis_10000.csv",
+    "sha256": "eaa62ca6d44d717302904a9c922e99b0b4584d174309cb45295ecbc2ba2a91b5",
+    "bytes": 1477793,
+    "rows": 10000,
+    "is_full_course_file": false
+  },
+  "records": 10000,
+  "unique_review_ids": 10000,
+  "duplicate_review_ids": 0,
+  "empty_review_text": 0,
+  "empty_review_text_ids": [],
+  "nonempty_to_classify": 10000,
+  "distinct_nonempty_texts": 8448,
+  "rows_reusable_via_exact_text_cache": 1552,
+  "missing_app_version": 2447,
+  "invalid_ratings": 0,
+  "reviews_by_rating": {
+    "1": 3685,
+    "2": 469,
+    "3": 498,
+    "4": 836,
+    "5": 4512
+  },
+  "reviews_by_month": {
+    "2022-05": 232,
+    "2022-06": 421,
+    "2022-07": 506,
+    "2022-08": 466,
+    "2022-09": 438,
+    "2022-10": 412,
+    "2022-11": 406,
+    "2022-12": 520,
+    "2023-01": 451,
+    "2023-02": 337,
+    "2023-03": 425,
+    "2023-04": 359,
+    "2023-05": 423,
+    "2023-06": 391,
+    "2023-07": 1246,
+    "2023-08": 459,
+    "2023-09": 625,
+    "2023-10": 1381,
+    "2023-11": 502
+  },
+  "text_length_chars": {
+    "mean": 75.24,
+    "median": 32.0,
+    "p99": 492,
+    "max": 615
+  },
+  "top_duplicate_texts": [
+    {
+      "text": "Good",
+      "rows": 214,
+      "rep_review_id": "4aee0d75-6901-426e-b0f7-11d042ccc73e"
+    },
+    {
+      "text": "Nice",
+      "rows": 79,
+      "rep_review_id": "ee7da374-2a0d-4f3a-836e-07f40f2d3d0b"
+    },
+    {
+      "text": "Great",
+      "rows": 60,
+      "rep_review_id": "dc73ecd9-3293-4ede-90d5-dd6cd1e8d087"
+    },
+    {
+      "text": "Awesome",
+      "rows": 53,
+      "rep_review_id": "051540ac-7d80-406a-aad4-87fbf9bb7ce7"
+    },
+    {
+      "text": "Love it",
+      "rows": 48,
+      "rep_review_id": "4c0242ca-099a-4c89-b11b-219ef28f1e16"
+    },
+    {
+      "text": "Excellent",
+      "rows": 48,
+      "rep_review_id": "710e1aee-ed80-4753-9c4e-c63bee84fd56"
+    },
+    {
+      "text": "Super",
+      "rows": 37,
+      "rep_review_id": "8454aa1e-ceb7-4676-adf7-e20f6989f5c9"
+    },
+    {
+      "text": "Worst app",
+      "rows": 34,
+      "rep_review_id": "06a45bd5-3ed9-43af-b7f2-8b9487e2ffff"
+    },
+    {
+      "text": "Good app",
+      "rows": 31,
+      "rep_review_id": "35008b46-daf1-497c-ac9b-fe98f120f912"
+    },
+    {
+      "text": "Very good",
+      "rows": 30,
+      "rep_review_id": "24e63383-4646-4f63-ae37-2014857c236b"
+    },
+    {
+      "text": "Nice app",
+      "rows": 28,
+      "rep_review_id": "dc1041ce-994c-4553-a4ad-43cf76c62590"
+    },
+    {
+      "text": "Best",
+      "rows": 24,
+      "rep_review_id": "e89712aa-fb32-4df6-8195-71b31578c2e5"
+    },
+    {
+      "text": "Worst",
+      "rows": 23,
+      "rep_review_id": "00363dc8-2117-4565-9af9-efadf8fa90cf"
+    },
+    {
+      "text": "Very bad",
+      "rows": 21,
+      "rep_review_id": "bb77bfb2-6eb8-4c6c-88bb-491c7da75196"
+    },
+    {
+      "text": "Amazing",
+      "rows": 21,
+      "rep_review_id": "277c75cb-ec6a-4387-902d-eb721d038db6"
+    },
+    {
+      "text": "Bad",
+      "rows": 20,
+      "rep_review_id": "c55970e2-9223-4e83-92de-9b7e4aac0663"
+    },
+    {
+      "text": "Hate this application",
+      "rows": 19,
+      "rep_review_id": "39e472ad-2038-4978-a559-d052e3844e59"
+    },
+    {
+      "text": "Great app",
+      "rows": 18,
+      "rep_review_id": "96ee1a72-e821-4d95-9d64-ba93af1c674f"
+    },
+    {
+      "text": "Hate this application 👎",
+      "rows": 18,
+      "rep_review_id": "89d17a00-229d-4deb-a854-d1e0aa05bb50"
+    },
+    {
+      "text": "Very nice",
+      "rows": 17,
+      "rep_review_id": "c20de20e-4d16-4e5f-ae92-85c3239f45be"
+    },
+    {
+      "text": "Amazing app",
+      "rows": 16,
+      "rep_review_id": "419cce74-2323-4f09-bd1e-e539fccbb991"
+    },
+    {
+      "text": "The best",
+      "rows": 15,
+      "rep_review_id": "453b621f-6bdd-428a-a610-2b55918c9adb"
+    },
+    {
+      "text": "Bad app",
+      "rows": 15,
+      "rep_review_id": "ca4ba39b-9252-47af-a311-16eab2c7130e"
+    },
+    {
+      "text": "Fantastic",
+      "rows": 15,
+      "rep_review_id": "538d1be7-edb0-4a38-abed-df5d5aa49e0c"
+    },
+    {
+      "text": "I love it",
+      "rows": 14,
+      "rep_review_id": "3b85826d-de5f-4cd0-b985-19697c467fd5"
+    }
+  ],
+  "quarantine_rule": "Rows whose review_text is empty after strip() are quarantined with reason empty_review_text. Missing app_version alone does not block classification. No other row is filtered out.",
+  "seconds": 0.12
+}

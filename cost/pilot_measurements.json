@@ -1,0 +1,58 @@
+{
+  "input": {
+    "name": "cost_100.csv",
+    "sha256": "c884ac3b9be5066995d5063f96ad9af6e5e082975788c1684c4f6b6ea661dd0e",
+    "rows": 100
+  },
+  "run_ids": {
+    "cold": "pilot100-20261015-220758:cold",
+    "warm": "pilot100-20261015-220758:warm"
+  },
+  "settings": {
+    "enrich": "anthropic:claude-haiku-5-5+effort-low+enrich-p2+schema-s2+entities-l1",
+    "mode": "batch",
+    "workers": 1,
+    "batch_size": 50,
+    "verify": "jev",
+    "verify_rate": 0.2,
+    "fallback": "claude-haiku-5-5"
+  },
+  "cold": {
+    "run_id": "pilot100-20261015-220758:cold",
+    "input_rows": 100,
+    "completed": 100,
+    "quarantined": 0,
+    "unique_texts": 100,
+    "distinct_texts_enriched": 100,
+    "result_cache_hits": 0,
+    "wall_seconds": 480.067,
+    "stage_wall_seconds": {
+      "ingest": 0.007,
+      "enrich": 448.439,
+      "verify": 4.006,
+      "group": 12.775,
+      "rank": 0.008,
+      "memo": 14.831
+    },
+    "calls_upto": 7
+  },
+  "warm": {
+    "run_id": "pilot100-20261015-220758:warm",
+    "input_rows": 100,
+    "completed": 100,
+    "quarantined": 0,
+    "unique_texts": 100,
+    "distinct_texts_enriched": 0,
+    "result_cache_hits": 100,
+    "wall_seconds": 0.027,
+    "stage_wall_seconds": {
+      "ingest": 0.002,
+      "enrich": 0.004,
+      "verify": 0.003,
+      "group": 0.009,
+      "rank": 0.003,
+      "memo": 0.004
+    },
+    "calls_upto": 7
+  }
+}
