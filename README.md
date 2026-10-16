@@ -4,7 +4,7 @@ Multi-agent, code-orchestrated pipeline that turns all **660,622** Spotify Googl
 (May 2022 – Nov 2023, 97.4 MB) into a ranked list of product issues and a recommendation on where the
 next quarter of product effort should go: access, usability, playback, or billing/support.
 
-* **Live dashboard:** `<<DASHBOARD_URL>>` — no login. The free host sleeps when idle, so the first load can take about 50 s.
+* **Live dashboard:** **https://spotify-review-insights-gwok.onrender.com** — no login. The free host sleeps when idle, so the first load can take about 50 s.
 * **Results, generated from saved outputs:** [docs/RESULTS.md](docs/RESULTS.md) · **Memo:** [runs/full/memo.md](runs/full/memo.md)
 * **Grading export:** [runs/full/grading/](runs/full/grading/) · **Cost calculator:** [cost/report.md](cost/report.md)
 * **Labels and schema:** [docs/LABELS.md](docs/LABELS.md) · **Prompts:** [pipeline/prompts/](pipeline/prompts/)
@@ -25,7 +25,7 @@ next quarter of product effort should go: access, usability, playback, or billin
 | **Testing 2:** independent verification, planted errors, injection | `runs/full/verification_report.json` + `verify_disagreements.csv` · `evals/system_tests_report.md` (planted-error test, injection test, malformed output, transient failures, spend cap, resume) |
 | **Testing 3:** 100-review cold/warm pilot, calculator, controls | `cost/report.md`, `pilot_calls.jsonl`, `pilot_records.jsonl`, `usage.csv`, `rates.csv`, `assumptions.json`, `checkpoints.json` · `python cost/calculator.py` (offline) |
 | **Working 1:** full ingestion, coverage, classification | `runs/full/ingestion_report.json` · `grading/ingestion.json` · `grading/records.jsonl.gz` · checker report in docs/RESULTS.md |
-| **Working 2:** staged program, bounded calls, saved handoffs, resume | `python -m pipeline run --input <csv>` · ≤ 50 reviews per request · `grading/checkpoint_before.json` / `checkpoint_after.json` · `docs/resume_recording.mp4` · session table in RESULTS.md |
+| **Working 2:** staged program, bounded calls, saved handoffs, resume | `python -m pipeline run --input <csv>` · ≤ 50 reviews per request · `grading/checkpoint_before.json` / `checkpoint_after.json` · [`docs/resume_recording.mp4`](docs/resume_recording.mp4) · session table in RESULTS.md |
 | **Working 3:** reproducible ranking and deployed dashboard | `python -m pipeline rerank --grading runs/full/grading --check` · dashboard (FastAPI backend → Postgres) |
 
 ## Results summary
@@ -61,6 +61,18 @@ after saved completed work"), its phase tag was corrected to `initial` and the e
 calls, usage, costs or labels changed. The correction is logged in `runs/full/run_log.jsonl` (`phase_label_correction`).
 
 ---
+
+## Interruption / resume recording
+
+[docs/resume_recording.mp4](docs/resume_recording.mp4) (2 min 40 s): three terminal recordings joined end to end, unedited apart from compression.
+
+| time | what it shows |
+|---|---|
+| 0:00–1:18 | Ends the golden-set evaluation, then starts the full run. `ingest` reads all 660,622 rows (660,609 nonempty, 484,189 distinct texts, 13 empty → quarantine, 0 duplicate IDs, 159,701 missing app_version) in 18.5 s. `enrich` submits and saves 4 Message Batch jobs (1,600 requests of at most 50 reviews, about $0.70 reserved each), then Ctrl-C stops the process. Jobs keep running at the provider. |
+| 1:18–2:12 | `enrich --run full --stop-after-batches 1` restarts. The screen shows "RESUME detected … 0 completed IDs": this is the older phase rule tagging a restart with nothing saved yet as a resume. It was corrected afterwards and is disclosed in "Disclosed correction" above and in `run_log.jsonl`. |
+| 2:12–2:40 | The first 3 jobs are collected and saved (59,903 distinct texts = 81,711 rows, $1.21), and the session stops (the interruption). `status` shows the saved progress. `run --run full` then prints **"RESUME detected: saved checkpoint_before with 81,711 completed IDs; 1 job(s) to collect"**, collects the 4th job without resubmitting it, and submits new jobs only for pending texts. |
+
+`grading/checkpoint_before.json` (81,711 IDs) and `checkpoint_after.json` (660,602 IDs) are the snapshots on either side of this resume. Resume-phase calls contain none of the checkpoint_before IDs, which `tools/check_submission.py` verifies.
 
 ## Architecture
 
